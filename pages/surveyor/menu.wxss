@@ -1,0 +1,33 @@
+page {
+    background: #f5f9fc;
+}
+
+.surveyor-box {
+    width: 100%;
+    padding: 20rpx;
+    box-sizing: border-box;
+}
+
+.surveyor-box {
+    width: 100%;
+    height: 220rpx;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.surveyor-box .content-item {
+    width: 45%;
+    height: 220rpx;
+    box-sizing: border-box;
+    border-radius: 30rpx;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding: 30rpx;
+    margin-bottom: 30rpx;
+}
+
+.surveyor-box .content-item .title {
+    margin-left: 20rpx;
+}

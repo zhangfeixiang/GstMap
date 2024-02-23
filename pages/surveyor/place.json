@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "地名",
+    "usingComponents": {
+        "van-uploader": "@vant/weapp/uploader/index",
+        "van-cascader": "@vant/weapp/cascader/index",
+        "van-popup": "@vant/weapp/popup/index"
+    }
+}

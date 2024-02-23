@@ -1,0 +1,135 @@
+page {
+    background: #f5f9fc;
+}
+
+.page {
+    padding: 0 20rpx;
+}
+
+.swiper {
+    height: 340rpx;
+}
+
+.swiper-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16rpx;
+    display: block;
+}
+
+.card {
+    border-radius: 30rpx;
+    background-color: #fff;
+
+}
+
+/*  */
+.layer-panel {
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+    margin-top: 20rpx;
+}
+
+.layer-panel .layer-item-box {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20rpx;
+}
+
+.layer-panel .layer-item-box .item-box {
+    /* width: 98rpx; */
+    text-align: center;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40rpx;
+}
+
+.layer-panel .img {
+    width: 98rpx;
+    height: 98rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 35rpx;
+}
+
+.layer-panel .pic {
+    width: 52rpx;
+    height: 52rpx;
+    text-align: center;
+}
+
+.layer-panel .standard {
+    background: linear-gradient(136.97deg, rgb(137, 103, 255) 0%, rgb(186, 137, 255) 100%);
+}
+
+.layer-panel .subject {
+    background: linear-gradient(137deg, rgb(249, 93, 81) 0%, rgb(252, 179, 127) 100%);
+}
+
+.layer-panel .album {
+    background: linear-gradient(225deg, rgb(50, 88, 243) 0%, rgb(86, 182, 253) 100%);
+}
+
+.layer-panel .photo {
+    background: linear-gradient(210deg, rgb(254, 219, 117) 0%, rgb(255, 199, 69) 100%);
+}
+
+.layer-panel .user {
+    background: linear-gradient(136.97deg, rgba(20, 188, 209, 1) 0%, rgba(0, 186, 173, 1) 100%);
+}
+
+
+.layer-panel .title {
+    text-align: center;
+    font-size: 18rpx;
+    color: black;
+    margin-top: 20rpx;
+}
+
+/*  */
+.tabs {
+    margin-top: 60rpx;
+}
+
+.nav-item {
+    width: 280rpx !important;
+}
+
+.wrap-class {
+    border-bottom: 1rpx solid #eee;
+}
+
+.list {
+    padding: 20rpx;
+}
+
+.card-item {
+    position: relative;
+    width: 48%;
+    display: inline-block;
+    margin-bottom: 20rpx;
+}
+
+.card-item:nth-child(odd) {
+    margin-right: 4%;
+}
+
+.card-item .cover {
+    width: 100%;
+    height: 380rpx;
+}
+
+.visit {
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+    background-color: rgba(0, 0, 0, .5);
+    padding: 2rpx 10rpx;
+    color: #fff;
+    font-size: 24rpx;
+    border-radius: 8rpx;
+}

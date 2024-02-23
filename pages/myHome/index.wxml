@@ -1,0 +1,36 @@
+<view class="content">
+    <!-- 上半部分 -->
+    <view class="top-panel">
+        <view class="header-img">
+            <van-image src="https://cdn.uviewui.com/uview/album/1.jpg" round width="60" height="60">
+            </van-image>
+        </view>
+        <view class="header-name">Advens</view>
+        <view class="btn-box">
+            <view class="btn-item">
+                <van-button color="#74A8F5" icon="vip-card-o" size="mini" round>高级认证
+                </van-button>
+            </view>
+            <view class="btn-item">
+                <van-button color="#74A8F5" icon="edit" size="mini" round>编辑资料
+                </van-button>
+            </view>
+        </view>
+    </view>
+    <!-- 下半部分 -->
+    <view class="bottom-panel">
+        <view class="list">
+            <van-cell title="我的上报" is-link url="/">
+                <view slot="icon">
+                    <van-icon size="30rpx" style="margin-right: 20rpx;" name="todo-list" />
+                </view>
+            </van-cell>
+            <van-cell border="{{false}}" title="关于我们" is-link url="/">
+                <view slot="icon">
+                    <van-icon size="30rpx" style="margin-right: 20rpx;" name="friends" />
+                </view>
+            </van-cell>
+        </view>
+
+    </view>
+</view>

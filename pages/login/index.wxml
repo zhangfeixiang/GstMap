@@ -1,0 +1,28 @@
+<view class="t-login">
+    <!-- 页面装饰图片 -->
+    <image class="img-a" src="https://zhoukaiwen.com/img/loginImg/2.png"></image>
+    <image class="img-b" src="https://zhoukaiwen.com/img/loginImg/3.png"></image>
+    <!-- 标题 -->
+    <view class="t-b">欢迎回来</view>
+    <view class="t-b2">欢迎使用，天地图小程序</view>
+    <form class="cl">
+        <view class="t-a">
+            <image src="https://zhoukaiwen.com/img/loginImg/sj.png"></image>
+            <view class="line"></view>
+            <input type="" name="phone" placeholder="请输入用户名" maxlength="11" model:value="{{userName}}" />
+        </view>
+        <view class="t-a">
+            <image src="https://zhoukaiwen.com/img/loginImg/yz.png"></image>
+            <view class="line"></view>
+            <input type="password" name="code" maxlength="10" placeholder="请输入密码" model:value="{{passWord}}" />
+        </view>
+        <button bindtap="login">登 录</button>
+    </form>
+    <view class="t-f"><text>————— 第三方账号登录 —————</text></view>
+    <view class="t-e cl">
+        <view class="t-g" bindtap="wxLogin">
+            <image src="https://zhoukaiwen.com/img/loginImg/wx.png"></image>
+        </view>
+        <!-- 	<view class="t-g" bindtap="zfbLogin"><image src="https://zhoukaiwen.com/img/loginImg/qq.png"></image></view> -->
+    </view>
+</view>

@@ -1,0 +1,9 @@
+/* pages/surveyor/place.wxss */
+page {
+    --field-label-color: #323233;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}

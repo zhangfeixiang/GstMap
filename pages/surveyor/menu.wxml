@@ -1,0 +1,6 @@
+<view class="surveyor-box">
+    <view class="content-item" wx:for="{{list}}" wx:key="id" bindtap="handleClickItem" data-index="{{index}}">
+        <van-image width="50" height="50" radius="10" src="{{item.icon}}"></van-image>
+        <text class="title">{{item.title}}</text>
+    </view>
+</view>
