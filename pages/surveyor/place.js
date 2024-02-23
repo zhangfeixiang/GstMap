@@ -43,9 +43,6 @@ Page({
         userInfo: {
             code: "",
             standardName: "",
-            aliasName: "",
-            romanLetters: "",
-            placeNameType: "",
             // 地名类别
             placeNameCategory: "",
             city: "",
@@ -53,18 +50,16 @@ Page({
             street: "",
             longitudeSpan: "",
             latitudeSpan: "",
-            placeNameSign: "",
             useTime: "",
-            generalSituation: "",
             imgUrl: ""
         },
-        // 地名类别
-        showPopupPlaceNameCategory: false,
-        fieldPlaceNameCategoryNames: {
+        fieldCustom: {
             text: 'text',
             value: 'text',
             children: 'children',
         },
+        // 地名类别
+        showPopupPlaceNameCategory: false,
         placeNameCategoryOptions: [{
                 text: "（一）自然地理实体",
                 children: [{
@@ -116,7 +111,16 @@ Page({
                 text: "（九）具有重要地理方位意义的其他地理实体",
                 children: []
             },
-        ]
+        ],
+        locationStr: ""
+    },
+    async onGetLocation() {
+        const res = await wx.chooseLocation();
+        this.setData({
+            locationStr: res.longitude + "," + res.latitude,
+            "userInfo.longitudeSpan": res.longitude + "-" + res.longitude,
+            "userInfo.latitudeSpan": res.latitude + "-" + res.latitude
+        })
     },
     // 地名类别
     onFinishPlaceNameCategory(e) {

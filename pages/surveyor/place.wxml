@@ -1,10 +1,10 @@
 <view class="">
 
     <van-field size="large" value="{{ userInfo.code }}" label="地点代码" placeholder="地点代码" />
-    <van-field size="large" required value="{{ userInfo.placeNameCategory }}" readonly label="所在位置" placeholder="请选择所在位置" bind:tap="onShowPopupPlaceNameCategory">
+    <van-field size="large" required value="{{ locationStr }}" readonly label="所在位置" placeholder="请选择所在位置" bind:tap="onGetLocation">
         <van-icon slot="right-icon" name="location" class="custom-icon" />
     </van-field>
-    <van-field size="large" model:value="{{ phone }}" label="详细地址" placeholder="请输入详细地址" />
+    <van-field size="large" required value="{{ userInfo.city + userInfo.county+userInfo.street }}" is-link readonly label="详细地址" placeholder="请选择详细地址" bind:tap="onShowPopupAddress" />
     <van-field size="large" required value="{{ userInfo.placeNameCategory }}" is-link readonly label="地名类别" placeholder="请选择地名类别" bind:tap="onShowPopupPlaceNameCategory" />
     <!--  -->
     <van-cell size="large" required title-width="6.2em" title="使用时间">
@@ -25,5 +25,5 @@
 
 <!-- 地名类别 -->
 <van-popup show="{{ showPopupPlaceNameCategory }}" round position="bottom">
-    <van-cascader field-names="{{ fieldPlaceNameCategoryNames }}" wx:if="{{ showPopupPlaceNameCategory }}" value="{{ userInfo.placeNameCategory }}" title="请选择地名类别" options="{{ placeNameCategoryOptions }}" bind:close="onClosePlaceNameCategory" bind:finish="onFinishPlaceNameCategory" />
+    <van-cascader field-names="{{ fieldCustom }}" wx:if="{{ showPopupPlaceNameCategory }}" value="{{ userInfo.placeNameCategory }}" title="请选择地名类别" options="{{ placeNameCategoryOptions }}" bind:close="onClosePlaceNameCategory" bind:finish="onFinishPlaceNameCategory" />
 </van-popup>
