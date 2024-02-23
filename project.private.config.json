@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/surveyor/address",
+          "pathName": "pages/surveyor/address",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/surveyor/place",
           "pathName": "pages/surveyor/place",
           "query": "",
