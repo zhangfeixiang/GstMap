@@ -1,0 +1,3 @@
+<view class="list">
+    <van-cell is-link wx:for="{{list}}" wx:key="id" title="{{item.name}}" icon="location-o" />
+</view>

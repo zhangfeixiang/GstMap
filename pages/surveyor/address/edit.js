@@ -112,9 +112,17 @@ Page({
                 },
             ]
         }],
-        showPopupStreet: false
+        showPopupStreet: false,
+        locationStr: ""
     },
-
+    async onGetLocation() {
+        const res = await wx.chooseLocation();
+        this.setData({
+            locationStr: res.longitude + "," + res.latitude,
+            "userInfo.longitude": res.longitude,
+            "userInfo.latitude": res.latitude
+        })
+    },
     onChangeType(e) {
         this.setData({
             "userInfo.type": e.detail,

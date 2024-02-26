@@ -5,9 +5,10 @@
         "pages/mapList/index",
         "pages/myHome/index",
         "pages/surveyor/menu",
-        "pages/surveyor/tourismPanel",
         "pages/surveyor/place",
-        "pages/surveyor/address",
+        "pages/surveyor/tourismPanel/edit",
+        "pages/surveyor/address/edit",
+        "pages/surveyor/address/list",
         "pages/surveyor/antique"
     ],
     "usingComponents": {

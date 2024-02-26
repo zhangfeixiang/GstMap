@@ -14,13 +14,13 @@ Page({
             {
                 id: 2,
                 icon: 'https://gd-hbimg.huaban.com/9217f66ccf6e2dc8fc14b3604a79db6e00f3092c8289-fpvXIW_fw480webp',
-                url: 'address',
+                url: 'address/edit',
                 title: '地址'
             },
             {
                 id: 3,
                 icon: 'https://cdn.uviewui.com/uview/swiper/3.jpg',
-                url: 'tourismPanel',
+                url: 'tourismPanel/edit',
                 title: '文旅'
             },
             {
