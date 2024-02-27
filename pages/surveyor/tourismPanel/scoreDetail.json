@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "资源单体打分",
+    "usingComponents": {
+        "van-collapse": "@vant/weapp/collapse/index",
+        "van-collapse-item": "@vant/weapp/collapse-item/index",
+        "van-slider": "@vant/weapp/slider/index",
+        "van-submit-bar": "@vant/weapp/submit-bar/index"
+    }
+}

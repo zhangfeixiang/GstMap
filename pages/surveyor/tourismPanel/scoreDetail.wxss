@@ -1,0 +1,34 @@
+/* pages/surveyor/tourismPanel/scoreDetail.wxss */
+page {
+    background: #f5f9fc;
+}
+
+.page {
+    padding: 20rpx;
+}
+
+.card {
+    border-radius: 18rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+    background: #fff;
+    padding: 10rpx;
+}
+
+.title {
+    height: 90rpx;
+}
+
+.number {
+    padding: 0 0 20rpx 10rpx;
+}
+
+.custom-button {
+    width: 52rpx;
+    color: #fff;
+    font-size: 20rpx;
+    line-height: 36rpx;
+    text-align: center;
+    background-color: #ee0a24;
+    border-radius: 200rpx;
+}

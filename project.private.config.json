@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/surveyor/tourismPanel/scoreDetail",
+          "pathName": "pages/surveyor/tourismPanel/scoreDetail",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/surveyor/tourismPanel/list",
           "pathName": "pages/surveyor/tourismPanel/list",
           "query": "",

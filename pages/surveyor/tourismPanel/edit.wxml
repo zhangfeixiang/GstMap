@@ -155,7 +155,7 @@
 
     <!-- 评分 -->
     <view class="card">
-        <van-cell class="fs36" title="旅游资源单体评价" is-link></van-cell>
+        <van-cell class="fs36" title="旅游资源单体评价" is-link url="scoreDetail"></van-cell>
     </view>
 
     <view class="center">

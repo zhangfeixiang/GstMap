@@ -1,0 +1,28 @@
+<view class="page">
+    <view class="card">
+        <!-- <van-cell title="{{item.name}}" center wx:for="{{list}}" wx:key="key">
+            <view style="width: 50vw;" slot="extra">
+                <van-slider active-color="#ee0a24" min="{{item.min}}" max="{{item.max}}" value="{{ currentValue }}" use-button-slot bind:drag="onDrag">
+                    <view class="custom-button" slot="button">{{ currentValue }}</view>
+                </van-slider>
+            </view>
+        </van-cell> -->
+
+        <van-collapse accordion value="{{ activeNames }}" bind:change="onChange">
+            <van-collapse-item name="{{item.key}}" wx:for="{{list}}" wx:key="key">
+
+                <view slot="title" class="value">
+                    <view slot="title" class="title">{{item.name}}</view>
+                    <view class="number">
+                        <van-slider active-color="#ee0a24" min="{{item.min}}" max="{{item.max}}" value="{{ item.value }}" use-button-slot bind:drag="onDrag" bind:change="onChangeSlider" data-index="{{index}}">
+                            <view class="custom-button" slot="button">{{ item.value }}</view>
+                        </van-slider>
+                    </view>
+                </view>
+                <view wx:for="{{item.list}}" wx:for-item="text">{{text}}</view>
+            </van-collapse-item>
+        </van-collapse>
+    </view>
+</view>
+<view style="height: 100rpx;"></view>
+<van-submit-bar price="{{ total }}" label="总分" currency=" " decimal-length="0" button-text="提交" bind:submit="onSubmit" />
