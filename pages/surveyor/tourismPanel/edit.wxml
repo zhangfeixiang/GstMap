@@ -166,7 +166,7 @@
 
 <!-- 行政区-乡镇 -->
 <van-popup show="{{ showPopupStreet }}" round position="bottom" bind:close="onClosePopupStreet">
-    <van-tree-select items="{{ items }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ street }}" bind:click-nav="onClickNav" bind:click-item="onClickStreet" />
+    <van-tree-select items="{{ districtTree }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ streetId }}" bind:click-nav="onClickNav" bind:click-item="onClickStreet" />
 </van-popup>
 <!-- 资源类型 -->
 <van-popup show="{{ showPopupType }}" round position="bottom" bind:close="onClosePopupType">

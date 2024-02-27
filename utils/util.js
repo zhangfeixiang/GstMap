@@ -92,3 +92,19 @@ export function parseTime(time, pattern) {
     })
     return time_str
 }
+
+
+//递归数据改key
+export function deepTree(objAry, val, key) {
+    if (objAry != null) {
+        objAry.forEach((item) => {
+            Object.assign(item, {
+                ['text']: item[val],
+                ['id']: item[key]
+            });
+            delete item[val];
+            delete item[key];
+            deepTree(item.children, val, key);
+        });
+    }
+}

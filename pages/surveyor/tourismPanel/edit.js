@@ -1,11 +1,8 @@
 // pages/surveyor/tourismPanel.js
 import {
-    items,
-} from './../../../mock/items'
-
-import {
     decimalToDMS,
-    DMSToDecimal
+    DMSToDecimal,
+    deepTree
 } from './../../../utils/util'
 Page({
 
@@ -23,7 +20,6 @@ Page({
         resTree: [],
         photoFileList: [],
         videoFileList: [],
-        items: items,
         mainActiveIndex: 0,
         activeNames: [],
         fieldCustom: {
@@ -32,6 +28,7 @@ Page({
             children: 'children',
         },
         isSubmiting: false,
+        streetId: null,
         // --------------
         code: "",
         name: "",
@@ -99,6 +96,12 @@ Page({
         delete data.activeNames;
         delete data.fieldCustom;
         delete data.isSubmiting;
+        delete data.externalRoadStatusData;
+        delete data.resTree;
+        delete data.districtTree;
+        delete data.statusData;
+        delete data.savestatusData;
+        delete data.protectiveData;
         const res = await wx.$api.getTravelResources(data);
         console.log(res)
         if (res.code === 200) {
@@ -256,8 +259,9 @@ Page({
     onClickStreet(e) {
         console.log(e.detail)
         this.setData({
-            "county": e.detail.parentId,
+            "county": this.data.districtTree[this.data.mainActiveIndex].text,
             "street": e.detail.text,
+            "streetId": e.detail.id,
             showPopupStreet: false
         })
     },
@@ -283,11 +287,11 @@ Page({
             }
         })
         // resTree, districtTree, statusData, savestatusData, protectiveData
-
+        deepTree(districtTree, 'name', 'code')
         this.setData({
             externalRoadStatusData,
             resTree,
-            districtTree,
+            districtTree: districtTree[0].children,
             statusData,
             savestatusData,
             protectiveData
@@ -297,8 +301,25 @@ Page({
     async initData() {
         const formData = await wx.$api.getTravelItem({}, this.options.id);
         if (formData.code === 200) {
+
+            formData.imageUrl && formData.imageUrl.split(',').forEach(e => {
+                this.data.photoFileList.push({
+                    status: 'success',
+                    message: '',
+                    url: e,
+                })
+            })
+            formData.videoUrl && formData.videoUrl.split(',').forEach(e => {
+                this.data.videoFileList.push({
+                    status: 'success',
+                    message: '',
+                    url: e,
+                })
+            })
             this.setData({
                 ...formData.data,
+                photoFileList: this.data.photoFileList,
+                videoFileList: this.data.videoFileList,
                 locationStr: `${formData.data.longitude},${formData.data.latitude}`
             })
         }
