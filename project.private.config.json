@@ -9,6 +9,27 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/surveyor/tourismPanel/list",
+          "pathName": "pages/surveyor/tourismPanel/list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/surveyor/tourismPanel/edit",
+          "pathName": "pages/surveyor/tourismPanel/edit",
+          "query": "id=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/surveyor/address",
+          "pathName": "pages/surveyor/address/edit",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/surveyor/antique",
           "pathName": "pages/surveyor/antique",
           "query": "",
@@ -18,13 +39,6 @@
         {
           "name": "pages/surveyor/address/list",
           "pathName": "pages/surveyor/address/list",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/surveyor/address",
-          "pathName": "pages/surveyor/address",
           "query": "",
           "launchMode": "default",
           "scene": null

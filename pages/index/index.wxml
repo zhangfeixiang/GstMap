@@ -8,7 +8,7 @@
     <!--  -->
     <view class="card layer-panel">
         <view class="layer-item-box">
-            <view class="item-box" wx:for="{{layerList}}" bindtap="handleClickItem(item)">
+            <view class="item-box" wx:for="{{layerList}}" bindtap="handleClickItem" data-index="{{index}}">
                 <view class="img {{item.type}}">
                     <image class="pic" src="{{item.icon}}" mode="widthFix" />
                 </view>

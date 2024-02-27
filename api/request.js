@@ -3,7 +3,8 @@ import {
     getVersion,
 } from './../utils/util'
 
-const baseUrl = "https://www.gistoyou.com.cn:8443/applet"
+// const baseUrl = "https://www.gistoyou.com.cn:8443/applet"
+const baseUrl = "http://39.98.214.43:8081/applet"
 
 const getHeader = () => {
     const loginData = wx.getStorageSync('loginData') || {}
@@ -182,7 +183,7 @@ export function awaitWraper(promise) {
         requestOption
     }) => {
         // 处理后端code
-        if (res.data.code !== undefined && res.data.code !== 0) {
+        if (res.data.code !== undefined && res.data.code !== 200) {
             var err = {
                 message: res.data.msg || res.data.message
             };
@@ -191,9 +192,9 @@ export function awaitWraper(promise) {
                 icon: 'none',
                 title: err.message
             });
-            return [err, null];
+            return err;
         } else {
-            return [null, res.data]
+            return res.data
         }
     }).catch(({
         err,
@@ -210,6 +211,6 @@ export function awaitWraper(promise) {
                 title: err.message
             })
         }
-        return [err, null];
+        return err;
     });
 }

@@ -1,1 +1,24 @@
 /* pages/surveyor/tourismPanel.wxss */
+page {
+    background: #f5f9fc;
+}
+
+.page {
+    padding: 20rpx;
+}
+
+.card {
+    border-radius: 18rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+    background: #fff;
+}
+
+.indent {
+    padding-left: 32rpx;
+}
+
+.fs36 {
+    font-size: 36rpx;
+    --cell-font-size: 36rpx;
+}

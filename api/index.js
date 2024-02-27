@@ -8,9 +8,9 @@ const api = {
         })
     },
     // 查询旅游资源分类树状结构数据
-    async getTravelItem(data) {
+    async getTravelItem(data, id) {
         return await wx.$request({
-            url: `/travel-resources/`,
+            url: `/travel-resources/${id}`,
             data,
             method: 'GET',
         })
@@ -35,6 +35,14 @@ const api = {
     async getTaskRes(data) {
         return await wx.$request({
             url: `/travel-resources/assigned`,
+            data,
+            method: 'GET'
+        })
+    },
+    //对外道路情况 
+    async getExternalRoadStatus(data) {
+        return await wx.$request({
+            url: `/travel-resources/external-road-status`,
             data,
             method: 'GET'
         })

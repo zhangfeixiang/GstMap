@@ -1,9 +1,3 @@
 page {
     --field-label-color: #323233;
 }
-
-.center {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 100rpx;
-}

@@ -9,7 +9,8 @@
         "pages/surveyor/tourismPanel/edit",
         "pages/surveyor/address/edit",
         "pages/surveyor/address/list",
-        "pages/surveyor/antique"
+        "pages/surveyor/antique",
+        "pages/surveyor/tourismPanel/list"
     ],
     "usingComponents": {
         "van-icon": "@vant/weapp/icon/index",
@@ -18,12 +19,14 @@
         "van-field": "@vant/weapp/field/index",
         "van-radio": "@vant/weapp/radio/index",
         "van-radio-group": "@vant/weapp/radio-group/index",
+        "van-tag": "@vant/weapp/tag/index",
         "van-cell": "@vant/weapp/cell/index",
         "van-cell-group": "@vant/weapp/cell-group/index"
     },
     "tabBar": {
         "color": "#333",
         "selectedColor": "#0F8EE9",
+        "backgroundColor": "#f7f7f7",
         "list": [
             {
                 "pagePath": "pages/index/index",

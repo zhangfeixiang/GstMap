@@ -7,3 +7,88 @@ export const getAppid = () => {
 export const getVersion = () => {
     return mock ? '1.0.1' : wx.getAccountInfoSync().miniProgram.version;
 }
+
+
+
+// // 示例用法
+// var latitude = 40.7128; // 纬度
+// var longitude = -74.0060; // 经度
+// console.log("纬度: " + decimalToDMS(latitude));
+// console.log("经度: " + decimalToDMS(longitude));
+export function decimalToDMS(deg) {
+    var d = Math.floor(deg);
+    var minfloat = (deg - d) * 60;
+    var m = Math.floor(minfloat);
+    var secfloat = (minfloat - m) * 60;
+    var s = Math.round(secfloat);
+    if (s == 60) {
+        m++;
+        s = 0;
+    }
+    if (m == 60) {
+        d++;
+        m = 0;
+    }
+    return d + "° " + m + "' " + s + '"';
+}
+
+
+// "longitude": "116°5ˊ24.710″",
+// "latitude": "39°56ˊ29.854″",
+export function DMSToDecimal(dms) {
+    if (!dms) return '';
+    var parts = dms.split(/[^\d\w.]+/);
+    var degrees = parseFloat(parts[0]);
+    var minutes = parseFloat(parts[1]);
+    var seconds = parseFloat(parts[2]);
+    var direction = parts[3];
+
+    var dd = degrees + minutes / 60 + seconds / (60 * 60);
+    if (direction == "S" || direction == "W") {
+        dd = dd * -1; // 南纬或西经的情况，转换为负值
+    }
+    return dd;
+}
+
+
+export function parseTime(time, pattern) {
+    if (arguments.length === 0 || !time) {
+        return null
+    }
+    const format = pattern || '{y}-{m}-{d} {h}:{i}:{s}'
+    let date
+    if (typeof time === 'object') {
+        date = time
+    } else {
+        if ((typeof time === 'string') && (/^[0-9]+$/.test(time))) {
+            time = parseInt(time)
+        } else if (typeof time === 'string') {
+            time = time.replace(new RegExp(/-/gm), '/').replace('T', ' ').replace(new RegExp(/\.[\d]{3}/gm), '');
+        }
+        if ((typeof time === 'number') && (time.toString().length === 10)) {
+            time = time * 1000
+        }
+        date = new Date(time)
+    }
+    const formatObj = {
+        y: date.getFullYear(),
+        m: date.getMonth() + 1,
+        d: date.getDate(),
+        h: date.getHours(),
+        i: date.getMinutes(),
+        s: date.getSeconds(),
+        a: date.getDay()
+    }
+    const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+        let value = formatObj[key]
+        // Note: getDay() returns 0 on Sunday
+        if (key === 'a') {
+            return ['日', '一', '二', '三', '四', '五', '六'][value]
+        }
+        if (result.length > 0 && value < 10) {
+            value = '0' + value
+        }
+        return value || 0
+    })
+    return time_str
+}

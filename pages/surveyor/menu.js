@@ -20,7 +20,7 @@ Page({
             {
                 id: 3,
                 icon: 'https://cdn.uviewui.com/uview/swiper/3.jpg',
-                url: 'tourismPanel/edit',
+                url: 'tourismPanel/list',
                 title: '文旅'
             },
             {

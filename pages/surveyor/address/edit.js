@@ -1,4 +1,7 @@
 // pages/surveyor/address.js
+import {
+    items
+} from './../../../mock/items'
 Page({
 
     /**
@@ -24,94 +27,7 @@ Page({
             "imgUrl": "",
             remarks: ""
         },
-        streetItems: [{
-            text: "房山区",
-            children: [{
-                    text: "城关街道"
-                },
-                {
-                    text: "新镇街道"
-                },
-                {
-                    text: "向阳街道"
-                },
-                {
-                    text: "东风街道"
-                },
-                {
-                    text: "迎风街道"
-                },
-                {
-                    text: "星城街道"
-                },
-                {
-                    text: "拱辰街道"
-                },
-                {
-                    text: "西潞街道"
-                },
-                {
-                    text: "阎村镇"
-                },
-                {
-                    text: "窦店镇"
-                },
-                {
-                    text: "石楼镇"
-                },
-                {
-                    text: "长阳镇"
-                },
-                {
-                    text: "河北镇"
-                },
-                {
-                    text: "长沟镇"
-                },
-                {
-                    text: "大石窝镇"
-                },
-                {
-                    text: "张坊镇"
-                },
-                {
-                    text: "十渡镇"
-                },
-                {
-                    text: "青龙湖镇"
-                },
-                {
-                    text: "韩村河镇"
-                },
-                {
-                    text: "良乡镇"
-                },
-                {
-                    text: "周口店镇"
-                },
-                {
-                    text: "琉璃河镇"
-                },
-                {
-                    text: "霞云岭乡"
-                },
-                {
-                    text: "南窖乡"
-                },
-                {
-                    text: "佛子庄乡"
-                },
-                {
-                    text: "大安山乡"
-                },
-                {
-                    text: "史家营乡"
-                },
-                {
-                    text: "蒲洼乡"
-                },
-            ]
-        }],
+        streetItems: [items[7]],
         showPopupStreet: false,
         locationStr: ""
     },

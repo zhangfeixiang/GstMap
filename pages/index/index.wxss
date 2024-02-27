@@ -92,7 +92,7 @@ page {
 
 /*  */
 .tabs {
-    margin-top: 60rpx;
+    margin-top: 30rpx;
 }
 
 .nav-item {

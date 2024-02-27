@@ -43,6 +43,7 @@ Page({
                 id: 5,
                 name: '我是测绘师',
                 type: 'user',
+                url: "/pages/surveyor/menu",
                 icon: 'https://static.zc0901.com/zfx/gst-map/user.png'
 
             }
@@ -112,6 +113,15 @@ Page({
             }, ]
         }]
 
+    },
+
+    handleClickItem(e) {
+        const {
+            index
+        } = e.currentTarget.dataset;
+        wx.navigateTo({
+            url: this.data.layerList[index].url,
+        })
     },
 
     /**

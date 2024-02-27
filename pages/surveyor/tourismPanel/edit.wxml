@@ -1,2 +1,174 @@
-<!--pages/surveyor/tourismPanel.wxml-->
-<text>pages/surveyor/tourismPanel.wxml</text>
+<view class="page">
+    <view class="card">
+        <!-- 该页面字段未确认 -->
+        <van-field size="large" model:value="{{ code }}" readonly label="地点代码" placeholder="地点代码" />
+        <van-field size="large" model:value="{{ name }}" label="资源单体名称" placeholder="资源单体名称" />
+        <!-- 资源类型 -->
+        <van-field size="large" required value="{{ typeName }}" is-link readonly label="资源类型" placeholder="请选择资源类型" bind:tap="onShowPopupType" />
+
+        <!-- 精确至街道，例：北京市xx区xx街道 -->
+        <van-field size="large" required value="{{ city+ county+street }}" is-link readonly label="行政位置" placeholder="请选择行政位置" bind:tap="onShowPopupStreet" />
+
+        <van-field size="large" required value="{{ locationStr }}" readonly label="地理位置" placeholder="请选择地理位置" bind:tap="onGetLocation">
+            <van-icon slot="right-icon" name="location" class="custom-icon" />
+        </van-field>
+
+        <!-- TODO:后端缺少字段 -->
+        <van-cell size="large" required title-width="9em" title="是否属于新发现">
+            <van-radio-group value="{{ isNew }}" direction="horizontal" bind:change="onChangeNewRadio">
+                <van-radio name="{{1}}">是</van-radio>
+                <van-radio name="{{0}}">否</van-radio>
+            </van-radio-group>
+        </van-cell>
+
+        <!--  -->
+        <van-field size="large" model:value="{{ officeLevel }}" label="官方定级" placeholder="官方定级" />
+
+        <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">
+        </van-cell>
+        <view class="indent">
+            <van-uploader preview-full-image="{{false}}" accept="image" multiple file-list="{{ photoFileList }}" bind:after-read="handleAfterReadPhoto" bind:delete="handleDeletePic" deletable="{{ true }}" />
+        </view>
+        <van-cell size="large" required title="现场拍照（视频）" border="{{ false }}">
+        </van-cell>
+        <view class="indent">
+            <van-uploader preview-full-image="{{false}}" accept="video" file-list="{{ videoFileList }}" bind:after-read="handleAfterReadVideo" bind:delete="handleDeleteVideo" deletable="{{ true }}" />
+        </view>
+    </view>
+
+
+    <!-- 性质与特征 -->
+    <view class="card">
+        <van-field size="large" type="textarea" autosize="{{autosize}}" model:value="{{ feature }}" label="性质与特征" placeholder="请输入性质与特征" />
+    </view>
+
+    <!-- 所在区域及进场条件 -->
+    <view class="card">
+        <van-collapse value="{{ activeNames }}" bind:change="onChange">
+            <van-collapse-item name="1">
+                <view class="fs36" slot="title">所在区域及进场条件</view>
+
+                <van-field size="large" required value="{{ externalRoadStatus }}" readonly label="对外道路情况" placeholder="请选择" bind:tap="onChooseExternalRoadStatus">
+                    <van-icon slot="right-icon" name="arrow" class="custom-icon" />
+                </van-field>
+                <van-cell title="周边市/县"></van-cell>
+                <view class="indent">
+                    <van-field size="large" model:value="{{ neighborCity }}" label="名称" placeholder="请输入">
+                    </van-field>
+                    <van-field size="large" model:value="{{ neighborCityDistance }}" label="距离" placeholder="请输入" use-button-slot>
+                        <van-button slot="button" size="small" hairline disabled type="default">
+                            公里
+                        </van-button>
+                    </van-field>
+                </view>
+                <!-- 周边旅游集散地 -->
+                <van-cell title="周边旅游集散地"></van-cell>
+                <view class="indent">
+                    <van-field size="large" model:value="{{ neighborDistributingCentre }}" label="名称" placeholder="请输入">
+                    </van-field>
+                    <van-field size="large" model:value="{{ neighborDistributingCentreDistance }}" label="距离" placeholder="请输入" use-button-slot>
+                        <van-button slot="button" size="small" hairline disabled type="default">
+                            公里
+                        </van-button>
+                    </van-field>
+                </view>
+                <!-- 周边主要旅游区（点） -->
+                <van-cell title="周边主要旅游区（点）"></van-cell>
+                <view class="indent">
+                    <van-field size="large" model:value="{{ neighborTouristArea }}" label="名称" placeholder="请输入">
+                    </van-field>
+                    <van-field size="large" model:value="{{ neighborTouristAreaDistance }}" label="距离" placeholder="请输入" use-button-slot>
+                        <van-button slot="button" size="small" hairline disabled type="default">
+                            公里
+                        </van-button>
+                    </van-field>
+                </view>
+                <van-field size="large" model:value="{{ neighborOtherRemark }}" label="其他说明" placeholder="请输入"></van-field>
+            </van-collapse-item>
+        </van-collapse>
+    </view>
+
+    <!-- 保护与开发现状 -->
+    <view class="card">
+        <van-cell class="fs36" title="保护与开发现状"></van-cell>
+        <view class="indent">
+            <van-field size="large" required value="{{ preservationStatus }}" readonly label="单体保存现状" placeholder="请选择" bind:tap="onChooseSaveStatus">
+                <van-icon slot="right-icon" name="arrow" class="custom-icon" />
+            </van-field>
+            <van-field size="large" required value="{{ status }}" readonly label="单体现状" placeholder="请选择" bind:tap="onChooseStatus">
+                <van-icon slot="right-icon" name="arrow" class="custom-icon" />
+            </van-field>
+
+            <!-- TODO:单体现状选择其他时显示，后端无该字段 -->
+            <van-field wx:if="{{status == '其他'}}" size="large" required value="{{ internalOrOtherRemark }}" label="其他" placeholder="请输入">
+            </van-field>
+
+            <van-field size="large" required value="{{ preservationMeasureStatus }}" readonly label="保护措施情况" placeholder="请选择" bind:tap="onChooseProtective">
+                <van-icon slot="right-icon" name="arrow" class="custom-icon" />
+            </van-field>
+            <!--  -->
+            <van-cell size="large" required title-width="9em" title="是否已开发">
+                <van-radio-group value="{{ isDeveloped }}" direction="horizontal" bind:change="onChangeDeveloped">
+                    <van-radio name="{{1}}">是</van-radio>
+                    <van-radio name="{{0}}">否</van-radio>
+                </van-radio-group>
+            </van-cell>
+            <!-- 若选择“是”，则需填写第20项，选择a.开发成景区或度假区，选择b.隶属景区/度假区 -->
+            <block wx:if="{{isDeveloped == '1'}}">
+                <van-radio-group value="{{ developedType }}" bind:change="onChangeDevelopedType">
+                    <van-cell title="开发成景区或度假区" clickable data-name="1" bind:click="onClickDevelopedType">
+                        <van-radio slot="right-icon" name="1" />
+                    </van-cell>
+                    <van-cell title="隶属景区/度假区" clickable data-name="2" bind:click="onClickDevelopedType">
+                        <van-radio slot="right-icon" name="2" />
+                    </van-cell>
+                </van-radio-group>
+                <block wx:if="{{developedType}}">
+                    <van-field size="large" model:value="{{ scenicName }}" label="名称" placeholder="请输入"></van-field>
+                    <van-field size="large" model:value="{{ scenicLevel }}" label="等级" placeholder="请输入"></van-field>
+                    <!-- 选择 隶属景区/度假区 时显示 -->
+                    <van-field wx:if="{{developedType == '2'}}" size="large" model:value="{{ touristNumber }}" label="游客接待量" placeholder="请输入" use-button-slot>
+                        <van-button slot="button" size="small" hairline disabled type="default">
+                            万人/年
+                        </van-button>
+                    </van-field>
+                </block>
+                <!-- TODO:后端缺少该字段 -->
+                <van-field size="large" value="{{ xxx }}" label="其他说明" placeholder="请输入"></van-field>
+            </block>
+
+        </view>
+    </view>
+    <!-- 现有规划/文件中的资源开发利用方向 -->
+    <view class="card">
+        <van-collapse value="{{ activeNames }}" bind:change="onChange">
+            <van-collapse-item name="2">
+                <view class="fs36" slot="title">现有规划/文件中的资源开发利用方向</view>
+                <block wx:for="{{documents}}" wx:key="id">
+                    <van-field size="large" data-index="{{index}}" data-key="planDocument" bind:change="handleInputDocuments" value="{{ item.planDocument }}" label="规划/文件名称" placeholder="请输入"></van-field>
+                    <van-field size="large" data-index="{{index}}" data-key="developmentUtilizationDirection" bind:change="handleInputDocuments" value="{{ item.developmentUtilizationDirection }}" label="资源开发利用方向" placeholder="请输入"></van-field>
+                </block>
+
+            </van-collapse-item>
+        </van-collapse>
+    </view>
+
+    <!-- 评分 -->
+    <view class="card">
+        <van-cell class="fs36" title="旅游资源单体评价" is-link></van-cell>
+    </view>
+
+    <view class="center">
+        <van-button loading="{{isSubmiting}}" type="info" loading-text="{{isSubmiting ? '加载中...' : ''}}" bind:tap="handleFormSubmit">提交</van-button>
+    </view>
+</view>
+
+
+<!-- 行政区-乡镇 -->
+<van-popup show="{{ showPopupStreet }}" round position="bottom" bind:close="onClosePopupStreet">
+    <van-tree-select items="{{ items }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ street }}" bind:click-nav="onClickNav" bind:click-item="onClickStreet" />
+</van-popup>
+<!-- 资源类型 -->
+<van-popup show="{{ showPopupType }}" round position="bottom" bind:close="onClosePopupType">
+    <van-cascader wx:if="{{ showPopupType }}" field-names="{{ fieldCustom }}" value="{{ type }}" title="请选择资源类型" options="{{ resTree }}" bind:close="onClosePopupType" bind:finish="onFinishType" />
+</van-popup>
