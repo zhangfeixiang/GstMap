@@ -42,9 +42,9 @@ Page({
         feature: "",
         officeLevel: "",
         preservationStatus: "",
-        status: "",
+        openStatus: "",
         isNew: null,
-        "internalOrOtherRemark": null,
+        "internalOrOtherRemark": "",
         "isDeveloped": 0,
         "developedType": 0,
         scenicName: "",
@@ -52,6 +52,7 @@ Page({
         subjectionScenicName: "",
         subjectionScenicLevel: "",
         "touristNumber": 0,
+        protectionAndDevelopRemark: "",
         preservationMeasureStatus: "",
         externalRoadStatus: "",
         neighborCity: "",
@@ -70,6 +71,65 @@ Page({
         // ----------
     },
 
+    async initMatedata() {
+        const promise = [
+            "getExternalRoadStatus",
+            "getTravelResTree",
+            "districtTree",
+            "getState",
+            "getSaveState",
+            "getProtective",
+        ];
+        const apisPromise = promise.map(async key => {
+            return wx.$api[key]();
+        })
+        const resList = await Promise.all(apisPromise);
+        const [externalRoadStatusData, resTree, districtTree, statusData, savestatusData, protectiveData] = resList.map(it => {
+            if (it.code === 200) {
+                return it.data
+            } else {
+                return []
+            }
+        })
+        // resTree, districtTree, statusData, savestatusData, protectiveData
+        deepTree(districtTree, 'name', 'code')
+        this.setData({
+            externalRoadStatusData,
+            resTree,
+            districtTree: districtTree[0].children,
+            statusData,
+            savestatusData,
+            protectiveData
+        })
+    },
+
+    async initData() {
+        const formData = await wx.$api.getTravelItem({}, this.options.id);
+        if (formData.code === 200) {
+            formData.imageUrl && formData.imageUrl.split(',').forEach(e => {
+                this.data.photoFileList.push({
+                    status: 'success',
+                    message: '',
+                    url: e,
+                })
+            })
+            formData.videoUrl && formData.videoUrl.split(',').forEach(e => {
+                this.data.videoFileList.push({
+                    status: 'success',
+                    message: '',
+                    url: e,
+                })
+            })
+            this.setData({
+                ...formData.data,
+                photoFileList: this.data.photoFileList,
+                videoFileList: this.data.videoFileList,
+                locationStr: `${formData.data.longitude},${formData.data.latitude}`
+            })
+        }
+    },
+
+
     // 表单提交
     async handleFormSubmit() {
         let photoFliterArr = this.data.photoFileList.filter(it => it.status === "success").map(it => {
@@ -80,6 +140,7 @@ Page({
         })
         const data = {
             ...this.data,
+            isNew: this.data.isNew ? Number(this.data.isNew) : null,
             imageUrl: photoFliterArr.join(','),
             videoUrl: videoFliterArr.join(',')
         };
@@ -111,6 +172,12 @@ Page({
             })
         }
 
+    },
+
+    onChangeNewRadio(e) {
+        this.setData({
+            isNew: e.detail
+        })
     },
 
     handleInputDocuments(e) {
@@ -152,13 +219,13 @@ Page({
             }
         })
     },
-    onChooseStatus(e) {
+    onChooseOpenStatus(e) {
         const itemList = this.data.statusData;
         wx.showActionSheet({
             itemList,
             success: res => {
                 this.setData({
-                    'status': itemList[res.tapIndex]
+                    'openStatus': itemList[res.tapIndex]
                 })
             }
         })
@@ -189,7 +256,7 @@ Page({
             name
         } = e.currentTarget.dataset;
         this.setData({
-            "developedType": name
+            "developedType": Number(name)
         })
     },
     async onGetLocation() {
@@ -266,64 +333,6 @@ Page({
         })
     },
 
-    async initMatedata() {
-        const promise = [
-            "getExternalRoadStatus",
-            "getTravelResTree",
-            "districtTree",
-            "getState",
-            "getSaveState",
-            "getProtective",
-        ];
-        const apisPromise = promise.map(async key => {
-            return wx.$api[key]();
-        })
-        const resList = await Promise.all(apisPromise);
-        const [externalRoadStatusData, resTree, districtTree, statusData, savestatusData, protectiveData] = resList.map(it => {
-            if (it.code === 200) {
-                return it.data
-            } else {
-                return []
-            }
-        })
-        // resTree, districtTree, statusData, savestatusData, protectiveData
-        deepTree(districtTree, 'name', 'code')
-        this.setData({
-            externalRoadStatusData,
-            resTree,
-            districtTree: districtTree[0].children,
-            statusData,
-            savestatusData,
-            protectiveData
-        })
-    },
-
-    async initData() {
-        const formData = await wx.$api.getTravelItem({}, this.options.id);
-        if (formData.code === 200) {
-
-            formData.imageUrl && formData.imageUrl.split(',').forEach(e => {
-                this.data.photoFileList.push({
-                    status: 'success',
-                    message: '',
-                    url: e,
-                })
-            })
-            formData.videoUrl && formData.videoUrl.split(',').forEach(e => {
-                this.data.videoFileList.push({
-                    status: 'success',
-                    message: '',
-                    url: e,
-                })
-            })
-            this.setData({
-                ...formData.data,
-                photoFileList: this.data.photoFileList,
-                videoFileList: this.data.videoFileList,
-                locationStr: `${formData.data.longitude},${formData.data.latitude}`
-            })
-        }
-    },
 
     /**
      * 读取视频后

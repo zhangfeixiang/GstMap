@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        total: 0,
+        score: 0,
         activeNames: [],
         list: [{
             name: "观赏游憩使用价值（30分）",
@@ -114,7 +114,7 @@ Page({
             return Number(a) + Number(b);
         }, 0);
         this.setData({
-            total: total * 100
+            score: total * 100
         });
     },
     onDrag(e) {
@@ -131,7 +131,10 @@ Page({
         if (res.code == 200) {
             console.log(res)
             this.data.list.forEach(it => {
-                // res.[it.key]
+                it.value = res.data[0][it.key]
+            })
+            this.setData({
+                list: this.data.list
             })
             this.computedTotal();
         }

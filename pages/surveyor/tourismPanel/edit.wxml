@@ -13,11 +13,10 @@
             <van-icon slot="right-icon" name="location" class="custom-icon" />
         </van-field>
 
-        <!-- TODO:后端缺少字段 -->
         <van-cell size="large" required title-width="9em" title="是否属于新发现">
             <van-radio-group value="{{ isNew }}" direction="horizontal" bind:change="onChangeNewRadio">
-                <van-radio name="{{1}}">是</van-radio>
-                <van-radio name="{{0}}">否</van-radio>
+                <van-radio name="1">是</van-radio>
+                <van-radio name="0">否</van-radio>
             </van-radio-group>
         </van-cell>
 
@@ -95,12 +94,12 @@
             <van-field size="large" required value="{{ preservationStatus }}" readonly label="单体保存现状" placeholder="请选择" bind:tap="onChooseSaveStatus">
                 <van-icon slot="right-icon" name="arrow" class="custom-icon" />
             </van-field>
-            <van-field size="large" required value="{{ status }}" readonly label="单体现状" placeholder="请选择" bind:tap="onChooseStatus">
+            <van-field size="large" required value="{{ openStatus }}" readonly label="单体现状" placeholder="请选择" bind:tap="onChooseOpenStatus">
                 <van-icon slot="right-icon" name="arrow" class="custom-icon" />
             </van-field>
 
-            <!-- TODO:单体现状选择其他时显示，后端无该字段 -->
-            <van-field wx:if="{{status == '其他'}}" size="large" required value="{{ internalOrOtherRemark }}" label="其他" placeholder="请输入">
+            <!-- 单体现状选择其他时显示 -->
+            <van-field wx:if="{{openStatus == '其他'}}" size="large" required model:value="{{ internalOrOtherRemark }}" label="其他" placeholder="请输入">
             </van-field>
 
             <van-field size="large" required value="{{ preservationMeasureStatus }}" readonly label="保护措施情况" placeholder="请选择" bind:tap="onChooseProtective">
@@ -117,10 +116,10 @@
             <block wx:if="{{isDeveloped == '1'}}">
                 <van-radio-group value="{{ developedType }}" bind:change="onChangeDevelopedType">
                     <van-cell title="开发成景区或度假区" clickable data-name="1" bind:click="onClickDevelopedType">
-                        <van-radio slot="right-icon" name="1" />
+                        <van-radio slot="right-icon" name="{{1}}" />
                     </van-cell>
                     <van-cell title="隶属景区/度假区" clickable data-name="2" bind:click="onClickDevelopedType">
-                        <van-radio slot="right-icon" name="2" />
+                        <van-radio slot="right-icon" name="{{2}}" />
                     </van-cell>
                 </van-radio-group>
                 <block wx:if="{{developedType}}">
@@ -133,8 +132,7 @@
                         </van-button>
                     </van-field>
                 </block>
-                <!-- TODO:后端缺少该字段 -->
-                <van-field size="large" value="{{ xxx }}" label="其他说明" placeholder="请输入"></van-field>
+                <van-field size="large" model:value="{{ protectionAndDevelopRemark }}" label="其他说明" placeholder="请输入"></van-field>
             </block>
 
         </view>
