@@ -4,6 +4,7 @@
         "pages/login/index",
         "pages/mapList/index",
         "pages/myHome/index",
+        "pages/album/list",
         "pages/surveyor/menu",
         "pages/surveyor/place",
         "pages/surveyor/tourismPanel/edit",
@@ -11,7 +12,8 @@
         "pages/surveyor/address/list",
         "pages/surveyor/antique",
         "pages/surveyor/tourismPanel/list",
-        "pages/surveyor/tourismPanel/scoreDetail"
+        "pages/surveyor/tourismPanel/scoreDetail",
+        "pages/album/detail"
     ],
     "usingComponents": {
         "van-icon": "@vant/weapp/icon/index",
@@ -52,7 +54,7 @@
     },
     "window": {
         "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "Weixin",
+        "navigationBarTitleText": "天地图 · 小程序",
         "navigationBarBackgroundColor": "#ffffff"
     },
     "componentFramework": "glass-easel",

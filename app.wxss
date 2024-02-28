@@ -1,5 +1,6 @@
 /**app.wxss**/
 page {
+    -webkit-font-smoothing: antialiased;
     --field-label-color: #323233;
 }
 

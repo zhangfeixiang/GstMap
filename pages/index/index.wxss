@@ -85,7 +85,7 @@ page {
 
 .layer-panel .title {
     text-align: center;
-    font-size: 18rpx;
+    font-size: 24rpx;
     color: black;
     margin-top: 20rpx;
 }

@@ -29,6 +29,7 @@ Page({
                 id: 3,
                 name: '产品展示',
                 type: 'album',
+                url: "/pages/album/list",
                 icon: 'https://static.zc0901.com/zfx/gst-map/album.png'
 
             },

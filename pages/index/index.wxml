@@ -1,5 +1,5 @@
 <view class="page">
-    <swiper class="swiper" indicator-dots="true">
+    <swiper class="swiper" indicator-dots="true" autoplay interval="{{3000}}">
         <swiper-item wx:for="{{imgList}}">
             <image class="swiper-img" src="{{item}}" mode="aspectFill" />
         </swiper-item>

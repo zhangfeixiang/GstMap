@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/album/list",
+          "pathName": "pages/album/list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/surveyor/tourismPanel/edit",
           "pathName": "pages/surveyor/tourismPanel/edit",
           "query": "id=1",
