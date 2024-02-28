@@ -24,9 +24,9 @@ const api = {
         })
     },
     // 根据id查询任务
-    async getItemTask(data) {
+    async getItemTask(data, id) {
         return await wx.$request({
-            url: `/tasks/`,
+            url: `/tasks/${id}`,
             data,
             method: 'GET'
         })
@@ -88,9 +88,9 @@ const api = {
         })
     },
     //查询地址详情
-    async getAddressDetail(data) {
+    async getAddressDetail(data, id) {
         return await wx.$request({
-            url: `/address/`,
+            url: `/address/${id}`,
             data,
         })
     },
@@ -126,11 +126,12 @@ const api = {
 
     },
     //根据资源单体ID查询评分
-    async getResources(data) {
+    async getResources(data, id) {
         return await wx.$request({
-            url: `/travel-resource-scores/resources/`,
+            url: `/travel-resource-scores/resources/${id}`,
             data,
-            method: 'GET'
+            method: 'GET',
+            showError: false
         })
 
     },

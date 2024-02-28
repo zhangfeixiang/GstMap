@@ -16,11 +16,14 @@ page {
 }
 
 .title {
-    height: 90rpx;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .number {
-    padding: 0 0 20rpx 10rpx;
+    /* padding: 0 0 20rpx 10rpx; */
 }
 
 .custom-button {
