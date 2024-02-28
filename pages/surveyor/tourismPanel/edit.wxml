@@ -2,7 +2,7 @@
     <view class="card">
         <!-- 该页面字段未确认 -->
         <van-field size="large" model:value="{{ code }}" readonly label="地点代码" placeholder="地点代码" />
-        <van-field size="large" model:value="{{ name }}" label="资源单体名称" placeholder="资源单体名称" />
+        <van-field size="large" required model:value="{{ name }}" label="资源单体名称" placeholder="资源单体名称" />
         <!-- 资源类型 -->
         <van-field size="large" required value="{{ typeName }}" is-link readonly label="资源类型" placeholder="请选择资源类型" bind:tap="onShowPopupType" />
 
@@ -15,24 +15,15 @@
 
         <van-cell size="large" required title-width="9em" title="是否属于新发现">
             <van-radio-group value="{{ isNew }}" direction="horizontal" bind:change="onChangeNewRadio">
-                <van-radio name="1">是</van-radio>
-                <van-radio name="0">否</van-radio>
+                <view class="align-right">
+                    <van-radio name="1">是</van-radio>
+                    <van-radio name="0">否</van-radio>
+                </view>
             </van-radio-group>
         </van-cell>
 
         <!--  -->
         <van-field size="large" model:value="{{ officeLevel }}" label="官方定级" placeholder="官方定级" />
-
-        <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">
-        </van-cell>
-        <view class="indent">
-            <van-uploader preview-full-image="{{false}}" accept="image" multiple file-list="{{ photoFileList }}" bind:after-read="handleAfterReadPhoto" bind:delete="handleDeletePic" deletable="{{ true }}" />
-        </view>
-        <van-cell size="large" required title="现场拍照（视频）" border="{{ false }}">
-        </van-cell>
-        <view class="indent">
-            <van-uploader preview-full-image="{{false}}" accept="video" file-list="{{ videoFileList }}" bind:after-read="handleAfterReadVideo" bind:delete="handleDeleteVideo" deletable="{{ true }}" />
-        </view>
     </view>
 
 
@@ -47,7 +38,7 @@
             <van-collapse-item name="1">
                 <view class="fs36" slot="title">所在区域及进场条件</view>
 
-                <van-field size="large" required value="{{ externalRoadStatus }}" readonly label="对外道路情况" placeholder="请选择" bind:tap="onChooseExternalRoadStatus">
+                <van-field size="large" value="{{ externalRoadStatus }}" readonly label="对外道路情况" placeholder="请选择" bind:tap="onChooseExternalRoadStatus">
                     <van-icon slot="right-icon" name="arrow" class="custom-icon" />
                 </van-field>
                 <van-cell title="周边市/县"></van-cell>
@@ -82,7 +73,7 @@
                         </van-button>
                     </van-field>
                 </view>
-                <van-field size="large" model:value="{{ neighborOtherRemark }}" label="其他说明" placeholder="请输入"></van-field>
+                <van-field size="large" model:value="{{ neighborOtherRemark }}" border="{{false}}" label="其他说明" placeholder="请输入"></van-field>
             </van-collapse-item>
         </van-collapse>
     </view>
@@ -108,8 +99,10 @@
             <!--  -->
             <van-cell size="large" required title-width="9em" title="是否已开发">
                 <van-radio-group value="{{ isDeveloped }}" direction="horizontal" bind:change="onChangeDeveloped">
-                    <van-radio name="{{1}}">是</van-radio>
-                    <van-radio name="{{0}}">否</van-radio>
+                    <view class="align-right">
+                        <van-radio name="{{1}}">是</van-radio>
+                        <van-radio name="{{0}}">否</van-radio>
+                    </view>
                 </van-radio-group>
             </van-cell>
             <!-- 若选择“是”，则需填写第20项，选择a.开发成景区或度假区，选择b.隶属景区/度假区 -->
@@ -151,13 +144,27 @@
         </van-collapse>
     </view>
 
+    <!--  -->
+    <view class="card">
+        <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">
+        </van-cell>
+        <view class="indent">
+            <van-uploader preview-full-image="{{false}}" accept="image" multiple file-list="{{ photoFileList }}" bind:after-read="handleAfterReadPhoto" bind:delete="handleDeletePic" deletable="{{ true }}" />
+        </view>
+        <van-cell size="large" title="现场拍照（视频）" border="{{ false }}">
+        </van-cell>
+        <view class="indent">
+            <van-uploader preview-full-image="{{false}}" accept="video" file-list="{{ videoFileList }}" bind:after-read="handleAfterReadVideo" bind:delete="handleDeleteVideo" deletable="{{ true }}" />
+        </view>
+    </view>
+
     <!-- 评分 -->
     <view class="card">
         <van-cell class="fs36" title="旅游资源单体评价" is-link url="scoreDetail?id={{$options.id}}"></van-cell>
     </view>
-
+    <view style="height: 60rpx;"></view>
     <view class="center">
-        <van-button loading="{{isSubmiting}}" type="info" loading-text="{{isSubmiting ? '加载中...' : ''}}" bind:tap="handleFormSubmit">提交</van-button>
+        <van-button round class="submit-button" color="linear-gradient(to right, #46A6FA, #B091FA)" size="normal" block type="info" bind:tap="handleFormSubmit">提交</van-button>
     </view>
 </view>
 

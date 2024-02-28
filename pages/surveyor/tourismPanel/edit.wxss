@@ -18,7 +18,17 @@ page {
     padding-left: 32rpx;
 }
 
+.align-right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
 .fs36 {
     font-size: 36rpx;
     --cell-font-size: 36rpx;
+}
+
+.submit-button {
+    width: 100%;
 }

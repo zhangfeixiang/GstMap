@@ -1,4 +1,8 @@
 /**app.wxss**/
+page {
+    --field-label-color: #323233;
+}
+
 .container {
     height: 100%;
     display: flex;
