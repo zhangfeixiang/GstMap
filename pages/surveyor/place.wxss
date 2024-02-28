@@ -3,8 +3,16 @@ page {
     --field-label-color: #323233;
 }
 
+.page {
+    padding: 20rpx;
+}
+
 .center {
     display: flex;
     justify-content: center;
     padding-bottom: 100rpx;
+}
+
+.submit-button {
+    width: 100%;
 }

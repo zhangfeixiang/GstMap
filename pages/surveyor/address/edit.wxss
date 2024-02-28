@@ -1,3 +1,11 @@
 page {
     --field-label-color: #323233;
 }
+
+.page {
+    padding: 20rpx;
+}
+
+.submit-button {
+    width: 100%;
+}

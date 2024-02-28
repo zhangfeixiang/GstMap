@@ -1,4 +1,4 @@
-<view class="">
+<view class="page">
 
     <van-field size="large" required value="{{ userInfo.standardName }}" label="标准地址名称" placeholder="标准地址名称" />
     <van-cell size="large" required title-width="6.2em" title="使用时间">
@@ -56,7 +56,7 @@
     </van-cell>
 
     <view class="center">
-        <van-button loading="{{isSubmiting}}" type="info" loading-text="{{isSubmiting ? '加载中...' : ''}}" bind:tap="handleFormSubmit">提交</van-button>
+        <van-button round class="submit-button" color="linear-gradient(to right, #46A6FA, #B091FA)" size="normal" block type="info" bind:tap="handleFormSubmit">提交</van-button>
     </view>
 </view>
 

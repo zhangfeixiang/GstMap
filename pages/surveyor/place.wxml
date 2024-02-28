@@ -1,4 +1,4 @@
-<view class="">
+<view class="page">
 
     <van-field size="large" value="{{ userInfo.code }}" label="地点代码" placeholder="地点代码" />
     <van-field size="large" required value="{{ locationStr }}" readonly label="所在位置" placeholder="请选择所在位置" bind:tap="onGetLocation">
@@ -19,7 +19,7 @@
         <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" deletable="{{ true }}" />
     </van-cell>
     <view class="center">
-        <van-button loading="{{isSubmiting}}" type="info" loading-text="{{isSubmiting ? '加载中...' : ''}}" bind:tap="handleFormSubmit">提交</van-button>
+        <van-button round class="submit-button" color="linear-gradient(to right, #46A6FA, #B091FA)" size="normal" block type="info" bind:tap="handleFormSubmit">提交</van-button>
     </view>
 </view>
 
