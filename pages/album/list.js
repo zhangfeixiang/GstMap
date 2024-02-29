@@ -13,7 +13,7 @@ Page({
             date: "发布时间：2021-09-10",
             tag: "影像图"
         }, {
-            url: "detail?url=https%3A%2F%2Fflbook.com.cn%2Fc%2FdC9HfJTcql%23page%2F1",
+            url: "detail?url=https%3A%2F%2Fstatic.zc0901.com%2Fzfx%2Fgst-map%2Fmap%2Findex.html",
             cover: "https://gd-hbimg.huaban.com/54b1860b14994a3791938341952f3528a4dede65212b4-NyM9Gk_fw480webp",
             title: "2022年北京影像图集",
             desc: "包含北京全市域及各城区",
