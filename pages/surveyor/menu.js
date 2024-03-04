@@ -5,6 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        loading: true,
         list: [{
                 id: 1,
                 icon: 'https://gd-hbimg.huaban.com/f3b623e0b4c4537979efaf054dd7bf6ffb3d32d4b28f-6mCNAj_fw480webp',
@@ -43,7 +44,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        this.setData({
+            loading: false
+        })
     },
 
     /**

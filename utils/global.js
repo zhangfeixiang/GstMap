@@ -66,7 +66,7 @@ function handleScene(options) {
 async function initAppData(options) {
     const callback = async () => {
         let isLogin = checkToken();
-        console.log('已登录');
+        isLogin && console.log('已登录');
 
         const data = {
             $options: {
@@ -88,6 +88,7 @@ async function initAppData(options) {
 
     return new Promise(async (resolve) => {
         let isLogin = checkToken();
+        // url中带auth则需要鉴权
         if (!options.auth) {
             callback()
             resolve(true)
@@ -97,6 +98,9 @@ async function initAppData(options) {
         } else {
             console.log('[路由守卫]未登录,即将前往登录');
             // 跳转登录
+            wx.navigateTo({
+                url: '/pages/login/index',
+            })
         }
     })
 }

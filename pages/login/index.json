@@ -1,4 +1,6 @@
 {
     "navigationStyle": "custom",
-    "usingComponents": {}
+    "usingComponents": {
+        "base64-image": "/components/base64Image"
+    }
 }

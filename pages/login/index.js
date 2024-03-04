@@ -5,18 +5,89 @@ Page({
      * 页面的初始数据
      */
     data: {
-        userName: "",
-        passWord: "",
+        username: "applet",
+        password: "123456",
+        wxCode: "",
+        uuid: "",
+        code: "",
+        captchaImage: ""
     },
 
-    login() {},
-    wxLogin() {},
+    async login() {
+        const getCode = await this.wxLogin();
+        this.setData({
+            wxCode: getCode.code
+        })
+
+        const res = await wx.$api.postLogin({
+            wxCode: getCode.code,
+            username: this.data.username,
+            password: this.data.password,
+            uuid: this.data.uuid,
+        });
+        console.log('login', res)
+        if (res.code == 200) {
+            wx.showToast({
+                title: '登录成功',
+                icon: "none"
+            });
+            localStorage.setItem("loginData", {
+                ...res,
+                token: res.token
+            })
+        } else {
+            wx.showToast({
+                title: res.msg,
+                icon: 'none'
+            })
+        }
+    },
+    // 免密登录
+    async autoLogin() {
+        const getCode = await this.wxLogin();
+        this.setData({
+            wxCode: getCode.code
+        })
+
+        const res = await wx.$api.postLogin({
+            wxCode: getCode.code,
+        });
+        console.log('login', res)
+        if (res.code == 200) {
+            wx.showToast({
+                title: '登录成功',
+                icon: "none"
+            });
+            localStorage.setItem("loginData", {
+                ...res,
+                token: res.token
+            })
+        } else {
+            wx.showToast({
+                title: res.msg,
+                icon: 'none'
+            })
+        }
+    },
+    async wxLogin() {
+        return wx.login()
+    },
+
+    async getCaptchaImage() {
+        const res = await wx.$api.getCaptchaImage();
+        if (res.code === 200) {
+            this.setData({
+                captchaImage: res.img,
+                uuid: res.uuid
+            })
+        }
+    },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        this.getCaptchaImage()
     },
 
     /**

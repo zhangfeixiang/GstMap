@@ -1,28 +1,29 @@
 <view class="t-login">
-    <!-- 页面装饰图片 -->
-    <image class="img-a" src="https://zhoukaiwen.com/img/loginImg/2.png"></image>
-    <image class="img-b" src="https://zhoukaiwen.com/img/loginImg/3.png"></image>
     <!-- 标题 -->
-    <view class="t-b">欢迎回来</view>
-    <view class="t-b2">欢迎使用，天地图小程序</view>
-    <form class="cl">
-        <view class="t-a">
-            <image src="https://zhoukaiwen.com/img/loginImg/sj.png"></image>
-            <view class="line"></view>
-            <input type="" name="phone" placeholder="请输入用户名" maxlength="11" model:value="{{userName}}" />
+    <view class="welcome">欢迎使用</view>
+    <view class="main">
+        <view class="tabbar">
+            <view class="item active">账号登录</view>
+            <view bind:tap="autoLogin">免密登录</view>
         </view>
-        <view class="t-a">
-            <image src="https://zhoukaiwen.com/img/loginImg/yz.png"></image>
-            <view class="line"></view>
-            <input type="password" name="code" maxlength="10" placeholder="请输入密码" model:value="{{passWord}}" />
+        <view class="form-item">
+            <view class="label">用户名</view>
+
+            <input class="input" type="" name="phone" placeholder="请输入用户名" maxlength="11" model:value="{{username}}" />
         </view>
-        <button bindtap="login">登 录</button>
-    </form>
-    <view class="t-f"><text>————— 第三方账号登录 —————</text></view>
-    <view class="t-e cl">
-        <view class="t-g" bindtap="wxLogin">
-            <image src="https://zhoukaiwen.com/img/loginImg/wx.png"></image>
+        <view class="form-item">
+            <view class="label">密码</view>
+
+            <input class="input" type="password" name="code" maxlength="10" placeholder="请输入密码" model:value="{{password}}" />
         </view>
-        <!-- 	<view class="t-g" bindtap="zfbLogin"><image src="https://zhoukaiwen.com/img/loginImg/qq.png"></image></view> -->
+        <view class="form-item">
+            <view class="label">验证码</view>
+            <view class="flex">
+                <input class="input" type="text" name="code" maxlength="10" placeholder="请输入验证码" model:value="{{passWord}}" />
+                <base64-image class="code" bind:tap="getCaptchaImage" src="{{captchaImage}}" height="80"></base64-image>
+            </view>
+        </view>
+
+        <view class="submit-login" bindtap="login">登 录</view>
     </view>
 </view>

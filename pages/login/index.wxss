@@ -1,139 +1,99 @@
-.img-a {
-	position: absolute;
-	width: 100%;
-	top: -150rpx;
-	right: 0;
+page {
+    background: linear-gradient(133.85deg, rgba(193, 165, 250, 0.18) 0%, rgba(156, 210, 255, 0.18) 35.86%, rgba(156, 210, 255, 0) 100%);
+    /* filter: blur(284.81rpx); */
 }
-.img-b {
-	position: absolute;
-	width: 50%;
-	bottom: 0;
-	left: -50rpx;
-	/* margin-bottom: -200rpx; */
-}
+
+
 .t-login {
-	width: 650rpx;
-	margin: 0 auto;
-	font-size: 28rpx;
-	color: #000;
+    padding: 224rpx 32rpx 0 32rpx;
 }
 
-.t-login button {
-	font-size: 28rpx;
-	background: #5677fc;
-	color: #fff;
-	height: 90rpx;
-	line-height: 90rpx;
-	border-radius: 50rpx;
-	box-shadow: 0 5px 7px 0 rgba(86, 119, 252, 0.2);
+.main {
+    background: url("https://static.zc0901.com/zfx/gst-map/login-bg.png") no-repeat center top #F7F9FC;
+    background-size: 100% auto;
+    width: 100%;
+    border-radius: 16rpx;
+    border: 2rpx solid #fff;
+    position: relative;
+    height: 880rpx;
 }
 
-.t-login input {
-	padding: 0 20rpx 0 120rpx;
-	height: 90rpx;
-	line-height: 90rpx;
-	margin-bottom: 50rpx;
-	background: #f8f7fc;
-	border: 1px solid #e9e9e9;
-	font-size: 28rpx;
-	border-radius: 50rpx;
+
+.welcome {
+    font-size: 40rpx;
+    font-weight: 500;
+    color: rgba(30, 33, 33, 1);
+    text-align: center;
+    margin-bottom: 48rpx;
+
 }
 
-.t-login .t-a {
-	position: relative;
+.main .tabbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 88rpx;
+    color: rgba(61, 63, 67, 1);
+    font-size: 32rpx;
+    font-weight: bold;
 }
 
-.t-login .t-a image {
-	width: 40rpx;
-	height: 40rpx;
-	position: absolute;
-	left: 40rpx;
-	top: 28rpx;
-	/* border-right: 2rpx solid #dedede; */
-	margin-right: 20rpx;
-}
-.t-login .t-a .line{
-	width: 2rpx;
-	height: 40rpx;
-	background-color: #dedede;
-	position: absolute;
-	top: 28rpx;
-	left: 98rpx;
+.tabbar .item {
+    position: relative;
 }
 
-.t-login .t-b {
-	text-align: left;
-	font-size: 46rpx;
-	color: #000;
-	padding: 300rpx 0 30rpx 0;
-	font-weight: bold;
-}
-.t-login .t-b2 {
-	text-align: left;
-	font-size: 32rpx;
-	color: #aaaaaa;
-	padding: 0rpx 0 120rpx 0;
-}
-
-.t-login .t-c {
-	position: absolute;
-	right: 22rpx;
-	top: 22rpx;
-	background: #5677fc;
-	color: #fff;
-	font-size: 24rpx;
-	border-radius: 50rpx;
-	height: 50rpx;
-	line-height: 50rpx;
-	padding: 0 25rpx;
+.tabbar .item.active::after {
+    position: absolute;
+    left: 50%;
+    bottom: -10rpx;
+    transform: translateX(-50%);
+    display: block;
+    content: "";
+    width: 38rpx;
+    height: 6rpx;
+    border-radius: 6rpx;
+    background: linear-gradient(90deg, rgba(65, 167, 250, 1) 0%, rgba(180, 145, 250, 1) 100%);
 }
 
-.t-login .t-d {
-	text-align: center;
-	color: #999;
-	margin: 80rpx 0;
+.main .form-item {
+    padding: 32rpx 48rpx 0 48rpx;
 }
 
-.t-login .t-e {
-	text-align: center;
-	width: 250rpx;
-	margin: 80rpx auto 0;
+.main .label {
+    color: rgba(30, 33, 33, 1);
+    font-size: 32rpx;
+    font-weight: bold;
+    margin-bottom: 24rpx;
 }
 
-.t-login .t-g {
-	float: left;
-	width: 100%;
+.main .input {
+    width: 590rpx;
+    height: 88rpx;
+    border-radius: 44rpx;
+    background: rgba(245, 247, 247, 1);
+    padding: 0 32rpx;
+    box-sizing: border-box;
+
 }
 
-.t-login .t-e image {
-	width: 50rpx;
-	height: 50rpx;
+.flex {
+    display: flex;
+    justify-content: space-between;
 }
 
-.t-login .t-f {
-	text-align: center;
-	margin: 200rpx 0 0 0;
-	color: #666;
+.main .code {
+    margin-left: 32rpx;
 }
 
-.t-login .t-f text {
-	margin-left: 20rpx;
-	color: #aaaaaa;
-	font-size: 27rpx;
-}
-
-.t-login .uni-input-placeholder {
-	color: #000;
-}
-
-.cl {
-	zoom: 1;
-}
-
-.cl:after {
-	clear: both;
-	display: block;
-	visibility: hidden;
-	height: 0;
-	content: '\20';
+.t-login .submit-login {
+    font-size: 32rpx;
+    background: #5677fc;
+    color: #fff;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-radius: 50rpx;
+    text-align: center;
+    background: linear-gradient(90deg, rgba(65, 167, 250, 1) 0%, rgba(180, 145, 250, 1) 100%);
+    margin: 64rpx auto;
+    width: 590rpx;
 }

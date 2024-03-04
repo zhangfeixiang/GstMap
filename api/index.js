@@ -7,6 +7,14 @@ const api = {
             method: 'POST'
         })
     },
+    //小程序登录验证码
+    async getCaptchaImage(data) {
+        return await wx.$request({
+            url: '/captchaImage',
+            data,
+            method: 'GET'
+        })
+    },
     // 查询旅游资源分类树状结构数据
     async getTravelItem(data, id) {
         return await wx.$request({
