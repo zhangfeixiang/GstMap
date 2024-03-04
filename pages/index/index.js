@@ -130,9 +130,9 @@ Page({
      */
     onLoad(options) {
         // 模拟登录
-        // wx.setStorageSync("loginData", {
-        //     token: "eyJsb2dpbl91c2VyX2tleSI6Ijc2NzUwNWE2LTZhNzAtNDAyNC05MmZlLTQ5NDA3NjdiNmNiNiJ9"
-        // })
+        wx.setStorageSync("loginData", {
+            token: "eyJsb2dpbl91c2VyX2tleSI6Ijc2NzUwNWE2LTZhNzAtNDAyNC05MmZlLTQ5NDA3NjdiNmNiNiJ9"
+        })
     },
 
     /**
