@@ -14,16 +14,17 @@ Page({
     },
 
     async login() {
-        const getCode = await this.wxLogin();
-        this.setData({
-            wxCode: getCode.code
-        })
+        // const getCode = await this.wxLogin();
+        // this.setData({
+        //     wxCode: getCode.code
+        // })
 
         const res = await wx.$api.postLogin({
-            wxCode: getCode.code,
+            // wxCode: getCode.code,
             username: this.data.username,
             password: this.data.password,
             uuid: this.data.uuid,
+            code: this.data.code - 0,
         });
         console.log('login', res)
         if (res.code == 200) {
@@ -31,9 +32,12 @@ Page({
                 title: '登录成功',
                 icon: "none"
             });
-            localStorage.setItem("loginData", {
+            wx.setStorageSync("loginData", {
                 ...res,
                 token: res.token
+            })
+            wx.reLaunch({
+                url: '/pages/index/index',
             })
         } else {
             wx.showToast({

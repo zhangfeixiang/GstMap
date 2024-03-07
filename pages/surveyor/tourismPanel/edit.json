@@ -1,7 +1,7 @@
 {
     "navigationBarTitleText": "文旅",
     "usingComponents": {
-        "van-uploader": "@vant/weapp/uploader/index",
+        "uploader": "/components/uploader",
         "van-cascader": "@vant/weapp/cascader/index",
         "van-tree-select": "@vant/weapp/tree-select/index",
         "van-popup": "@vant/weapp/popup/index",

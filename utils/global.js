@@ -1,6 +1,8 @@
 import {
     getVersion
-} from './../utils/util'
+} from './../utils/util';
+
+const permissions = ['pages/surveyor/menu'];
 (function () {
     var _Page = Page;
     Page = function (pageConfig) {
@@ -89,16 +91,16 @@ async function initAppData(options) {
     return new Promise(async (resolve) => {
         let isLogin = checkToken();
         // url中带auth则需要鉴权
-        if (!options.auth) {
+        if (!permissions.includes(this.route)) {
             callback()
             resolve(true)
-        } else if (options.auth && isLogin) {
+        } else if (permissions.includes(this.route) && isLogin) {
             callback()
             resolve(true)
         } else {
             console.log('[路由守卫]未登录,即将前往登录');
             // 跳转登录
-            wx.navigateTo({
+            wx.redirectTo({
                 url: '/pages/login/index',
             })
         }

@@ -6,14 +6,15 @@
         "pages/myHome/index",
         "pages/album/list",
         "pages/surveyor/menu",
-        "pages/surveyor/place",
+        "pages/surveyor/place/edit",
         "pages/surveyor/tourismPanel/edit",
         "pages/surveyor/address/edit",
         "pages/surveyor/address/list",
         "pages/surveyor/antique",
         "pages/surveyor/tourismPanel/list",
         "pages/surveyor/tourismPanel/scoreDetail",
-        "pages/album/detail"
+        "pages/album/detail",
+        "pages/surveyor/place/list"
     ],
     "usingComponents": {
         "van-icon": "@vant/weapp/icon/index",

@@ -1,4 +1,12 @@
 const api = {
+    async getUserInfo(data) {
+        return await wx.$request({
+            url: "/getInfo",
+            data,
+            method: "GET",
+            showError: false
+        })
+    },
     //小程序登录
     async postLogin(data) {
         return await wx.$request({
@@ -169,7 +177,66 @@ const api = {
             data,
             method: 'GET'
         })
-    }
+    },
+
+    // 地名--------
+
+    // 获取地名列表
+    async getPlaceList(data) {
+        return await wx.$request({
+            url: `/placenames/list`,
+            data,
+            method: "GET"
+        })
+    },
+    // 获取地名详情
+    async getPlaceDetail(data, id) {
+        return await wx.$request({
+            url: `/placenames/${id}`,
+            data,
+            method: "GET"
+        })
+    },
+    // 地名使用类型
+    async getUseType(data) {
+        return await wx.$request({
+            url: '/placenames/use-type',
+            data,
+            method: "GET"
+        })
+    },
+    // 地名分类树
+    async getPlaceCategories(data) {
+        return await wx.$request({
+            url: '/place-name-categories/tree',
+            data,
+            method: "GET"
+        })
+    },
+    // 新增地名
+    async addPlace(data) {
+        return await wx.$request({
+            url: '/placenames',
+            method: "POST",
+            data
+        })
+    },
+    // 编辑地名
+    async editPlace(data) {
+        return await wx.$request({
+            url: '/placenames',
+            method: "PUT",
+            data
+        })
+    },
+    // 删除地名
+    async deletePlace(data, id) {
+        return await wx.$request({
+            url: `/placenames/${id}`,
+            method: "DELETE",
+            data
+        })
+    },
 }
 
 

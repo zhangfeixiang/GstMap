@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/surveyor/place/edit",
+          "pathName": "pages/surveyor/place/edit",
+          "query": "id=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/album/list",
           "pathName": "pages/album/list",
           "query": "",

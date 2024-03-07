@@ -1,0 +1,34 @@
+<view class="indent">
+    <!-- <van-uploader preview-full-image="{{false}}" accept="image" multiple file-list="{{ fileList }}" bind:after-read="handleAfterReadPhoto" bind:delete="handleDeletePic" deletable="{{ true }}" /> -->
+    <view class="uploader">
+        <view class="uploader-item" wx:for="{{lists}}" wx:key="*this">
+            <view class="footer" catch:tap="onEdit" data-index="{{index}}">
+                <view class="name">{{item.name}}{{item.ext}}</view>
+                <van-icon name="edit" color="#fff" />
+            </view>
+            <image wx:if="{{accept === 'image'}}" class="cover" src="{{item.url}}" mode="aspectFill" bind:tap="preview" data-index="{{index}}" />
+            <image wx:if="{{accept === 'video'}}" class="cover" src="{{item.thumb}}" mode="aspectFill" bind:tap="previewVideo" data-index="{{index}}" />
+            <view class="uploader__preview-delete">
+                <!-- uploader__preview-delete-icon -->
+                <van-icon class=" uploader__preview-delete-icon" bind:tap="handleDeletePic" data-index="{{index}}" name="cross" />
+            </view>
+        </view>
+        <view class="uploader-item uploader__upload" bind:tap="chooseImages">
+            <van-icon name="photograph" size="30" color="#DDDEE0" />
+        </view>
+    </view>
+</view>
+
+<!-- 地名类别 -->
+<van-popup show="{{ showEditName }}" round position="bottom" bind:close="handleClose">
+    <view class="picker__toolbar">
+        <view class="picker__cancel" bind:tap="handleClose">取消</view>
+        <view class="ellipsis picker__title">编辑名称</view>
+        <view class="picker__confirm" bind:tap="handleConfirm" data-value="{{currentName}}">确认</view>
+    </view>
+    <view class="picker-body">
+        <van-cell-group>
+            <van-field model:value="{{ currentName }}" placeholder="请输入用户名" border="{{ false }}" bind:change="onChange" />
+        </van-cell-group>
+    </view>
+</van-popup>

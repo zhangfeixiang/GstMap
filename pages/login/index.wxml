@@ -14,13 +14,15 @@
         <view class="form-item">
             <view class="label">密码</view>
 
-            <input class="input" type="password" name="code" maxlength="10" placeholder="请输入密码" model:value="{{password}}" />
+            <input class="input" type="password" name="password" maxlength="10" placeholder="请输入密码" model:value="{{password}}" />
         </view>
         <view class="form-item">
             <view class="label">验证码</view>
             <view class="flex">
-                <input class="input" type="text" name="code" maxlength="10" placeholder="请输入验证码" model:value="{{passWord}}" />
-                <base64-image class="code" bind:tap="getCaptchaImage" src="{{captchaImage}}" height="80"></base64-image>
+                <input class="input" type="text" name="code" maxlength="10" placeholder="请输入验证码" model:value="{{code}}" style="width: 330rpx;" />
+                <view class="captcha">
+                    <image class="code" bind:tap="getCaptchaImage" src="data:image/png;base64,{{captchaImage}}" mode="heightFix" />
+                </view>
             </view>
         </view>
 

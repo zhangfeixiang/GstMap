@@ -2,7 +2,8 @@
 import {
     decimalToDMS,
     DMSToDecimal,
-    deepTree
+    deepTree,
+    uploadFileAll
 } from './../../../utils/util'
 Page({
 
@@ -104,6 +105,7 @@ Page({
     },
 
     async initData() {
+        if (!this.options.id) return;
         const formData = await wx.$api.getTravelItem({}, this.options.id);
         if (formData.code === 200) {
             formData.imageUrl && formData.imageUrl.split(',').forEach(e => {
@@ -132,17 +134,17 @@ Page({
 
     // 表单提交
     async handleFormSubmit() {
-        let photoFliterArr = this.data.photoFileList.filter(it => it.status === "success").map(it => {
-            return it.url.data.url
-        })
-        let videoFliterArr = this.data.videoFileList.filter(it => it.status === "success").map(it => {
-            return it.url.data.url
+        const photoList = await uploadFileAll(this.data.photoFileList);
+        const videoList = await uploadFileAll(this.data.videoFileList);
+        this.setData({
+            photoFileList: photoList,
+            videoFileList: videoList
         })
         const data = {
             ...this.data,
             isNew: this.data.isNew ? Number(this.data.isNew) : null,
-            imageUrl: photoFliterArr.join(','),
-            videoUrl: videoFliterArr.join(',')
+            imageUrl: photoList.map(it => it.url).join(','),
+            videoUrl: videoList.map(it => it.url).join(','),
         };
 
         delete data.autosize;
@@ -332,118 +334,19 @@ Page({
             showPopupStreet: false
         })
     },
-
-
-    /**
-     * 读取视频后
-     */
-    async handleAfterReadVideo(event) {
-        wx.showLoading({
-            title: '上传中',
-        })
-        // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-        let lists = [].concat(event.detail.file);
-        const videoFileList = this.data.videoFileList
-        let fileListLen = videoFileList.length;
-        lists.map((item) => {
-            videoFileList.push({
-                ...item,
-                status: 'uploading',
-                message: '上传中',
-            });
-        });
-        for (let i = 0; i < lists.length; i++) {
-            const result = await this.uploadFilePromise(lists[i].url);
-            let item = videoFileList[fileListLen];
-            videoFileList.splice(fileListLen, 1, {
-                ...item,
-                status: 'success',
-                message: '',
-                url: JSON.parse(result),
-            });
-            fileListLen++;
-        }
-        wx.hideLoading()
+    handleChangePhotoUpload(e) {
+        console.log(e.detail);
         this.setData({
-            videoFileList
+            photoFileList: e.detail
         })
     },
-    /**
-     * 读取照片后
-     */
-    async handleAfterReadPhoto(event) {
-        wx.showLoading({
-            title: '上传中',
-        })
-        // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-        console.log(event)
-        let lists = [].concat(event.detail.file);
-        const photoFileList = this.data.photoFileList;
-        let fileListLen = photoFileList.length;
-        lists.map((item) => {
-            photoFileList.push({
-                ...item,
-                status: 'uploading',
-                message: '上传中',
-            });
-        });
-        for (let i = 0; i < lists.length; i++) {
-            const result = await this.uploadFilePromise(lists[i].url);
-            let item = photoFileList[fileListLen];
-            photoFileList.splice(fileListLen, 1, {
-                ...item,
-                status: 'success',
-                message: '',
-                url: JSON.parse(result),
-            });
-            fileListLen++;
-        }
+    handleChangeVideoUpload(e) {
+        console.log(e.detail);
         this.setData({
-            photoFileList
+            videoFileList: e.detail
         })
-        wx.hideLoading()
-    },
-    uploadFilePromise(url) {
-        return new Promise((resolve, reject) => {
-            let a = wx.uploadFile({
-                url: 'https://www.gistoyou.com.cn:8443/applet/common/upload',
-                filePath: url,
-                name: 'file',
-                formData: {
-                    // user: 'test',
-                },
-                success: (res) => {
-                    const resData = JSON.parse(res.data)
-                    if (resData.code == 200) {
-                        resolve(res.data);
-                    } else {
-                        wx.showToast({
-                            title: '上传失败',
-                            icon: 'none'
-                        })
-                        console.error(new Error(resData.msg));
-                        reject()
-                    }
-                },
-                complete: () => {
-
-                }
-            });
-        });
     },
 
-    handleDeletePic(e) {
-        this.data.photoFileList.splice(e.detail.index, 1)
-        this.setData({
-            photoFileList: this.data.photoFileList
-        })
-    },
-    handleDeleteVideo(e) {
-        this.data.videoFileList.splice(e.detail.index, 1)
-        this.setData({
-            videoFileList: this.data.videoFileList
-        })
-    },
 
     /**
      * 生命周期函数--监听页面加载

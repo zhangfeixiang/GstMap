@@ -9,13 +9,13 @@ Page({
         list: [{
                 id: 1,
                 icon: 'https://gd-hbimg.huaban.com/f3b623e0b4c4537979efaf054dd7bf6ffb3d32d4b28f-6mCNAj_fw480webp',
-                url: 'place',
+                url: 'place/list',
                 title: '地名登记'
             },
             {
                 id: 2,
                 icon: 'https://gd-hbimg.huaban.com/9217f66ccf6e2dc8fc14b3604a79db6e00f3092c8289-fpvXIW_fw480webp',
-                url: 'address/edit',
+                url: 'address/list',
                 title: '地址'
             },
             {

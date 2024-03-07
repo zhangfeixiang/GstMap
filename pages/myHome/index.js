@@ -6,7 +6,22 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        user: {}
+    },
+    login() {
+        const loginData = wx.getStorageSync('loginData')
+        if (loginData.token) return;
+        wx.navigateTo({
+            url: '/pages/login/index',
+        })
+    },
+    async getData() {
+        const res = await wx.$api.getUserInfo();
+        if (res.code == 200) {
+            this.setData({
+                user: res.user
+            })
+        }
     },
 
     /**
@@ -27,7 +42,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        this.getData()
     },
 
     /**

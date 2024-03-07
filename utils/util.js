@@ -108,3 +108,54 @@ export function deepTree(objAry, val, key) {
         });
     }
 }
+
+export function uploadFilePromise(filePath, formData) {
+    return new Promise((resolve, reject) => {
+        let a = wx.uploadFile({
+            url: 'https://www.gistoyou.com.cn:8443/applet/common/upload',
+            filePath,
+            name: 'file',
+            formData,
+            success: (res) => {
+                const resData = JSON.parse(res.data)
+                if (resData.code == 200) {
+                    resolve(resData.data);
+                } else {
+                    wx.showToast({
+                        title: '上传失败',
+                        icon: 'none'
+                    })
+                    console.error(new Error(resData.msg));
+                    reject()
+                }
+            },
+            complete: () => {
+
+            }
+        });
+    });
+}
+
+export async function uploadFileAll(arr) {
+    const promises = arr.map(r => {
+        if (r.status == 'uploading') {
+            return new Promise(async (resolve) => {
+                const data = await uploadFilePromise(r.url, {
+                    name: r.name + r.ext
+                })
+                resolve({
+                    ...r,
+                    status: "success",
+                    url: data.url
+                })
+            });
+
+        } else {
+            return Promise.resolve(r)
+        }
+    });
+
+    const resList = await Promise.all(promises);
+    return resList;
+
+}

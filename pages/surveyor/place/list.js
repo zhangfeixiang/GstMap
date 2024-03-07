@@ -13,7 +13,7 @@ Page({
 
     page: 1,
     async getData() {
-        const res = await wx.$api.getTravelResList({
+        const res = await wx.$api.getPlaceList({
             pageNum: this.page,
         })
 
@@ -21,7 +21,7 @@ Page({
             const list = res.rows.map(it => {
                 return {
                     ...it,
-                    time: parseTime(new Date(it.endTime))
+                    // time: parseTime(new Date(it.endTime))
                 }
             })
             this.setData({

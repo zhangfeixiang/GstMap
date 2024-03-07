@@ -1,7 +1,6 @@
 <view class="page">
     <view class="card">
-        <!-- 该页面字段未确认 -->
-        <van-field size="large" model:value="{{ code }}" readonly label="地点代码" placeholder="地点代码" />
+        <van-field size="large" model:value="{{ code }}" readonly label="代码" placeholder="代码" />
         <van-field size="large" required model:value="{{ name }}" label="资源单体名称" placeholder="资源单体名称" />
         <!-- 资源类型 -->
         <van-field size="large" required value="{{ typeName }}" is-link readonly label="资源类型" placeholder="请选择资源类型" bind:tap="onShowPopupType" />
@@ -148,11 +147,10 @@
     <view class="card">
         <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">
         </van-cell>
-        <view class="indent">
-            <van-uploader preview-full-image="{{false}}" accept="image" multiple file-list="{{ photoFileList }}" bind:after-read="handleAfterReadPhoto" bind:delete="handleDeletePic" deletable="{{ true }}" />
-        </view>
+        <uploader fileList="{{photoFileList}}" bind:change="handleChangePhotoUpload" accept="image" prefix="标准名称"></uploader>
         <van-cell size="large" title="现场拍照（视频）" border="{{ false }}">
         </van-cell>
+        <uploader fileList="{{videoFileList}}" bind:change="handleChangeVideoUpload" accept="video" prefix="标准名称"></uploader>
         <view class="indent">
             <van-uploader preview-full-image="{{false}}" accept="video" file-list="{{ videoFileList }}" bind:after-read="handleAfterReadVideo" bind:delete="handleDeleteVideo" deletable="{{ true }}" />
         </view>

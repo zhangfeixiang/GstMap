@@ -1,4 +1,4 @@
-/* pages/surveyor/tourismPanel.wxss */
+/* pages/surveyor/place.wxss */
 page {
     --field-label-color: #323233;
     background: #f5f9fc;
@@ -7,6 +7,17 @@ page {
 .page {
     padding: 20rpx;
 }
+
+.page {
+    padding: 20rpx;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 100rpx;
+}
+
 
 .card {
     border-radius: 18rpx;
