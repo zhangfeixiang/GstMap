@@ -44,6 +44,7 @@ Page({
                 title: res.msg,
                 icon: 'none'
             })
+            this.getCaptchaImage()
         }
     },
     // 免密登录
