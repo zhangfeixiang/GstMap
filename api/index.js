@@ -108,8 +108,34 @@ const api = {
         return await wx.$request({
             url: `/address/${id}`,
             data,
+            method: 'GET'
         })
     },
+    // 新增地址
+    async addAddress(data) {
+        return await wx.$request({
+            url: '/address',
+            method: "POST",
+            data
+        })
+    },
+    // 编辑地址
+    async editAddress(data, id) {
+        return await wx.$request({
+            url: `/address/${id}`,
+            method: "PUT",
+            data
+        })
+    },
+    // 删除地址
+    async deleteAddress(data, id) {
+        return await wx.$request({
+            url: `/address/${id}`,
+            method: "DELETE",
+            data
+        })
+    },
+    // --------------------------
     //查询)区县数据
     async getCounty(data) {
         return await wx.$request({

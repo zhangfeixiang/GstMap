@@ -6,6 +6,12 @@ page {
     padding: 20rpx;
 }
 
+.align-right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
 .submit-button {
     width: 100%;
 }

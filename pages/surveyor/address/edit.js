@@ -1,47 +1,72 @@
 // pages/surveyor/address.js
 import {
-    items
-} from './../../../mock/items'
+    decimalToDMS,
+    DMSToDecimal,
+    deepTree,
+    uploadFileAll
+} from './../../../utils/util'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        userInfo: {
-            "standardName": "",
-            "type": "",
-            "county": "房山区",
-            "street": "",
-            "community": "",
-            "longitude": 0,
-            "latitude": 0,
-            "isHouseTable": 0,
-            "road": "",
-            "houseNo": "",
-            "placeName": "",
-            "aoiParent": "",
-            "aoiChild": "",
-            "building": "",
-            "boardImg": "",
-            "imgUrl": "",
-            remarks: ""
-        },
-        streetItems: [items[7]],
+
+        "standardName": "",
+        "type": "",
+        "county": "房山区",
+        "street": "",
+        "community": "",
+        "longitude": 0,
+        "latitude": 0,
+        "isHouseTable": 0,
+        "road": "",
+        "houseNo": "",
+        "placeName": "",
+        "aoiParent": "",
+        "aoiChild": "",
+        "building": "",
+        "boardImg": "",
+        "imgUrl": "",
+        // -------------
+        photoFileList: [],
+        mainActiveIndex: 0,
+
         showPopupStreet: false,
         locationStr: ""
     },
     async onGetLocation() {
-        const res = await wx.chooseLocation();
+        const target = this.data.longitude && this.data.latitude ? {
+            longitude: DMSToDecimal(this.data.longitude),
+            latitude: DMSToDecimal(this.data.latitude),
+        } : {};
+        const res = await wx.chooseLocation(target);
+
+        const dms = [decimalToDMS(res.longitude), decimalToDMS(res.latitude)]
         this.setData({
-            locationStr: res.longitude + "," + res.latitude,
-            "userInfo.longitude": res.longitude,
-            "userInfo.latitude": res.latitude
+            locationStr: dms.join(','),
+            "longitude": dms[0],
+            "latitude": dms[1]
+        })
+        console.log(this.data.locationStr, res)
+    },
+
+    handleChangePhotoUpload(e) {
+        console.log(e.detail);
+        this.setData({
+            photoFileList: e.detail
         })
     },
+
     onChangeType(e) {
         this.setData({
-            "userInfo.type": e.detail,
+            "type": e.detail,
+        });
+    },
+
+    onChangeHouseTable(e) {
+        this.setData({
+            "isHouseTable": e.detail,
         });
     },
 
@@ -57,18 +82,99 @@ Page({
         })
     },
 
-    onClickNav() {},
-    onClickStreet(e) {
+
+    onClickNav({
+        detail
+    }) {
         this.setData({
-            "userInfo.street": e.detail.text,
+            mainActiveIndex: detail.index || 0,
+        });
+    },
+    onClickStreet(e) {
+        console.log(e.detail)
+        this.setData({
+            "county": this.data.districtTree[this.data.mainActiveIndex].text,
+            "street": e.detail.text,
+            "streetId": e.detail.id,
             showPopupStreet: false
         })
     },
+
+    async initMatedata() {
+        const promise = [
+            "districtTree",
+        ];
+        const apisPromise = promise.map(async key => {
+            return wx.$api[key]();
+        })
+        const resList = await Promise.all(apisPromise);
+        const [districtTree] = resList.map(it => {
+            if (it.code === 200) {
+                return it.data
+            } else {
+                return []
+            }
+        })
+        // resTree, districtTree, statusData, savestatusData, protectiveData
+        deepTree(districtTree, 'name', 'code')
+        this.setData({
+            districtTree: districtTree[0].children,
+        })
+    },
+
+    async initData() {
+        if (!this.options.id) return;
+        const formData = await wx.$api.getAddressDetail({}, this.options.id);
+        if (formData.code === 200) {
+            formData.imageUrl && formData.imageUrl.split(',').forEach(e => {
+                this.data.photoFileList.push({
+                    status: 'success',
+                    message: '',
+                    url: e,
+                })
+            })
+            this.setData({
+                ...formData.data,
+                photoFileList: this.data.photoFileList,
+                locationStr: `${formData.data.longitude},${formData.data.latitude}`
+            })
+        }
+    },
+
+
+    // 表单提交
+    async handleFormSubmit() {
+        const photoList = await uploadFileAll(this.data.photoFileList);
+        this.setData({
+            photoFileList: photoList,
+        })
+        const data = {
+            ...this.data,
+            imageUrl: photoList.map(it => it.url).join(','),
+        };
+
+        delete data.photoFileList;
+        delete data.mainActiveIndex;
+        delete data.showPopupStreet;
+        delete data.locationStr;
+        delete data.districtTree;
+        const res = await wx.$api[this.options.id ? 'editAddress' : 'addAddress'](data, this.options.id);
+        console.log(res)
+        if (res.code === 200) {
+            wx.showToast({
+                title: res.msg,
+                icon: 'none'
+            })
+        }
+
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        this.initMatedata()
+        this.initData()
     },
 
     /**
@@ -110,13 +216,6 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
 
     }
 })
