@@ -5,8 +5,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        username: "applet",
-        password: "123456",
+        username: "",
+        password: "",
         wxCode: "",
         uuid: "",
         code: "",

@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/surveyor/tourismPanel/scoreDetail",
+          "pathName": "pages/surveyor/tourismPanel/scoreDetail",
+          "query": "id=2",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "新增地址",
           "pathName": "pages/surveyor/address/edit",
           "query": "",

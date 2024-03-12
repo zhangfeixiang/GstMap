@@ -108,14 +108,14 @@ Page({
         if (!this.options.id) return;
         const formData = await wx.$api.getTravelItem({}, this.options.id);
         if (formData.code === 200) {
-            formData.imageUrl && formData.imageUrl.split(',').forEach(e => {
+            formData.data.imageUrl && formData.data.imageUrl.split(',').forEach(e => {
                 this.data.photoFileList.push({
                     status: 'success',
                     message: '',
                     url: e,
                 })
             })
-            formData.videoUrl && formData.videoUrl.split(',').forEach(e => {
+            formData.data.videoUrl && formData.data.videoUrl.split(',').forEach(e => {
                 this.data.videoFileList.push({
                     status: 'success',
                     message: '',
@@ -266,14 +266,25 @@ Page({
             longitude: DMSToDecimal(this.data.longitude),
             latitude: DMSToDecimal(this.data.latitude),
         } : {};
-        const res = await wx.chooseLocation(target);
+        // const res = await wx.chooseLocation(target);
 
-        const dms = [decimalToDMS(res.longitude), decimalToDMS(res.latitude)]
-        this.setData({
-            locationStr: dms.join(','),
-            "longitude": dms[0],
-            "latitude": dms[1]
+
+        const invokeRes = await wx.serviceMarket.invokeService({
+            service: 'wxc1c68623b7bdea7b',
+            api: 'coordTrans',
+            data: {
+                locations: "31.31829452514648,120.71552276611327",
+                type: 1
+            },
         })
+        console.log(invokeRes)
+
+        // const dms = [decimalToDMS(res.longitude), decimalToDMS(res.latitude)]
+        // this.setData({
+        //     locationStr: dms.join(','),
+        //     "longitude": dms[0],
+        //     "latitude": dms[1]
+        // })
         console.log(this.data.locationStr, res)
     },
 

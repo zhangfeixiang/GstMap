@@ -13,84 +13,110 @@ Page({
             value: 0,
             min: 0,
             max: 30,
-            list: ["全部或其中一项具有极高的观赏价值、游憩价值、使用价值。 32－22", "全部或其中一项具有很高的观赏价值、游憩价值、使用价值。 21－13", "全部或其中一项具有较高的观赏价值、游憩价值、使用价值。 12－6", "全部或其中一项具有一般观赏价值、游憩价值、使用价值。 5-1"]
+            nodes: `<div style="margin-bottom: 10px;">
+            · 全部或其中一项具有<span style="color: rgb(192, 0, 0);">极高</span>的观赏价值、游憩价值、使用价值（22-32）
+        </div>
+        <div style="margin-bottom: 10px;">
+            · 全部或其中一项具有<span style="color: rgb(192, 0, 0);">很高</span>的观赏价值、游憩价值、使用价值（21-31）
+        </div>
+        <div style="margin-bottom: 10px;">
+            · 全部或其中一项具有<span style="color: rgb(192, 0, 0);">较高</span>的观赏价值、游憩价值、使用价值（6-12）
+        </div>
+        <div style="margin-bottom: 10px;">
+            · 全部或其中一项具有<span style="color: rgb(192, 0, 0);">一般</span>的观赏价值、游憩价值、使用价值（1-5）
+        </div>`
         }, {
             name: "历史文化科学艺术价值（25分）",
             key: "scoreHumanity",
             value: 0,
             min: 0,
             max: 25,
-            list: ["同时或其中一项具有世界意义的历史价值、文化价值、科学价值、艺术价值。 25－20",
-                "同时或其中一项具有全国意义的历史价值、文化价值、科学价值、艺术价值。 19－13",
-                "同时或其中一项具有省级意义的历史价值、文化价值、科学价值、艺术价值。 12－6",
-                "历史价值、或文化价值、或科学价值,或艺术价值具有地区意义。 5-1"
-            ]
+            nodes: `
+                <div style="margin-bottom: 10px;">
+            · 同时或其中一项具有<span style="color: rgb(192, 0, 0);">世界</span>意义的历史价值、文化价值、科学价值、艺术价值（25－20）</div>
+                <div style="margin-bottom: 10px;">
+            · 同时或其中一项具有<span style="color: rgb(192, 0, 0);">全国</span>意义的历史价值、文化价值、科学价值、艺术价值（19－13）</div>
+                <div style="margin-bottom: 10px;">
+            · 同时或其中一项具有<span style="color: rgb(192, 0, 0);">省级</span>意义的历史价值、文化价值、科学价值、艺术价值（12－6）</div>
+                <div style="margin-bottom: 10px;">
+            · 历史价值、或文化价值、或科学价值，或艺术价值具有<span style="color: rgb(192, 0, 0);">地区</span>意义（5-1）</div>
+            `
         }, {
             name: "珍稀奇特程度（15分）",
             key: "scoreScarce",
             value: 0,
             min: 0,
             max: 15,
-            list: ["有大量珍稀物种，或景观异常奇特，或此类现象在其他地区罕见。 15－13",
-                "有较多珍稀物种，或景观奇特，或此类现象在其他地区很少见。 12-9",
-                "有少量珍稀物种，或景观突出，或此类现象在其他地区少见。 8-4",
-                "有个别珍稀物种，或景观比较突出，或此类现象在其他地区较多见。 3-1",
-            ]
+            nodes: `
+                <div style="margin-bottom: 10px;">
+                · 有<span style="color: rgb(192, 0, 0);">大量</span>珍稀物种，或景观异常奇特，或此类现象在其他地区罕见（13-15）</div>
+                <div style="margin-bottom: 10px;">
+                · 有<span style="color: rgb(192, 0, 0);">较多</span>珍稀物种，或景观奇特，或此类现象在其他地区很少见（9-12）</div>
+                <div style="margin-bottom: 10px;">
+                · 有<span style="color: rgb(192, 0, 0);">少量</span>珍稀物种，或景观突出，或此类现象在其他地区少见（4-8）</div>
+                <div style="margin-bottom: 10px;">
+                · 有<span style="color: rgb(192, 0, 0);">个别</span>珍稀物种，或景观比较突出，或此类现象在其他地区较多见（1-3）</div>
+            `
         }, {
             name: "规模、丰度与几率（10分）",
             key: "scoreScale",
             value: 0,
             min: 0,
             max: 10,
-            list: ["独立型旅游资源单体规模、体量巨大；集合型旅游资源单体结构完美、疏密度优良；自然景象和人文活动周期性发生或频率极高。 10-8",
-                "独立型旅游资源单体规模、体量较大；集合型旅游资源单体结构很和谐、疏密度良好；自然景象和人文活动周期性发生或频率很高。 7-5",
-                "独立型旅游资源单体规模、体量中等；集合型旅游资源单体结构和谐、疏密度较好；自然景象和人文活动周期性发生或频率较高。 4-3",
-                "独立型旅游资源单体规模、体量较小；集合型旅游资源单体结构较和谐、疏密度一般；自然景象和人文活动周期性发生或频率较小。 2-1",
-            ]
+            nodes: `
+                <div style="margin-bottom: 10px;">· 独立型旅游资源单体规模、体量<span  style="color: rgb(192, 0, 0);">巨大</span>；集合型旅游资源单体结构<span  style="color: rgb(192, 0, 0);">完美</span>、疏密度优良；自然景象和人文活动周期性发生或频率极高（8-10）</div>
+                <div style="margin-bottom: 10px;">· 独立型旅游资源单体规模、体量<span  style="color: rgb(192, 0, 0);">较大</span>；集合型旅游资源单体结构<span  style="color: rgb(192, 0, 0);">很和谐</span>、疏密度良好；自然景象和人文活动周期性发生或频率很高（5-7）</div>
+                <div style="margin-bottom: 10px;">· 独立型旅游资源单体规模、体量<span  style="color: rgb(192, 0, 0);">中等</span>；集合型旅游资源单体结构<span  style="color: rgb(192, 0, 0);">和谐</span>、疏密度较好；自然景象和人文活动周期性发生或频率较高（3-4）</div>
+                <div style="margin-bottom: 10px;">· 独立型旅游资源单体规模、体量<span  style="color: rgb(192, 0, 0);">较小</span>；集合型旅游资源单体结构<span  style="color: rgb(192, 0, 0);">较和谐</span>、疏密度一般；自然景象和人文活动周期性发生或频率较小（1-2）</div>
+            `
         }, {
             name: "完整性（5分）",
             key: "scorePreservationIntegrality",
             value: 0,
             min: 0,
             max: 5,
-            list: ["形态与结构保持完整。 5-4",
-                "形态与结构有少量变化，但不明显。 3",
-                "形态与结构有明显变化。 2",
-                "形态与结构有重大变化。 1",
-            ]
+            nodes: `
+            <div style="margin-bottom: 10px;">· 形态与结构<span style="color: rgb(192, 0, 0);">保持完整</span>（4-5）</div>
+                <div style="margin-bottom: 10px;">· 形态与结构<span style="color: rgb(192, 0, 0);">有少量变化，但不明显</span>（3）</div>
+                <div style="margin-bottom: 10px;">· 形态与结构<span style="color: rgb(192, 0, 0);">有明显变化</span>（2）</div>
+                <div style="margin-bottom: 10px;">· 形态与结构<span style="color: rgb(192, 0, 0);">有重大变化</span>（1）</div>
+            `
         }, {
             name: "知名度和影响力（10分）",
             key: "scorePopularity",
             value: 0,
             min: 0,
             max: 10,
-            list: ["在世界范围内知名，或构成世界承认的名牌。 10-8",
-                "在全国范围内知名，或构成全国性的名牌。 7-5",
-                "在本省范围内知名，或构成省内的名牌。 4-3",
-                "在本地区范围内知名，或构成本地区名牌。 2-1",
-            ]
+            nodes: `
+                <div style="margin-bottom: 10px;">· 在<span style="color: rgb(192, 0, 0);" >世界</span>范围内知名，或构成<span style="color: rgb(192, 0, 0);">世界</span>承认的名牌（8-10）</div>
+                <div style="margin-bottom: 10px;">· 在<span style="color: rgb(192, 0, 0);" >全国</span>范围内知名，或构成<span style="color: rgb(192, 0, 0);">全国</span>性的名牌（5-7）</div>
+                <div style="margin-bottom: 10px;">· 在<span style="color: rgb(192, 0, 0);" >本省</span>范围内知名，或构成<span style="color: rgb(192, 0, 0);">省内</span>的名牌（3-4）</div>
+                <div style="margin-bottom: 10px;">· 在<span style="color: rgb(192, 0, 0);" >本地区</span>范围内知名，或构成<span style="color: rgb(192, 0, 0);">本地区</span>名牌（1-2）</div>
+            `
         }, {
             name: "适游期或使用范围（5分）",
             key: "scoreSuitableTime",
             value: 0,
             min: 0,
             max: 5,
-            list: ["适宜游览的日期每年超过300天，或适宜于所有游客使用和参与。 5-4",
-                "适宜游览的日期每年超过250天，或适宜于80％左右游客使用和参与。 3",
-                "适宜游览的日期超过150天，或适宜于60％左右游客使用和参与。 2",
-                "适宜游览的日期每年超过100天，或适宜于40％左右游客使用和参与。 1",
-            ]
+            nodes: `
+            <div style="margin-bottom: 10px;">· 适宜游览的日期每年超过<span style="color: rgb(192, 0, 0);">300天</span>，或适宜于<span style="color: rgb(192, 0, 0);">所有游客</span>使用和参与（4-5）</div>
+            <div style="margin-bottom: 10px;">· 适宜游览的日期每年超过<span style="color: rgb(192, 0, 0);">250天</span>，或适宜于<span style="color: rgb(192, 0, 0);">80％</span>左右游客使用和参与（3）</div>
+            <div style="margin-bottom: 10px;">· 适宜游览的日期超过<span style="color: rgb(192, 0, 0);">150天</span>，或适宜于<span style="color: rgb(192, 0, 0);">60％</span>左右游客使用和参与（2）</div>
+            <div style="margin-bottom: 10px;">· 适宜游览的日期每年超过<span style="color: rgb(192, 0, 0);">100天</span>，或适宜于<span style="color: rgb(192, 0, 0);">40％</span>左右游客使用和参与（1）</div>
+            `
         }, {
             name: "环境保护与环境安全",
             key: "scoreEnvironment",
             value: 0,
             min: -5,
             max: 3,
-            list: ["已受到严重污染，或存在严重安全隐患。 -5",
-                "已受到中度污染，或存在明显安全隐患。 -4",
-                "已受到轻度污染，或存在一定安全隐患。 -3",
-                "已有工程保护措施，环境安全得到保证。 3",
-            ]
+            nodes: `
+            <div style="margin-bottom: 10px;">· 已受到<span style="color: rgb(192, 0, 0);">严重污染</span>，或存在<span style="color: rgb(192, 0, 0);">严重</span>安全隐患（-5）</div>
+            <div style="margin-bottom: 10px;">· 已受到<span style="color: rgb(192, 0, 0);">中度污染</span>，或存在<span style="color: rgb(192, 0, 0);">明显</span>安全隐患（-4）</div>
+            <div style="margin-bottom: 10px;">· 已受到<span style="color: rgb(192, 0, 0);">轻度污染</span>，或存在<span style="color: rgb(192, 0, 0);">一定</span>安全隐患（-3）</div>
+            <div style="margin-bottom: 10px;">· 已有工程<span style="color: rgb(192, 0, 0);">保护措施</span>，环境<span style="color: rgb(192, 0, 0);">安全得到保证</span>（3）</div>
+            `
         }, ]
     },
     stopPrevent() {},
@@ -157,6 +183,7 @@ Page({
             icon: 'none'
         })
     },
+
     /**
      * 生命周期函数--监听页面加载
      */

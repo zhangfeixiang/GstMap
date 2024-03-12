@@ -35,3 +35,9 @@ page {
     background-color: #ee0a24;
     border-radius: 200rpx;
 }
+
+.list-item {}
+
+.light1 {
+    color: #ee0a24;
+}

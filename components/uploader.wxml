@@ -2,9 +2,9 @@
     <!-- <van-uploader preview-full-image="{{false}}" accept="image" multiple file-list="{{ fileList }}" bind:after-read="handleAfterReadPhoto" bind:delete="handleDeletePic" deletable="{{ true }}" /> -->
     <view class="uploader">
         <view class="uploader-item" wx:for="{{lists}}" wx:key="*this">
-            <view class="footer" catch:tap="onEdit" data-index="{{index}}">
+            <view class="footer" catch:tap="{{item.status !== 'success'?'onEdit': ''}}" data-index="{{index}}">
                 <view class="name">{{item.name}}{{item.ext}}</view>
-                <van-icon name="edit" color="#fff" />
+                <van-icon name="edit" wx:if="{{item.status !== 'success'}}" color="#fff" />
             </view>
             <image wx:if="{{accept === 'image'}}" class="cover" src="{{item.url}}" mode="aspectFill" bind:tap="preview" data-index="{{index}}" />
             <image wx:if="{{accept === 'video'}}" class="cover" src="{{item.thumb}}" mode="aspectFill" bind:tap="previewVideo" data-index="{{index}}" />

@@ -141,7 +141,7 @@ export async function uploadFileAll(arr) {
         if (r.status == 'uploading') {
             return new Promise(async (resolve) => {
                 const data = await uploadFilePromise(r.url, {
-                    name: r.name + r.ext
+                    name: r.name
                 })
                 resolve({
                     ...r,

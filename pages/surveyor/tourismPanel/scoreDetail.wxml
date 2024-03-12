@@ -16,7 +16,8 @@
 
                     </view>
                 </view>
-                <view wx:for="{{item.list}}" wx:for-item="text">{{text}}</view>
+                <!-- <rich-text nodes="{{item.list}}"></rich-text> -->
+                <rich-text nodes="{{item.nodes}}"></rich-text>
             </van-collapse-item>
         </van-collapse>
     </view>

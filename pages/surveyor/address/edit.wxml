@@ -1,64 +1,66 @@
 <view class="page">
+    <view class="card">
 
-    <van-field size="large" required model:value="{{ standardName }}" label="标准地址名称" placeholder="标准地址名称" />
+        <van-field size="large" required model:value="{{ standardName }}" label="标准地址名称" placeholder="标准地址名称" />
 
-    <van-cell size="large" required title-width="6.2em" title="类型">
-        <van-radio-group value="{{ type }}" direction="horizontal" bind:change="onChangeType">
-            <view class="align-right">
-                <van-radio name="门牌">门牌</van-radio>
-                <van-radio name="小区">小区</van-radio>
-                <van-radio name="楼栋">楼栋</van-radio>
-            </view>
-        </van-radio-group>
-    </van-cell>
+        <van-cell size="large" required title-width="6.2em" title="类型">
+            <van-radio-group value="{{ type }}" direction="horizontal" bind:change="onChangeType">
+                <view class="align-right">
+                    <van-radio name="门牌">门牌</van-radio>
+                    <van-radio name="小区">小区</van-radio>
+                    <van-radio name="楼栋">楼栋</van-radio>
+                </view>
+            </van-radio-group>
+        </van-cell>
 
-    <!-- 门牌 -->
-    <block wx:if="{{type === '门牌'}}">
-        <van-field size="large" required model:value="{{ road }}" label="道路" placeholder="道路" />
-        <van-field size="large" required model:value="{{ houseNo }}" label="门牌号" placeholder="门牌号" />
-        <van-field size="large" model:value="{{ placeName }}" label="地点名称" placeholder="地点名称" />
-    </block>
-    <!-- 小区 -->
-    <block wx:if="{{type === '小区'}}">
-        <van-field size="large" model:value="{{ road }}" label="道路" placeholder="道路" />
-        <van-field size="large" model:value="{{ houseNo }}" label="门牌号" placeholder="门牌号" />
-        <van-field size="large" required model:value="{{ aoiParent }}" label="AOI" placeholder="AOI" />
-    </block>
-    <!-- 楼栋 -->
-    <block wx:if="{{type === '楼栋'}}">
-        <van-field size="large" model:value="{{ road }}" label="道路" placeholder="道路" />
-        <van-field size="large" model:value="{{ houseNo }}" label="门牌号" placeholder="门牌号" />
-        <van-field size="large" model:value="{{ aoiParent }}" label="AOI" placeholder="AOI" />
-        <van-field size="large" required model:value="{{ building }}" label="楼栋" placeholder="请输入楼栋号" />
-    </block>
-    <!--  -->
-    <!-- <van-cell size="large" required title-width="6.2em" title="水牌照片" border="{{ false }}">
+        <!-- 门牌 -->
+        <block wx:if="{{type === '门牌'}}">
+            <van-field size="large" required model:value="{{ road }}" label="道路" placeholder="道路" />
+            <van-field size="large" required model:value="{{ houseNo }}" label="门牌号" placeholder="门牌号" />
+            <van-field size="large" model:value="{{ placeName }}" label="地点名称" placeholder="地点名称" />
+        </block>
+        <!-- 小区 -->
+        <block wx:if="{{type === '小区'}}">
+            <van-field size="large" model:value="{{ road }}" label="道路" placeholder="道路" />
+            <van-field size="large" model:value="{{ houseNo }}" label="门牌号" placeholder="门牌号" />
+            <van-field size="large" required model:value="{{ aoiParent }}" label="AOI" placeholder="AOI" />
+        </block>
+        <!-- 楼栋 -->
+        <block wx:if="{{type === '楼栋'}}">
+            <van-field size="large" model:value="{{ road }}" label="道路" placeholder="道路" />
+            <van-field size="large" model:value="{{ houseNo }}" label="门牌号" placeholder="门牌号" />
+            <van-field size="large" model:value="{{ aoiParent }}" label="AOI" placeholder="AOI" />
+            <van-field size="large" required model:value="{{ building }}" label="楼栋" placeholder="请输入楼栋号" />
+        </block>
+        <!--  -->
+        <!-- <van-cell size="large" required title-width="6.2em" title="水牌照片" border="{{ false }}">
         <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" deletable="{{ true }}" />
     </van-cell> -->
 
-    <!-- 精确至街道，例：北京市xx区xx街道 -->
-    <van-field size="large" required disabled value="{{ county }}" is-link readonly label="行政区" placeholder="请选择行政区" />
+        <!-- 精确至街道，例：北京市xx区xx街道 -->
+        <van-field size="large" required disabled value="{{ county }}" is-link readonly label="行政区" placeholder="请选择行政区" />
 
 
-    <!-- TODO:可选项：房山区28个乡镇街道，详见附件1 -->
-    <van-field size="large" required value="{{ street }}" is-link readonly label="乡镇街道" placeholder="请选择乡镇街道" bind:tap="onShowPopupStreet" />
+        <!-- TODO:可选项：房山区28个乡镇街道，详见附件1 -->
+        <van-field size="large" required value="{{ street }}" is-link readonly label="乡镇街道" placeholder="请选择乡镇街道" bind:tap="onShowPopupStreet" />
 
-    <van-field size="large" model:value="{{ community }}" label="社区/村" placeholder="社区/村" />
+        <van-field size="large" model:value="{{ community }}" label="社区/村" placeholder="社区/村" />
 
-    <van-field size="large" required value="{{ locationStr }}" readonly label="经纬度" placeholder="请选择地址位置" bind:tap="onGetLocation">
-        <van-icon slot="right-icon" name="location" class="custom-icon" />
-    </van-field>
+        <van-field size="large" required value="{{ locationStr }}" readonly label="经纬度" placeholder="请选择地址位置" bind:tap="onGetLocation">
+            <van-icon slot="right-icon" name="location" class="custom-icon" />
+        </van-field>
 
-    <van-cell size="large" required title-width="6.2em" title="楼盘表信息">
-        <van-radio-group value="{{ isHouseTable }}" direction="horizontal" bind:change="onChangeHouseTable">
-            <van-radio name="{{1}}">是</van-radio>
-            <van-radio name="{{0}}">否</van-radio>
-        </van-radio-group>
-    </van-cell>
+        <van-cell size="large" required title-width="6.2em" title="楼盘表信息">
+            <van-radio-group value="{{ isHouseTable }}" direction="horizontal" bind:change="onChangeHouseTable">
+                <van-radio name="{{1}}">是</van-radio>
+                <van-radio name="{{0}}">否</van-radio>
+            </van-radio-group>
+        </van-cell>
 
-    <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">
-    </van-cell>
-    <uploader fileList="{{photoFileList}}" bind:change="handleChangePhotoUpload" accept="image" prefix="标准名称"></uploader>
+        <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">
+        </van-cell>
+        <uploader fileList="{{photoFileList}}" bind:change="handleChangePhotoUpload" accept="image" prefix="标准名称"></uploader>
+    </view>
     <view style="height: 60rpx;"></view>
 
     <view class="center">

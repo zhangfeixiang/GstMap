@@ -44,6 +44,12 @@ export default class Request {
                 success: (res => {
                     console.log('[success]:', requestOption.url, requestOption, res.data)
                     if (res.statusCode === 200) {
+                        if (res.data.code === 401) {
+                            wx.removeStorageSync('loginData');
+                            wx.navigateTo({
+                                url: '/pages/login/index'
+                            })
+                        }
                         resolve({
                             res,
                             requestOption
