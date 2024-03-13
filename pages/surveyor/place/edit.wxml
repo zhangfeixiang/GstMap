@@ -37,7 +37,7 @@
         <view>
             <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">
             </van-cell>
-            <uploader fileList="{{photoFileList}}" bind:change="handleChangeUpload" accept="image" prefix="标准名称"></uploader>
+            <uploader fileList="{{photoFileList}}" bind:change="handleChangeUpload" accept="image" prefix="{{standardName}}"></uploader>
         </view>
     </view>
     <view style="height: 60rpx;"></view>

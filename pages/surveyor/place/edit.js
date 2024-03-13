@@ -139,7 +139,7 @@ Page({
         });
     },
 
-    
+
 
     // 表单提交
     async handleFormSubmit() {
@@ -204,7 +204,6 @@ Page({
         if (!this.options.id) return;
         const formData = await wx.$api.getPlaceDetail({}, this.options.id);
         if (formData.code === 200) {
-            formData.imgUrl = "https://img01.yzcdn.cn/vant/sand.jpg"
             formData.imgUrl && formData.imgUrl.split(',').forEach(e => {
                 this.data.photoFileList.push({
                     status: 'success',
