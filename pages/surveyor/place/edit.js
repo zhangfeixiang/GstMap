@@ -15,6 +15,7 @@ Page({
         "aliasName": "",
         "romanLetters": "",
         "placeNameType": "",
+        "placeNameCategoryId": "",
         "placeNameCategory": "",
         "city": "北京市",
         "county": "",
@@ -24,7 +25,7 @@ Page({
         "placeNameSign": "",
         "useTime": "",
         "generalSituation": "",
-        "imgUrl": "",
+        "imageUrl": "",
         fieldCustom: {
             text: 'name',
             value: 'id',
@@ -112,8 +113,8 @@ Page({
         const last = selectedOptions.slice(-1)[0];
         if (last) {
             this.setData({
-                'placeNameCategory': last.id,
-                placeNameCategoryName: last.name,
+                'placeNameCategoryId': last.id,
+                placeNameCategory: last.name,
                 showPopupPlaceNameCategory: false
             })
         }
@@ -152,7 +153,7 @@ Page({
         const data = {
             ...this.data,
             isNew: this.data.isNew ? Number(this.data.isNew) : null,
-            imgUrl: photoList.map(it => it.url).join(','),
+            imageUrl: photoList.map(it => it.fileName).join(','),
             // videoUrl: videoList.map(it => it.url).join(','),
         };
         delete data.fieldCustom;
@@ -163,6 +164,7 @@ Page({
         delete data.photoFileList;
         delete data.mainActiveIndex;
         delete data.showPopupStreet;
+        delete data.districtTree;
         const res = await wx.$api.getTravelResources(data);
         console.log(res)
         if (res.code === 200) {
@@ -204,7 +206,7 @@ Page({
         if (!this.options.id) return;
         const formData = await wx.$api.getPlaceDetail({}, this.options.id);
         if (formData.code === 200) {
-            formData.imgUrl && formData.imgUrl.split(',').forEach(e => {
+            formData.data.imageUrl && formData.data.imageUrl.split(',').forEach(e => {
                 this.data.photoFileList.push({
                     status: 'success',
                     url: e,

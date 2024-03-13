@@ -28,7 +28,6 @@ Page({
                 hasMore: res.rows.length >= 10,
                 list: this.page == 1 ? list : this.data.list.concat(list)
             });
-            this.page++
         }
     },
 
@@ -80,7 +79,10 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom() {
-        this.getData();
+        if (this.data.hasMore) {
+            this.page++
+            this.getData();
+        }
 
     }
 })

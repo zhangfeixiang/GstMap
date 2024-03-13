@@ -169,7 +169,6 @@ const api = {
     },
     //根据资源单体ID查询评分
     async getResources(data, id) {
-        data.userId = 1;
         return await wx.$request({
             url: `/travel-resource-scores/resources/${id}`,
             data,
@@ -194,7 +193,13 @@ const api = {
             data,
             method: 'PUT'
         })
-
+    },
+    async addSaveResScore(data) {
+        return await wx.$request({
+            url: `/travel-resource-scores`,
+            data,
+            method: 'POST'
+        })
     },
     //行政区tree
     async districtTree(data) {

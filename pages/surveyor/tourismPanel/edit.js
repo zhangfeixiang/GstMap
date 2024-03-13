@@ -113,6 +113,7 @@ Page({
                     status: 'success',
                     message: '',
                     url: e,
+                    fileName: e
                 })
             })
             formData.data.videoUrl && formData.data.videoUrl.split(',').forEach(e => {
@@ -143,8 +144,8 @@ Page({
         const data = {
             ...this.data,
             isNew: this.data.isNew ? Number(this.data.isNew) : null,
-            imageUrl: photoList.map(it => it.url).join(','),
-            videoUrl: videoList.map(it => it.url).join(','),
+            imageUrl: photoList.map(it => it.fileName).join(','),
+            videoUrl: videoList.map(it => it.fileName).join(','),
         };
 
         delete data.autosize;
@@ -266,25 +267,25 @@ Page({
             longitude: DMSToDecimal(this.data.longitude),
             latitude: DMSToDecimal(this.data.latitude),
         } : {};
-        // const res = await wx.chooseLocation(target);
+        const res = await wx.chooseLocation(target);
 
 
-        const invokeRes = await wx.serviceMarket.invokeService({
-            service: 'wxc1c68623b7bdea7b',
-            api: 'coordTrans',
-            data: {
-                locations: "31.31829452514648,120.71552276611327",
-                type: 1
-            },
-        })
-        console.log(invokeRes)
-
-        // const dms = [decimalToDMS(res.longitude), decimalToDMS(res.latitude)]
-        // this.setData({
-        //     locationStr: dms.join(','),
-        //     "longitude": dms[0],
-        //     "latitude": dms[1]
+        // const invokeRes = await wx.serviceMarket.invokeService({
+        //     service: 'wxc1c68623b7bdea7b',
+        //     api: 'coordTrans',
+        //     data: {
+        //         locations: "31.31829452514648,120.71552276611327",
+        //         type: 1
+        //     },
         // })
+        // console.log(invokeRes)
+
+        const dms = [decimalToDMS(res.longitude), decimalToDMS(res.latitude)]
+        this.setData({
+            locationStr: dms.join(','),
+            "longitude": dms[0],
+            "latitude": dms[1]
+        })
         console.log(this.data.locationStr, res)
     },
 

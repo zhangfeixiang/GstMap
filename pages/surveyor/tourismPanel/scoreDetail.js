@@ -5,7 +5,9 @@ Page({
      * 页面的初始数据
      */
     data: {
+        id: null,
         score: 0,
+        user: {},
         activeNames: [],
         list: [{
             name: "观赏游憩使用价值（30分）",
@@ -17,7 +19,7 @@ Page({
             · 全部或其中一项具有<span style="color: rgb(192, 0, 0);">极高</span>的观赏价值、游憩价值、使用价值（22-32）
         </div>
         <div style="margin-bottom: 10px;">
-            · 全部或其中一项具有<span style="color: rgb(192, 0, 0);">很高</span>的观赏价值、游憩价值、使用价值（21-31）
+            · 全部或其中一项具有<span style="color: rgb(192, 0, 0);">很高</span>的观赏价值、游憩价值、使用价值（13-21）
         </div>
         <div style="margin-bottom: 10px;">
             · 全部或其中一项具有<span style="color: rgb(192, 0, 0);">较高</span>的观赏价值、游憩价值、使用价值（6-12）
@@ -33,13 +35,13 @@ Page({
             max: 25,
             nodes: `
                 <div style="margin-bottom: 10px;">
-            · 同时或其中一项具有<span style="color: rgb(192, 0, 0);">世界</span>意义的历史价值、文化价值、科学价值、艺术价值（25－20）</div>
+            · 同时或其中一项具有<span style="color: rgb(192, 0, 0);">世界</span>意义的历史价值、文化价值、科学价值、艺术价值（20-25）</div>
                 <div style="margin-bottom: 10px;">
-            · 同时或其中一项具有<span style="color: rgb(192, 0, 0);">全国</span>意义的历史价值、文化价值、科学价值、艺术价值（19－13）</div>
+            · 同时或其中一项具有<span style="color: rgb(192, 0, 0);">全国</span>意义的历史价值、文化价值、科学价值、艺术价值（13-19）</div>
                 <div style="margin-bottom: 10px;">
-            · 同时或其中一项具有<span style="color: rgb(192, 0, 0);">省级</span>意义的历史价值、文化价值、科学价值、艺术价值（12－6）</div>
+            · 同时或其中一项具有<span style="color: rgb(192, 0, 0);">省级</span>意义的历史价值、文化价值、科学价值、艺术价值（6-12）</div>
                 <div style="margin-bottom: 10px;">
-            · 历史价值、或文化价值、或科学价值，或艺术价值具有<span style="color: rgb(192, 0, 0);">地区</span>意义（5-1）</div>
+            · 历史价值、或文化价值、或科学价值，或艺术价值具有<span style="color: rgb(192, 0, 0);">地区</span>意义（1-5）</div>
             `
         }, {
             name: "珍稀奇特程度（15分）",
@@ -119,6 +121,16 @@ Page({
             `
         }, ]
     },
+
+    async getUserData() {
+        const res = await wx.$api.getUserInfo();
+        if (res.code == 200) {
+            this.setData({
+                user: res.user
+            })
+            this.getData()
+        }
+    },
     stopPrevent() {},
 
     onChange(e) {
@@ -153,7 +165,9 @@ Page({
 
 
     async getData() {
-        const res = await wx.$api.getResources({}, this.options.id);
+        const res = await wx.$api.getResources({
+            userId: this.data.user.userId
+        }, this.options.id);
         if (res.code == 200) {
             console.log(res)
             this.data.list.forEach(it => {
@@ -163,20 +177,33 @@ Page({
                 list: this.data.list
             })
             this.computedTotal();
+            this.data.id = res.data[0].id
+        } else {
+            this.data.id = null
         }
     },
     async onSubmit(e) {
         const data = {
-            id: this.options.id
+            resourceId: this.options.id,
+            userId: this.data.user.userId,
+            resourceName: this.options.name,
+        }
+        if (this.data.id) {
+            data.id = this.data.id
         }
         this.data.list.forEach(it => {
             data[it.key] = it.value
         });
         console.log(data)
-        const res = await wx.$api.editSaveResScore(data);
-        console.log()
+        wx.showLoading({
+            title: '正在提交',
+            mask: true
+        })
+        const res = await wx.$api[this.data.id ? 'editSaveResScore' : 'addSaveResScore'](data);
+        wx.hideLoading()
         if (res.code === 200) {
             // 后续返回？
+            wx.navigateBack()
         }
         wx.showToast({
             title: res.msg,
@@ -188,7 +215,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.getData()
+        this.getUserData()
     },
 
     /**
@@ -230,13 +257,6 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
 
     }
 })

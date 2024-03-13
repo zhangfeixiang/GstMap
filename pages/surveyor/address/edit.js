@@ -27,7 +27,7 @@ Page({
         "aoiChild": "",
         "building": "",
         "boardImg": "",
-        "imgUrl": "",
+        "imageUrl": "",
         // -------------
         photoFileList: [],
         mainActiveIndex: 0,
@@ -126,7 +126,7 @@ Page({
         if (!this.options.id) return;
         const formData = await wx.$api.getAddressDetail({}, this.options.id);
         if (formData.code === 200) {
-            formData.imageUrl && formData.imageUrl.split(',').forEach(e => {
+            formData.data.imageUrl && formData.data.imageUrl.split(',').forEach(e => {
                 this.data.photoFileList.push({
                     status: 'success',
                     message: '',
@@ -150,7 +150,7 @@ Page({
         })
         const data = {
             ...this.data,
-            imageUrl: photoList.map(it => it.url).join(','),
+            imageUrl: photoList.map(it => it.fileName).join(','),
         };
 
         delete data.photoFileList;

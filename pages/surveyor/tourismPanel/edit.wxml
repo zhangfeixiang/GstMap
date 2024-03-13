@@ -158,7 +158,7 @@
 
     <!-- 评分 -->
     <view class="card">
-        <van-cell class="fs36" title="旅游资源单体评价" is-link url="scoreDetail?id={{$options.id}}"></van-cell>
+        <van-cell class="fs36" title="旅游资源单体评价" is-link url="scoreDetail?id={{$options.id}}&name={{name}}"></van-cell>
     </view>
     <view style="height: 60rpx;"></view>
     <view class="center">

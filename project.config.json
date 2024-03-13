@@ -1,10 +1,6 @@
 {
   "compileType": "miniprogram",
   "libVersion": "trial",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
   "setting": {
     "coverView": true,
     "es6": true,
@@ -23,12 +19,17 @@
         "packageJsonPath": "./package.json",
         "miniprogramNpmDistDir": "./"
       }
-    ]
+    ],
+    "ignoreUploadUnusedFiles": true
   },
   "condition": {},
   "editorSetting": {
     "tabIndent": "auto",
     "tabSize": 2
+  },
+  "packOptions": {
+    "ignore": [],
+    "include": []
   },
   "appid": "wx89c1ef94b1894f61"
 }

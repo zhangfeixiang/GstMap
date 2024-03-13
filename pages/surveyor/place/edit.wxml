@@ -1,7 +1,7 @@
 <view class="page">
     <view class="card">
         <van-field size="large" model:value="{{ code }}" readonly label="地点代码" placeholder="地点代码" />
-        <van-field size="large" model:value="{{ standardName }}" required label="标准名称" placeholder="标准名称" />
+        <van-field size="large" model:value="{{ standardName }}" readonly required label="标准名称" placeholder="标准名称" />
         <van-field size="large" model:value="{{ aliasName }}" label="别名" placeholder="别名" />
         <van-field size="large" model:value="{{ romanLetters }}" required label="罗马字母拼写" placeholder="罗马字母拼写" />
 
@@ -10,7 +10,7 @@
             <van-icon slot="right-icon" name="arrow" class="custom-icon" />
         </van-field>
 
-        <van-field size="large" required value="{{ placeNameCategoryName }}" is-link readonly label="地名类别" placeholder="请选择地名类别" bind:tap="onShowPopupPlaceNameCategory" />
+        <van-field size="large" required value="{{ placeNameCategory }}" is-link readonly label="地名类别" placeholder="请选择地名类别" bind:tap="onShowPopupPlaceNameCategory" />
 
         <!-- 精确至街道，例：北京市xx区xx街道 -->
         <van-field size="large" required value="{{ (city||'')+ (county||'')+(street||'') }}" is-link readonly label="所在行政区划" placeholder="请选择行政位置" bind:tap="onShowPopupStreet" />
@@ -54,5 +54,5 @@
 </van-popup>
 <!-- 地名类别 -->
 <van-popup show="{{ showPopupPlaceNameCategory }}" round position="bottom">
-    <van-cascader field-names="{{ fieldCustom }}" wx:if="{{ showPopupPlaceNameCategory }}" value="{{ placeNameCategory }}" title="请选择地名类别" options="{{ placeCategoriesData }}" bind:close="onClosePlaceNameCategory" bind:finish="onFinishPlaceNameCategory" />
+    <van-cascader field-names="{{ fieldCustom }}" wx:if="{{ showPopupPlaceNameCategory }}" value="{{ placeNameCategoryId }}" title="请选择地名类别" options="{{ placeCategoriesData }}" bind:close="onClosePlaceNameCategory" bind:finish="onFinishPlaceNameCategory" />
 </van-popup>

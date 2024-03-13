@@ -146,7 +146,8 @@ export async function uploadFileAll(arr) {
                 resolve({
                     ...r,
                     status: "success",
-                    url: data.url
+                    url: data.url, //  完整路径
+                    fileName: data.fileName, // 不包含域名前缀
                 })
             });
 

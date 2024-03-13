@@ -13,6 +13,7 @@ page {
     margin-bottom: 20rpx;
     background: #fff;
     padding: 10rpx;
+    --cell-horizontal-padding: 10rpx;
 }
 
 .title {
