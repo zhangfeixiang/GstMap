@@ -7,13 +7,15 @@ Page({
      * 页面的初始数据
      */
     data: {
-        list: []
+        list: [],
+        hasMore: true,
+        isLoading: true,
     },
 
 
     page: 1,
     async getData() {
-        const res = await wx.$api.getTravelResList({
+        const res = await wx.$api.getAddressList({
             pageNum: this.page,
         })
 
@@ -26,9 +28,9 @@ Page({
             })
             this.setData({
                 hasMore: res.rows.length >= 10,
+                isLoading: false,
                 list: this.page == 1 ? list : this.data.list.concat(list)
             });
-            this.page++
         }
     },
 
@@ -80,7 +82,9 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom() {
-        this.getData();
-
+        if (this.data.hasMore) {
+            this.page++;
+            this.getData();
+        }
     }
 })

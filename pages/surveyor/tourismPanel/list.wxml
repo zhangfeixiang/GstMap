@@ -12,4 +12,6 @@
             </view>
         </van-cell>
     </view>
+    <van-empty wx:if="{{!isLoading && !list.length}}" description="暂无数据" />
+
 </view>

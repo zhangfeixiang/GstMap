@@ -1,7 +1,7 @@
 <view class="page">
     <view class="card">
 
-        <van-field size="large" required model:value="{{ standardName }}" label="标准地址名称" placeholder="标准地址名称" />
+        <van-field size="large" required readonly model:value="{{ standardName }}" label="标准地址名称" placeholder="标准地址名称" />
 
         <van-cell size="large" required title-width="6.2em" title="类型">
             <van-radio-group value="{{ type }}" direction="horizontal" bind:change="onChangeType">
@@ -38,7 +38,7 @@
     </van-cell> -->
 
         <!-- 精确至街道，例：北京市xx区xx街道 -->
-        <van-field size="large" required disabled value="{{ county }}" is-link readonly label="行政区" placeholder="请选择行政区" />
+        <van-field size="large" required value="{{ county }}" is-link readonly label="行政区" placeholder="请选择行政区" />
 
 
         <!-- TODO:可选项：房山区28个乡镇街道，详见附件1 -->
@@ -59,7 +59,7 @@
 
         <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">
         </van-cell>
-        <uploader fileList="{{photoFileList}}" bind:change="handleChangePhotoUpload" accept="image" prefix="标准名称"></uploader>
+        <uploader fileList="{{photoFileList}}" bind:change="handleChangePhotoUpload" accept="image" prefix="{{standardName}}"></uploader>
     </view>
     <view style="height: 60rpx;"></view>
 

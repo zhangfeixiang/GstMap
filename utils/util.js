@@ -8,7 +8,8 @@ export const getVersion = () => {
     return mock ? '1.0.1' : wx.getAccountInfoSync().miniProgram.version;
 }
 
-
+// const baseUrl = "https://www.gistoyou.com.cn:8443/applet"
+export const baseUrl = "http://39.98.214.43:8081/applet"
 
 // // 示例用法
 // var latitude = 40.7128; // 纬度

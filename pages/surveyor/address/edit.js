@@ -130,9 +130,11 @@ Page({
                 this.data.photoFileList.push({
                     status: 'success',
                     message: '',
-                    url: e,
+                    url: this.data.$host + e,
+                    fileName: e
                 })
-            })
+            });
+            
             this.setData({
                 ...formData.data,
                 photoFileList: this.data.photoFileList,
@@ -150,7 +152,7 @@ Page({
         })
         const data = {
             ...this.data,
-            imageUrl: photoList.map(it => it.fileName).join(','),
+            imageUrl: photoList.filter(it => it.status == 'success').map(it => it.fileName).join(','),
         };
 
         delete data.photoFileList;

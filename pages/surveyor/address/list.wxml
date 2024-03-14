@@ -1,3 +1,13 @@
-<view class="list">
-    <van-cell url="edit?id={{item.id}}" is-link wx:for="{{list}}" wx:key="id" title="{{item.name}}" icon="location-o" />
+<view class="page">
+    <view class="card" wx:for="{{list}}" wx:key="id">
+        <van-cell link-type="navigateTo" url="edit?id={{item.id}}" label="{{item.street}}">
+            <view slot="title" class="custom-title">
+                <span class="item-name">{{item.standardName}}</span>
+                <van-tag type="warning">
+                    {{item.type}}
+                </van-tag>
+            </view>
+        </van-cell>
+    </view>
+    <van-empty wx:if="{{!isLoading && !list.length}}" description="暂无数据" />
 </view>

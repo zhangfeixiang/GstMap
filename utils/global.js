@@ -1,4 +1,5 @@
 import {
+    baseUrl,
     getVersion
 } from './../utils/util';
 
@@ -74,6 +75,7 @@ async function initAppData(options) {
             $options: {
                 ...options,
             },
+            $host: baseUrl,
             $isLogin: isLogin,
             $route: this.route,
             $version: getVersion() || "",

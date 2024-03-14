@@ -120,9 +120,9 @@ const api = {
         })
     },
     // 编辑地址
-    async editAddress(data, id) {
+    async editAddress(data) {
         return await wx.$request({
-            url: `/address/${id}`,
+            url: `/address`,
             method: "PUT",
             data
         })

@@ -31,6 +31,10 @@ Page({
             value: 'id',
             children: 'children',
         },
+        autosize: {
+            maxHeight: 100,
+            minHeight: 40
+        },
         // 地名类别
         showPopupPlaceNameCategory: false,
         placeCategoriesData: [],
@@ -153,19 +157,19 @@ Page({
         const data = {
             ...this.data,
             isNew: this.data.isNew ? Number(this.data.isNew) : null,
-            imageUrl: photoList.map(it => it.fileName).join(','),
-            // videoUrl: videoList.map(it => it.url).join(','),
+            imageUrl: photoList.filter(it => it.status == 'success').map(it => it.fileName).join(','),
         };
         delete data.fieldCustom;
         delete data.showPopupPlaceNameCategory;
         delete data.placeCategoriesData;
+        delete data.autosize;
         delete data.useTypeData;
         delete data.locationStr;
         delete data.photoFileList;
         delete data.mainActiveIndex;
         delete data.showPopupStreet;
         delete data.districtTree;
-        const res = await wx.$api.getTravelResources(data);
+        const res = await wx.$api.editPlace(data);
         console.log(res)
         if (res.code === 200) {
             wx.showToast({
@@ -206,10 +210,11 @@ Page({
         if (!this.options.id) return;
         const formData = await wx.$api.getPlaceDetail({}, this.options.id);
         if (formData.code === 200) {
-            formData.data.imageUrl && formData.data.imageUrl.split(',').forEach(e => {
+            formData.data.imageUrl && formData.data.imageUrl.split(',').forEach(fileName => {
                 this.data.photoFileList.push({
                     status: 'success',
-                    url: e,
+                    url: this.data.$host + fileName,
+                    fileName: fileName
                 })
             })
 

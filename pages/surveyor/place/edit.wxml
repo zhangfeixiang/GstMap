@@ -15,7 +15,10 @@
         <!-- 精确至街道，例：北京市xx区xx街道 -->
         <van-field size="large" required value="{{ (city||'')+ (county||'')+(street||'') }}" is-link readonly label="所在行政区划" placeholder="请选择行政位置" bind:tap="onShowPopupStreet" />
 
-        <van-field size="large" required value="{{ locationStr }}" readonly label="地理位置" placeholder="请选择地理位置" bind:tap="onGetLocation">
+        <van-field size="large" required value="{{ locationStartStr }}" readonly label="起点位置" placeholder="请选择起点位置" bind:tap="onGetLocation">
+            <van-icon slot="right-icon" name="location" class="custom-icon" />
+        </van-field>
+        <van-field size="large" required value="{{ locationEndStr }}" readonly label="终点位置" placeholder="请选择终点位置" bind:tap="onGetLocation">
             <van-icon slot="right-icon" name="location" class="custom-icon" />
         </van-field>
 
@@ -33,7 +36,8 @@
                 <van-radio name="历史地名">历史地名</van-radio>
             </van-radio-group>
         </van-cell>
-        <van-field size="large" model:value="{{ generalSituation }}" label="地名整体概况" placeholder="地名整体概况" />
+        <van-field size="large" type="textarea" autosize="{{autosize}}" model:value="{{ generalSituation }}" label="地名整体概况" placeholder="地名整体概况" />
+
         <view>
             <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">
             </van-cell>

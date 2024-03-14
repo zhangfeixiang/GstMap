@@ -9,7 +9,8 @@ Page({
      */
     data: {
         list: [],
-        hasMore: true
+        hasMore: true,
+        isLoading: true,
     },
 
     page: 1,
@@ -17,7 +18,6 @@ Page({
         const res = await wx.$api.getTravelResList({
             pageNum: this.page,
         })
-
         if (res.code === 200) {
             const list = res.rows.map(it => {
                 return {
@@ -27,9 +27,9 @@ Page({
             })
             this.setData({
                 hasMore: res.rows.length >= 10,
+                isLoading: false,
                 list: this.page == 1 ? list : this.data.list.concat(list)
             });
-            this.page++
         }
     },
 
@@ -79,6 +79,9 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom() {
-        this.getData();
+        if (this.data.hasMore) {
+            this.page++
+            this.getData();
+        }
     }
 })

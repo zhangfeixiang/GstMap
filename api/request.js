@@ -1,10 +1,10 @@
 import {
     getAppid,
     getVersion,
+    baseUrl
 } from './../utils/util'
 
-// const baseUrl = "https://www.gistoyou.com.cn:8443/applet"
-const baseUrl = "http://39.98.214.43:8081/applet"
+
 
 const getHeader = () => {
     const loginData = wx.getStorageSync('loginData') || {}

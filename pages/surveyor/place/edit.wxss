@@ -8,9 +8,6 @@ page {
     padding: 20rpx;
 }
 
-.page {
-    padding: 20rpx;
-}
 
 .center {
     display: flex;

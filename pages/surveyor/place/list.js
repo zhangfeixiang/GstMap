@@ -7,7 +7,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        list: []
+        list: [],
+        hasMore: true,
+        isLoading: true
     },
 
 
@@ -26,6 +28,7 @@ Page({
             })
             this.setData({
                 hasMore: res.rows.length >= 10,
+                isLoading: false,
                 list: this.page == 1 ? list : this.data.list.concat(list)
             });
         }

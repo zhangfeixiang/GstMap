@@ -112,7 +112,7 @@ Page({
                 this.data.photoFileList.push({
                     status: 'success',
                     message: '',
-                    url: e,
+                    url: this.data.$host + e,
                     fileName: e
                 })
             })
@@ -120,7 +120,8 @@ Page({
                 this.data.videoFileList.push({
                     status: 'success',
                     message: '',
-                    url: e,
+                    url: this.data.$host + e,
+                    fileName: e
                 })
             })
             this.setData({
@@ -144,8 +145,8 @@ Page({
         const data = {
             ...this.data,
             isNew: this.data.isNew ? Number(this.data.isNew) : null,
-            imageUrl: photoList.map(it => it.fileName).join(','),
-            videoUrl: videoList.map(it => it.fileName).join(','),
+            imageUrl: photoList.filter(it => it.status == 'success').map(it => it.fileName).join(','),
+            videoUrl: videoList.filter(it => it.status == 'success').map(it => it.fileName).join(','),
         };
 
         delete data.autosize;
