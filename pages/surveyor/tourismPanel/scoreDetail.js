@@ -187,6 +187,9 @@ Page({
             resourceId: this.options.id,
             userId: this.data.user.userId,
             resourceName: this.options.name,
+            username: this.data.user.userName,
+            score: this.data.score / 100,
+            userRole: this.data.user.roles.map(it => it.roleKey).join(',')
         }
         if (this.data.id) {
             data.id = this.data.id
