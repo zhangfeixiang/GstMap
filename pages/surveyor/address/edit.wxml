@@ -24,12 +24,14 @@
             <van-field size="large" model:value="{{ road }}" label="道路" placeholder="道路" />
             <van-field size="large" model:value="{{ houseNo }}" label="门牌号" placeholder="门牌号" />
             <van-field size="large" required model:value="{{ aoiParent }}" label="AOI" placeholder="AOI" />
+            <van-field size="large" model:value="{{ aoiChild }}" label="子AOI" placeholder="子AOI" />
         </block>
         <!-- 楼栋 -->
         <block wx:if="{{type === '楼栋'}}">
             <van-field size="large" model:value="{{ road }}" label="道路" placeholder="道路" />
             <van-field size="large" model:value="{{ houseNo }}" label="门牌号" placeholder="门牌号" />
             <van-field size="large" model:value="{{ aoiParent }}" label="AOI" placeholder="AOI" />
+            <van-field size="large" model:value="{{ aoiChild }}" label="子AOI" placeholder="子AOI" />
             <van-field size="large" required model:value="{{ building }}" label="楼栋" placeholder="请输入楼栋号" />
         </block>
         <!--  -->
@@ -46,8 +48,16 @@
 
         <van-field size="large" model:value="{{ community }}" label="社区/村" placeholder="社区/村" />
 
-        <van-field size="large" required value="{{ locationStr }}" readonly label="经纬度" placeholder="请选择地址位置" bind:tap="onGetLocation">
+        <!-- <van-field size="large" required value="{{ locationStr }}" readonly label="经纬度" placeholder="请选择地址位置" bind:tap="onGetLocation">
             <van-icon slot="right-icon" name="location" class="custom-icon" />
+        </van-field> -->
+
+
+        <van-field size="large" readonly required value="{{ longitude }}" label="经度" placeholder="经度" bind:tap="onGetLocation" border="{{false}}">
+            <van-icon slot="right-icon" name="location" class="custom-icon" />
+        </van-field>
+        <van-field size="large" readonly required value="{{ latitude }}" label="纬度" placeholder="纬度" bind:tap="onGetLocation">
+            <!-- <van-icon slot="right-icon" name="location" class="custom-icon" /> -->
         </van-field>
 
         <van-cell size="large" required title-width="6.2em" title="楼盘表信息">
@@ -63,7 +73,7 @@
     </view>
     <view style="height: 60rpx;"></view>
 
-    <view class="center">
+    <view class="center" wx:if="{{isSurveyor}}">
         <van-button round class="submit-button" color="linear-gradient(to right, #46A6FA, #B091FA)" size="normal" block type="info" bind:tap="handleFormSubmit">提交</van-button>
     </view>
 </view>

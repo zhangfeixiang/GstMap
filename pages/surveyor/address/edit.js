@@ -32,21 +32,21 @@ Page({
         photoFileList: [],
         mainActiveIndex: 0,
 
+        isSurveyor: false,
         showPopupStreet: false,
         locationStr: ""
     },
+
     async onGetLocation() {
         const target = this.data.longitude && this.data.latitude ? {
-            longitude: DMSToDecimal(this.data.longitude),
-            latitude: DMSToDecimal(this.data.latitude),
+            longitude: this.data.longitude,
+            latitude: this.data.latitude,
         } : {};
         const res = await wx.chooseLocation(target);
-
-        const dms = [decimalToDMS(res.longitude), decimalToDMS(res.latitude)]
+        // const dms = [decimalToDMS(res.longitude), decimalToDMS(res.latitude)]
         this.setData({
-            locationStr: dms.join(','),
-            "longitude": dms[0],
-            "latitude": dms[1]
+            "longitude": res.longitude,
+            "latitude": res.latitude
         })
         console.log(this.data.locationStr, res)
     },
@@ -134,11 +134,10 @@ Page({
                     fileName: e
                 })
             });
-            
+
             this.setData({
                 ...formData.data,
                 photoFileList: this.data.photoFileList,
-                locationStr: `${formData.data.longitude},${formData.data.latitude}`
             })
         }
     },
@@ -170,13 +169,21 @@ Page({
         }
 
     },
-
+    async getUserInfo() {
+        const res = await wx.$api.getUserInfo();
+        if (res.code == 200) {
+            this.setData({
+                isSurveyor: (res.user.roles.map(it => it.roleKey) || []).includes('surveyor')
+            })
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
         this.initMatedata()
         this.initData()
+        this.getUserInfo()
     },
 
     /**

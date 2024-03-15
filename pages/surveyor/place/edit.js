@@ -44,7 +44,17 @@ Page({
         mainActiveIndex: 0,
         streetId: null,
         showPopupStreet: false,
+        isSurveyor: false,
 
+    },
+
+    async getUserInfo() {
+        const res = await wx.$api.getUserInfo();
+        if (res.code == 200) {
+            this.setData({
+                isSurveyor: (res.user.roles.map(it => it.roleKey) || []).includes('surveyor')
+            })
+        }
     },
     handleChangeUpload(e) {
         console.log(e.detail);
@@ -274,6 +284,7 @@ Page({
     onLoad(options) {
         this.initMatedata();
         this.initData()
+        this.getUserInfo()
     },
 
     /**

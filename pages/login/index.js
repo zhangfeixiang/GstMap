@@ -36,15 +36,31 @@ Page({
                 ...res,
                 token: res.token
             })
-            wx.reLaunch({
-                url: '/pages/index/index',
-            })
+            this.redirectTo()
         } else {
             wx.showToast({
                 title: res.msg,
                 icon: 'none'
             })
             this.getCaptchaImage()
+        }
+    },
+
+    redirectTo() {
+        const url = wx.getStorageSync('redirect');
+        const tabs = ['/pages/index/index', '/pages/mapList/index', '/pages/myHome/index'];
+        if (tabs.includes(url)) {
+            wx.switchTab({
+                url,
+            })
+        } else if (url) {
+            wx.redirectTo({
+                url: url,
+            })
+        } else {
+            wx.reLaunch({
+                url: tabs[0],
+            })
         }
     },
     // 免密登录

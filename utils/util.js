@@ -161,3 +161,14 @@ export async function uploadFileAll(arr) {
     return resList;
 
 }
+
+export function parseUri(path, options = {}) {
+    let url = '/' + path;
+    if (Object.keys(options).length) {
+        url += '?'
+    }
+    for (let key in options) {
+        url += `${key}=${options[key]}&`
+    }
+    return url;
+}

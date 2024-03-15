@@ -69,7 +69,17 @@ Page({
         censusUserName: "",
         remark: "",
         documents: [],
+        isSurveyor: false,
         // ----------
+    },
+
+    async getUserInfo() {
+        const res = await wx.$api.getUserInfo();
+        if (res.code == 200) {
+            this.setData({
+                isSurveyor: (res.user.roles.map(it => it.roleKey) || []).includes('surveyor')
+            })
+        }
     },
 
     async initMatedata() {
@@ -128,7 +138,6 @@ Page({
                 ...formData.data,
                 photoFileList: this.data.photoFileList,
                 videoFileList: this.data.videoFileList,
-                locationStr: `${formData.data.longitude},${formData.data.latitude}`
             })
         }
     },
@@ -265,27 +274,14 @@ Page({
     },
     async onGetLocation() {
         const target = this.data.longitude && this.data.latitude ? {
-            longitude: DMSToDecimal(this.data.longitude),
-            latitude: DMSToDecimal(this.data.latitude),
+            longitude: this.data.longitude,
+            latitude: this.data.latitude,
         } : {};
         const res = await wx.chooseLocation(target);
-
-
-        // const invokeRes = await wx.serviceMarket.invokeService({
-        //     service: 'wxc1c68623b7bdea7b',
-        //     api: 'coordTrans',
-        //     data: {
-        //         locations: "31.31829452514648,120.71552276611327",
-        //         type: 1
-        //     },
-        // })
-        // console.log(invokeRes)
-
-        const dms = [decimalToDMS(res.longitude), decimalToDMS(res.latitude)]
+        // const dms = [decimalToDMS(res.longitude), decimalToDMS(res.latitude)]
         this.setData({
-            locationStr: dms.join(','),
-            "longitude": dms[0],
-            "latitude": dms[1]
+            "longitude": res.longitude,
+            "latitude": res.latitude
         })
         console.log(this.data.locationStr, res)
     },
@@ -366,7 +362,8 @@ Page({
      */
     onLoad(options) {
         this.initMatedata();
-        this.initData()
+        this.initData();
+        this.getUserInfo();
     },
 
     /**

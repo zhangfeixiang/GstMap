@@ -1,5 +1,6 @@
 import {
     baseUrl,
+    parseUri,
     getVersion
 } from './../utils/util';
 
@@ -101,6 +102,7 @@ async function initAppData(options) {
             resolve(true)
         } else {
             console.log('[路由守卫]未登录,即将前往登录');
+            wx.setStorageSync('redirect', parseUri(this.route, this.options))
             // 跳转登录
             wx.redirectTo({
                 url: '/pages/login/index',

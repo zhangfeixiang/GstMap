@@ -1,6 +1,7 @@
 import {
     getAppid,
     getVersion,
+    parseUri,
     baseUrl
 } from './../utils/util'
 
@@ -46,7 +47,10 @@ export default class Request {
                     if (res.statusCode === 200) {
                         if (res.data.code === 401) {
                             wx.removeStorageSync('loginData');
-                            wx.navigateTo({
+                            const pages = getCurrentPages()
+                            const [current] = pages.slice(-1);
+                            wx.setStorageSync('redirect', parseUri(current.route, current.options))
+                            wx.redirectTo({
                                 url: '/pages/login/index'
                             })
                         }
@@ -99,7 +103,6 @@ function reLogin() {
                 const [err, res] = await wx.$api.login({
                     code: res1.code,
                 })
-                debugger
                 if (!err) {
                     wx.setStorageSync('loginData', res.data)
                     wx.showToast({

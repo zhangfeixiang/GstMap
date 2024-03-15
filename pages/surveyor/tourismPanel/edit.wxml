@@ -8,15 +8,18 @@
         <!-- 精确至街道，例：北京市xx区xx街道 -->
         <van-field size="large" required value="{{ city+ county+street }}" is-link readonly label="行政位置" placeholder="请选择行政位置" bind:tap="onShowPopupStreet" />
 
-        <van-field size="large" required value="{{ locationStr }}" readonly label="地理位置" placeholder="请选择地理位置" bind:tap="onGetLocation">
+        <van-field size="large" readonly required value="{{ longitude }}" label="经度" placeholder="经度" bind:tap="onGetLocation" border="{{false}}">
             <van-icon slot="right-icon" name="location" class="custom-icon" />
+        </van-field>
+        <van-field size="large" readonly required value="{{ latitude }}" label="纬度" placeholder="纬度" bind:tap="onGetLocation">
+            <!-- <van-icon slot="right-icon" name="location" class="custom-icon" /> -->
         </van-field>
 
         <van-cell size="large" required title-width="9em" title="是否属于新发现">
             <van-radio-group value="{{ isNew }}" direction="horizontal" bind:change="onChangeNewRadio">
                 <view class="align-right">
-                    <van-radio name="1">是</van-radio>
-                    <van-radio name="0">否</van-radio>
+                    <van-radio name="{{1}}">是</van-radio>
+                    <van-radio name="{{0}}">否</van-radio>
                 </view>
             </van-radio-group>
         </van-cell>
@@ -161,7 +164,7 @@
         <van-cell class="fs36" title="旅游资源单体评价" is-link url="scoreDetail?id={{$options.id}}&name={{name}}"></van-cell>
     </view>
     <view style="height: 60rpx;"></view>
-    <view class="center">
+    <view class="center" wx:if="{{isSurveyor}}">
         <van-button round class="submit-button" color="linear-gradient(to right, #46A6FA, #B091FA)" size="normal" block type="info" bind:tap="handleFormSubmit">提交</van-button>
     </view>
 </view>

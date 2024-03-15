@@ -46,7 +46,7 @@
     </view>
     <view style="height: 60rpx;"></view>
 
-    <view class="center">
+    <view class="center" wx:if="{{isSurveyor}}">
         <van-button round class="submit-button" color="linear-gradient(to right, #46A6FA, #B091FA)" size="normal" block type="info" bind:tap="handleFormSubmit">提交</van-button>
     </view>
 </view>
