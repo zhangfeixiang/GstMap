@@ -52,13 +52,19 @@
             <van-icon slot="right-icon" name="location" class="custom-icon" />
         </van-field> -->
 
-
-        <van-field size="large" readonly required value="{{ longitude }}" label="经度" placeholder="经度" bind:tap="onGetLocation" border="{{false}}">
-            <van-icon slot="right-icon" name="location" class="custom-icon" />
-        </van-field>
-        <van-field size="large" readonly required value="{{ latitude }}" label="纬度" placeholder="纬度" bind:tap="onGetLocation">
-            <!-- <van-icon slot="right-icon" name="location" class="custom-icon" /> -->
-        </van-field>
+        <view class="location-item ">
+            <view class="field required">
+                <view class="field-label">东经</view>
+                <input class="field-input" model:value="{{ longitude }}" type="text" />
+            </view>
+            <view class="field required">
+                <view class="field-label">北纬</view>
+                <input class="field-input" model:value="{{ latitude  }}" type="text" />
+            </view>
+            <view class="location-shape" bind:tap="onGetLocation">
+                <van-icon slot="right-icon" name="location" class="custom-icon" />
+            </view>
+        </view>
 
         <van-cell size="large" required title-width="6.2em" title="楼盘表信息">
             <van-radio-group value="{{ isHouseTable }}" direction="horizontal" bind:change="onChangeHouseTable">

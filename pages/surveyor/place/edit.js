@@ -77,6 +77,23 @@ Page({
         })
         console.log(this.data.locationStr, res)
     },
+    async onGetLocationArea(e) {
+        const {
+            key
+        } = e.currentTarget.dataset;
+        const latitude = this.data[key + 'Latitude']
+        const longitude = this.data[key + 'Longitude']
+        const target = this.data.longitude && this.data.latitude ? {
+            longitude,
+            latitude,
+        } : {};
+        const res = await wx.chooseLocation(target);
+
+        this.setData({
+            [key + "Longitude"]: res.longitude,
+            [key + "Latitude"]: res.latitude
+        })
+    },
 
     onShowPopupStreet() {
         this.setData({

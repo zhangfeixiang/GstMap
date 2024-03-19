@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "地址编辑",
+          "pathName": "pages/surveyor/address/edit",
+          "query": "id=7",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/surveyor/place/edit",
           "pathName": "pages/surveyor/place/edit",
           "query": "id=2",
@@ -33,13 +40,6 @@
           "name": "新增地址",
           "pathName": "pages/surveyor/address/edit",
           "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "地址编辑",
-          "pathName": "pages/surveyor/address/edit",
-          "query": "id=2",
           "launchMode": "default",
           "scene": null
         },

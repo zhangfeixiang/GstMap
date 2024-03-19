@@ -8,12 +8,19 @@
         <!-- 精确至街道，例：北京市xx区xx街道 -->
         <van-field size="large" required value="{{ city+ county+street }}" is-link readonly label="行政位置" placeholder="请选择行政位置" bind:tap="onShowPopupStreet" />
 
-        <van-field size="large" readonly required value="{{ longitude }}" label="经度" placeholder="经度" bind:tap="onGetLocation" border="{{false}}">
-            <van-icon slot="right-icon" name="location" class="custom-icon" />
-        </van-field>
-        <van-field size="large" readonly required value="{{ latitude }}" label="纬度" placeholder="纬度" bind:tap="onGetLocation">
-            <!-- <van-icon slot="right-icon" name="location" class="custom-icon" /> -->
-        </van-field>
+        <view class="location-item ">
+            <view class="field required">
+                <view class="field-label">东经</view>
+                <input class="field-input" model:value="{{ longitude }}" type="text" />
+            </view>
+            <view class="field required">
+                <view class="field-label">北纬</view>
+                <input class="field-input" model:value="{{ latitude  }}" type="text" />
+            </view>
+            <view class="location-shape" bind:tap="onGetLocation">
+                <van-icon slot="right-icon" name="location" class="custom-icon" />
+            </view>
+        </view>
 
         <van-cell size="large" required title-width="9em" title="是否属于新发现">
             <van-radio-group value="{{ isNew }}" direction="horizontal" bind:change="onChangeNewRadio">

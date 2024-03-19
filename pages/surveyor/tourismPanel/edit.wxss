@@ -15,6 +15,55 @@ page {
     background: #fff;
 }
 
+.location-item {
+    display: flex;
+    align-items: center;
+    height: 96rpx;
+    margin: 0 32rpx;
+    border-bottom: 1rpx solid #F2F3F4;
+}
+
+.location-item .field {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.field-label {
+    width: 100rpx;
+}
+
+.required:before {
+    color: var(--cell-required-color, #ee0a24);
+    content: "*";
+    font-size: var(--cell-font-size, 14px);
+    left: var(--padding-xs, -16rpx);
+    position: absolute;
+}
+
+.field-input {
+    margin-left: 10rpx;
+    flex: 1;
+}
+
+.location-shape {
+    position: relative;
+    width: 100rpx;
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+}
+
+.location-shape.start {
+    background: url('https://static.zc0901.com/zfx/gst-map/start.png') no-repeat center center;
+    background-size: 100% auto;
+}
+
+.location-shape.end {
+    background: url('https://static.zc0901.com/zfx/gst-map/end.png') no-repeat center center;
+    background-size: 100% auto;
+}
+
 .indent {
     padding-left: 32rpx;
 }
