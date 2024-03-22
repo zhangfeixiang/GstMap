@@ -9,13 +9,23 @@ Page({
      */
     data: {
         list: [],
+        user: {},
         hasMore: true,
         isLoading: true,
     },
-
+    async getUserData() {
+        const res = await wx.$api.getUserInfo();
+        if (res.code == 200) {
+            this.setData({
+                user: res.user
+            })
+            this.getData()
+        }
+    },
     page: 1,
     async getData() {
         const res = await wx.$api.getTravelResList({
+            userId: this.data.user.userId,
             pageNum: this.page,
         })
         if (res.code === 200) {
@@ -50,7 +60,7 @@ Page({
      */
     onShow() {
         this.page = 1;
-        this.getData()
+        this.getUserData();
     },
 
     /**
