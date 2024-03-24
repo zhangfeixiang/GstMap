@@ -159,7 +159,7 @@ Page({
         delete data.showPopupStreet;
         delete data.locationStr;
         delete data.districtTree;
-        const res = await wx.$api[this.options.id ? 'editAddress' : 'addAddress'](data, this.options.id);
+        const res = await wx.$api[this.options.id ? 'editAddress' : 'addAddress']({...data, status:2}, this.options.id);
         console.log(res)
         if (res.code === 200) {
             wx.showToast({

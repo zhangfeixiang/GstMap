@@ -176,7 +176,7 @@ Page({
         delete data.statusData;
         delete data.savestatusData;
         delete data.protectiveData;
-        const res = await wx.$api.getTravelResources(data);
+        const res = await wx.$api.putTravelResources({...data, status:2});
         console.log(res)
         if (res.code === 200) {
             wx.showToast({

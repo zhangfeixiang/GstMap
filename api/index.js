@@ -151,7 +151,7 @@ const api = {
         })
     },
     //更新)文旅资源
-    async getTravelResources(data) {
+    async putTravelResources(data) {
         return await wx.$request({
             url: '/travel-resources',
             data,

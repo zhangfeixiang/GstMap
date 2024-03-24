@@ -1,5 +1,5 @@
 // index.js
-
+import {pinyinUtil} from './../../utils/pinyinutil'
 Page({
 
     /**
