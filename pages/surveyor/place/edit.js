@@ -4,6 +4,7 @@ import {
     DMSToDecimal,
     uploadFileAll
 } from './../../../utils/util'
+import {pinyinUtil} from './../../../utils/pinyinutil'
 Page({
 
     /**
@@ -196,7 +197,7 @@ Page({
         delete data.mainActiveIndex;
         delete data.showPopupStreet;
         delete data.districtTree;
-        const res = await wx.$api.editPlace(data);
+        const res = await wx.$api.editPlace({...data, status:2});
         console.log(res)
         if (res.code === 200) {
             wx.showToast({
@@ -243,7 +244,11 @@ Page({
                     url: this.data.$host + fileName,
                     fileName: fileName
                 })
-            })
+            });
+            if(!formData.data.romanLetters) {
+                var str = pinyinUtil.getPinyin(formData.data.standardName, '', true);
+                formData.data.romanLetters = str;
+            }
 
             this.setData({
                 ...formData.data,
