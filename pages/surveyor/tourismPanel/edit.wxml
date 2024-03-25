@@ -39,6 +39,7 @@
     <!-- 性质与特征 -->
     <view class="card">
         <van-field size="large" type="textarea" autosize="{{autosize}}" model:value="{{ feature }}" label="性质与特征" placeholder="请输入性质与特征" />
+        <van-field size="large" type="textarea" autosize="{{autosize}}" model:value="{{ remark }}" label="备注" placeholder="备注" />
     </view>
 
     <!-- 所在区域及进场条件 -->

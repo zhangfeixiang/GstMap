@@ -73,6 +73,8 @@
             </van-radio-group>
         </van-cell>
 
+        <van-field size="large" type="textarea" autosize="{{autosize}}" model:value="{{ remark }}" label="备注" placeholder="备注" />
+
         <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">
         </van-cell>
         <uploader fileList="{{photoFileList}}" bind:change="handleChangePhotoUpload" accept="image" prefix="{{standardName}}"></uploader>

@@ -60,6 +60,7 @@
             </van-radio-group>
         </van-cell>
         <van-field size="large" type="textarea" autosize="{{autosize}}" model:value="{{ generalSituation }}" label="地名整体概况" placeholder="地名整体概况" />
+        <van-field size="large" type="textarea" autosize="{{autosize}}" model:value="{{ remark }}" label="备注" placeholder="备注" />
 
         <view>
             <van-cell size="large" required title="现场拍照（照片）" border="{{ false }}">

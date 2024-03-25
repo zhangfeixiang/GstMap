@@ -87,7 +87,7 @@ page {
     text-align: center;
     font-size: 24rpx;
     color: black;
-    margin-top: 20rpx;
+    margin-top: 12rpx;
 }
 
 /*  */

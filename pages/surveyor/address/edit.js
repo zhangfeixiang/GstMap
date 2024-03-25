@@ -11,7 +11,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        autosize: {
+            maxHeight: 100,
+            minHeight: 40
+        },
         "standardName": "",
         "type": "",
         "county": "房山区",
