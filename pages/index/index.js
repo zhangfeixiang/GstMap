@@ -1,5 +1,7 @@
 // index.js
-import {pinyinUtil} from './../../utils/pinyinutil'
+import {
+    pinyinUtil
+} from './../../utils/pinyinutil'
 Page({
 
     /**
@@ -15,6 +17,7 @@ Page({
                 id: 1,
                 name: '标准地图',
                 type: 'standard',
+                url: "/pages/standard-map/index",
                 icon: 'https://static.zc0901.com/zfx/gst-map/standard.png'
 
             },
@@ -22,6 +25,7 @@ Page({
                 id: 2,
                 name: '专题图层',
                 type: 'subject',
+                url: "/pages/theme-layer/index",
                 icon: 'https://static.zc0901.com/zfx/gst-map/subject.png'
 
             },
@@ -37,6 +41,7 @@ Page({
                 id: 4,
                 name: '时空照相馆',
                 type: 'photo',
+                url: "/pages/spacetime-photo/index",
                 icon: 'https://static.zc0901.com/zfx/gst-map/photo.png'
 
             },
