@@ -1,0 +1,23 @@
+<view class="searchbar">
+    <!-- <van-search placeholder="查找地图"></van-search> -->
+    <view class="filterbar">
+        <scroll-view scroll-x class="scroll-view">
+            <view class="filter-item {{ filterIndex === index ? 'active' : '' }}" bind:tap="handleClickFilterItem" data-index="{{index}}" wx:for="{{hotFilterBars}}" :key="item">{{
+            item }} </view>
+        </scroll-view>
+    </view>
+</view>
+
+<view class="list">
+    <view class="item" wx:for="{{filterList}}" wx:key="id">
+        <view class="image-view">
+        <view class="num">999</view>
+        <view class="mask">
+            <text>{{item.year}}</text>
+            <text>{{item.scale}}</text>
+        </view>
+            <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+        </view>
+        <view class="title">{{item.title}}</view>
+    </view>
+</view>

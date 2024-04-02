@@ -1,0 +1,9 @@
+<view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="id">
+        <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+        <view class="mask">
+            <view class="title">{{item.title}}</view>
+            <view class="sub-tit">{{item.subTit}}</view>
+        </view>
+    </view>
+</view>

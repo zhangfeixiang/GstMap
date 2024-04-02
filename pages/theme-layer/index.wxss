@@ -1,0 +1,46 @@
+page {
+    background: #f5f9fc;
+}
+
+.page {
+    padding: 32rpx;
+}
+
+.card {
+    border-radius: 18rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+    background: #fff;
+    --cell-label-margin-top: 20rpx;
+}
+
+.item {
+    display: flex;
+    padding: 20rpx;
+}
+
+.cover {
+    width: 150rpx;
+    height: 120rpx;
+    border-radius: 18rpx;
+}
+
+.right-view {
+    margin-left: 20rpx;
+}
+
+.title {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #222;
+}
+
+.sub-title {
+    font-size: 24rpx;
+    margin-top: 10rpx;
+}
+
+.time {
+    font-size: 24rpx;
+    margin-top: 10rpx;
+}

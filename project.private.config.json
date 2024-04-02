@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/spacetime-photo/index",
+          "pathName": "pages/theme-layer/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "地址编辑",
           "pathName": "pages/surveyor/address/edit",
           "query": "id=7",
