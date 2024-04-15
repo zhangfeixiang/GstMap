@@ -1,1 +1,1 @@
-<web-view src="https://www.gistoyou.com.cn:8443/h5/?dev=1"></web-view>
+<web-view src="{{url}}"></web-view>

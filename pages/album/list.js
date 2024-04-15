@@ -5,6 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        hasMore: true,
         list: [{
             url: "detail?url=https%3A%2F%2Fflbook.com.cn%2Fc%2FdC9HfJTcql%23page%2F1",
             cover: "https://gd-hbimg.huaban.com/54b1860b14994a3791938341952f3528a4dede65212b4-NyM9Gk_fw480webp",
@@ -22,11 +23,25 @@ Page({
         }]
     },
 
+    page: 1,
+    async getList() {
+        const res = await wx.$api.getProductsList({
+            pageNum: 10,
+            pageSize: this.page || 1
+        });
+        if (res.code === 200) {
+            this.setData({
+                hasMore: res.rows.length >= 10,
+                list: this.page === 1 ? res.rows : this.data.list.concat(res.rows),
+            })
+        }
+
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        this.getList()
     },
 
     /**
@@ -68,13 +83,9 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
+        if (this.data.hasMore) {
+            this.page++
+            this.getList()
+        }
     }
 })

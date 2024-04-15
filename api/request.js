@@ -16,7 +16,7 @@ const getHeader = () => {
         'Appid': getAppid(),
         'Version': getVersion(),
         'Enter-Options': JSON.stringify(enterOptions),
-        'Authorization': loginData.token || "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjYxNTZjN2UyLTdiMTItNGEyOC1iYTliLTVkNzIzZTMyOGFmZiJ9.bycbXUdFRBdSIEx9yP7Bsm8CTmV0dZ1od80M4T93ifIkFcLcv5thFLrIent6Y7H2-O794NGx_HSY3eHOOQJ_1Q",
+        'Authorization': loginData.token
     }
 }
 

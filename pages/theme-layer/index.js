@@ -5,45 +5,31 @@ Page({
      * 页面的初始数据
      */
     data: {
-        list: [{
-            id: 1,
-            cover: "https://gd-hbimg.huaban.com/706f0059812fb1f0ef5213557f59feab9593e71c12093a-LEWZKa_fw1200webp",
-            title: "北京大运河休闲主题游",
-            subTitle: "数据来源：北京测绘院",
-            time: "发布时间：2021-09-10"
-        }, {
-            id: 1,
-            cover: "https://gd-hbimg.huaban.com/706f0059812fb1f0ef5213557f59feab9593e71c12093a-LEWZKa_fw1200webp",
-            title: "北京大运河休闲主题游",
-            subTitle: "数据来源：北京测绘院",
-            time: "发布时间：2021-09-10"
-        }, {
-            id: 1,
-            cover: "https://gd-hbimg.huaban.com/706f0059812fb1f0ef5213557f59feab9593e71c12093a-LEWZKa_fw1200webp",
-            title: "北京大运河休闲主题游",
-            subTitle: "数据来源：北京测绘院",
-            time: "发布时间：2021-09-10"
-        }, {
-            id: 1,
-            cover: "https://gd-hbimg.huaban.com/706f0059812fb1f0ef5213557f59feab9593e71c12093a-LEWZKa_fw1200webp",
-            title: "北京大运河休闲主题游",
-            subTitle: "数据来源：北京测绘院",
-            time: "发布时间：2021-09-10"
-        }, {
-            id: 1,
-            cover: "https://gd-hbimg.huaban.com/706f0059812fb1f0ef5213557f59feab9593e71c12093a-LEWZKa_fw1200webp",
-            title: "北京大运河休闲主题游",
-            subTitle: "数据来源：北京测绘院",
-            time: "发布时间：2021-09-10"
-        }]
+        hasMore: true,
+        list: []
     },
 
+    page: 1,
+    async getList() {
+        const res = await wx.$api.getSubjectsList({
+            pageNum: 10,
+            pageSize: this.page || 1
+        });
+        if (res.code === 200) {
+            this.setData({
+                hasMore: res.rows.length >= 10,
+                list: this.page === 1 ? res.rows : this.data.list.concat(res.rows),
+            })
+        }
+
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        this.getList()
     },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -84,13 +70,9 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
+        if (this.data.hasMore) {
+            this.page++
+            this.getList()
+        }
     }
 })

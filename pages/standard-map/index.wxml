@@ -11,12 +11,12 @@
 <view class="list">
     <view class="item" wx:for="{{filterList}}" wx:key="id">
         <view class="image-view">
-        <view class="num">999</view>
-        <view class="mask">
-            <text>{{item.year}}</text>
-            <text>{{item.scale}}</text>
-        </view>
-            <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+            <view class="num">{{item.pv||0}}</view>
+            <view class="mask">
+                <text>{{item.year}}</text>
+                <text>{{item.scale}}</text>
+            </view>
+            <image class="cover" src="{{$host + item.thumbImg}}" mode="aspectFill" />
         </view>
         <view class="title">{{item.title}}</view>
     </view>

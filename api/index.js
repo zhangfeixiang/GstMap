@@ -23,6 +23,14 @@ const api = {
             method: 'GET'
         })
     },
+    // 免密登录
+    async bindUserId(data) {
+        return await wx.$request({
+            url: '/user/bind',
+            data,
+            method: 'POST'
+        })
+    },
     // 查询旅游资源分类树状结构数据
     async getTravelItem(data, id) {
         return await wx.$request({
@@ -268,6 +276,32 @@ const api = {
             data
         })
     },
+
+    // 标准地图
+    async getNormalMapList(data) {
+        return await wx.$request({
+            url: `/normal-map/list`,
+            method: "GET",
+            data
+        })
+    },
+    // 专题图层
+    async getSubjectsList(data) {
+        return await wx.$request({
+            url: `/subjects/list`,
+            method: "GET",
+            data
+        })
+    },
+    // 产品展示
+    async getProductsList(data) {
+        return await wx.$request({
+            url: `/products/list`,
+            method: "GET",
+            data
+        })
+    },
+
 }
 
 

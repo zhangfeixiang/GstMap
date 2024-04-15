@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/standard-map/index",
+          "pathName": "pages/standard-map/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/spacetime-photo/index",
           "pathName": "pages/theme-layer/index",
           "query": "",

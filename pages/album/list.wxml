@@ -1,12 +1,12 @@
 <view class="page">
     <navigator url="{{item.url}}" class="card card-item" wx:for="{{list}}" wx:key="id">
-        <image class="image" src="{{item.cover}}" mode="aspectFill" />
+        <image class="image" src="{{$host + item.thumbnailPath}}" mode="aspectFill" />
         <view class="right">
             <view class="title">{{item.title}}</view>
-            <view class="desc">{{item.desc}}</view>
+            <view class="desc">{{item.description}}</view>
             <view class="tags">
-                <van-tag plain color="#008FFA" text-color="#008FFA">{{item.tag}}</van-tag>
-                <text class="date">{{item.date}}</text>
+                <van-tag plain color="#008FFA" text-color="#008FFA">{{item.type}}</van-tag>
+                <text class="date">{{item.createTime || ''}}</text>
             </view>
         </view>
     </navigator>

@@ -2,7 +2,7 @@
     <view class="card item" wx:for="{{list}}" wx:key="id">
         <image class="cover" src="{{item.cover}}" mode="aspectFill" />
         <view class="right-view">
-            <view class="title">{{item.title}} </view>
+            <view class="title">{{item.name}} </view>
             <view class="sub-title">{{item.subTitle}} </view>
             <view class="time">{{item.time}} </view>
         </view>
