@@ -17,7 +17,8 @@
     "pages/surveyor/place/list",
     "pages/spacetime-photo/index",
     "pages/standard-map/index",
-    "pages/theme-layer/index"
+    "pages/theme-layer/index",
+    "pages/theme-layer/detail"
   ],
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",

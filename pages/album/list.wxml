@@ -1,5 +1,5 @@
 <view class="page">
-    <navigator url="{{item.url}}" class="card card-item" wx:for="{{list}}" wx:key="id">
+    <navigator url="detail?url={{$host + item.path}}" class="card card-item" wx:for="{{list}}" wx:key="id">
         <image class="image" src="{{$host + item.thumbnailPath}}" mode="aspectFill" />
         <view class="right">
             <view class="title">{{item.title}}</view>
