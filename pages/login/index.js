@@ -125,6 +125,8 @@ Page({
                 ...res,
                 token: res.token
             })
+            this.redirectTo()
+
         } else {
             wx.showToast({
                 title: res.msg,
