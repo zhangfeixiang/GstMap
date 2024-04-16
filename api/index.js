@@ -7,7 +7,7 @@ const api = {
             showError: false
         })
     },
-    //小程序登录
+    //小程序密码登录/免密
     async postLogin(data) {
         return await wx.$request({
             url: '/login',
@@ -23,12 +23,13 @@ const api = {
             method: 'GET'
         })
     },
-    // 免密登录
+    // 绑定免密登录用户
     async bindUserId(data) {
         return await wx.$request({
             url: '/user/bind',
             data,
-            method: 'POST'
+            method: 'POST',
+            showError: true
         })
     },
     // 查询旅游资源分类树状结构数据

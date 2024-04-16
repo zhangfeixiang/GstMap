@@ -17,6 +17,7 @@ Page({
     async getData() {
         const res = await wx.$api.getAddressList({
             pageNum: this.page,
+            userId: this.data.userId
         })
 
         if (res.code === 200) {
@@ -34,13 +35,21 @@ Page({
         }
     },
 
-
+    async getUserInfo() {
+        const res = await wx.$api.getUserInfo();
+        if (res.code == 200) {
+            this.setData({
+                isSurveyor: (res.user.roles.map(it => it.roleKey) || []).includes('surveyor'),
+                userId: res.user.userId
+            })
+            this.getData()
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.getData()
-
+        this.getUserInfo()
     },
 
     /**

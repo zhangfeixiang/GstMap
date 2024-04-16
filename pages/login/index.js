@@ -36,13 +36,55 @@ Page({
                 ...res,
                 token: res.token
             })
-            this.redirectTo()
+
+            this.getUserInfo()
         } else {
             wx.showToast({
                 title: res.msg,
                 icon: 'none'
             })
             this.getCaptchaImage()
+        }
+    },
+
+    async bindUser() {
+        const getCode = await this.wxLogin();
+        wx.showLoading({
+            title: '正在绑定',
+        })
+        const res = await wx.$api.bindUserId({
+            code: getCode.code
+        });
+        if (res.code == 200) {
+            wx.showToast({
+                title: '免密登录绑定成功',
+                icon: "none"
+            })
+            this.redirectTo()
+        }
+        wx.hideLoading()
+    },
+    async getUserInfo() {
+        const res = await wx.$api.getUserInfo();
+        if (res.code == 200) {
+            console.log(res)
+            if (!res.user.openid) {
+                wx.showModal({
+                    title: '提示',
+                    content: '当前账号未绑定微信，是否绑定当前微信？',
+                    complete: (res) => {
+                        if (res.cancel) {
+                            this.redirectTo()
+                        }
+
+                        if (res.confirm) {
+                            this.bindUser()
+                        }
+                    }
+                })
+            } else {
+                this.redirectTo()
+            }
         }
     },
 
@@ -79,7 +121,7 @@ Page({
                 title: '登录成功',
                 icon: "none"
             });
-            localStorage.setItem("loginData", {
+            wx.setStorageSync("loginData", {
                 ...res,
                 token: res.token
             })

@@ -1,6 +1,6 @@
 <view class="page">
     <view class="card item" wx:for="{{list}}" wx:key="id">
-        <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+        <image class="cover" src="{{$host + item.thumbnailPath}}" mode="aspectFill" />
         <view class="right-view">
             <view class="title">{{item.name}} </view>
             <view class="sub-title">{{item.subTitle}} </view>

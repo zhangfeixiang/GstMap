@@ -46,6 +46,7 @@ export default class Request {
                     console.log('[success]:', requestOption.url, requestOption, res.data)
                     if (res.statusCode === 200) {
                         if (res.data.code === 401) {
+                            requestOption.showError = false;
                             wx.removeStorageSync('loginData');
                             const pages = getCurrentPages()
                             const [current] = pages.slice(-1);
