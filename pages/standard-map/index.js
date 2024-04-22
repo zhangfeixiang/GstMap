@@ -75,7 +75,7 @@ Page({
         const region = this.data.hotFilterBars[this.data.filterIndex];
 
         const res = await wx.$api.getNormalMapList({
-            region,
+            region: region === '全选' ? '' : region,
             pageSize: 10,
             pageNum: this.page || 1
         });
