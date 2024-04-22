@@ -26,8 +26,8 @@ Page({
     page: 1,
     async getList() {
         const res = await wx.$api.getProductsList({
-            pageNum: 10,
-            pageSize: this.page || 1
+            pageSize: 10,
+            pageNum: this.page || 1
         });
         if (res.code === 200) {
             this.setData({

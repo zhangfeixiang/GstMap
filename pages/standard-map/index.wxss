@@ -1,8 +1,13 @@
 /* pages/standard-map/index.wxss */
+page {
+    background: #f5f9fc;
+}
+
 .searchbar {
     padding: 20rpx;
     position: sticky;
     top: 0;
+    background: #fff;
 }
 
 .filterbar .scroll-view {
