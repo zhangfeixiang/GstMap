@@ -1,5 +1,6 @@
 <view class="page">
     <view class="card" wx:for="{{list}}" wx:key="id">
+        <view class="index">{{index+1}}</view>
         <van-cell link-type="navigateTo" url="edit?id={{item.id}}" label="{{item.placeNameType}}">
             <view slot="title" class="custom-title">
                 <span class="item-name">{{item.standardName}}</span>

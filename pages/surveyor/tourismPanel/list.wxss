@@ -18,9 +18,24 @@ page {
     margin-bottom: 20rpx;
     background: #fff;
     --cell-label-margin-top: 20rpx;
+    display: flex;
+    align-items: center;
+}
+
+.card .index {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    background-color: #4fc08d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-left: 20rpx;
 }
 
 .item-name {
     font-size: 32rpx;
     font-weight: bold;
+    margin-right: 20rpx;
 }

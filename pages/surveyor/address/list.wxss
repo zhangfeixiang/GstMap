@@ -12,9 +12,38 @@ page {
     overflow: hidden;
     margin-bottom: 20rpx;
     background: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.card .index {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    background-color: #4fc08d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-left: 20rpx;
+}
+
+.custom-cell {}
+
+.map {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    box-sizing: border-box;
+    padding-right: 32rpx;
 }
 
 .custom-title {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+}
+
+.item-name {
+    margin-right: 20rpx;
 }

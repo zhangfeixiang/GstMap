@@ -12,7 +12,18 @@ Page({
         isLoading: true,
     },
 
-
+    openMap(e) {
+        const {
+            index
+        } = e.currentTarget.dataset;
+        const current = this.data.list[index];
+        if (current.latitude && current.longitude) {
+            wx.openLocation({
+                latitude: current.latitude,
+                longitude: current.longitude,
+            })
+        }
+    },
     page: 1,
     async getData() {
         const res = await wx.$api.getAddressList({

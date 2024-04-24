@@ -11,7 +11,10 @@
 <view class="list">
     <view class="item" wx:for="{{list}}" wx:key="id" bind:tap="previewImgs" data-index="{{index}}">
         <view class="image-view">
-            <view class="num">{{item.pv||0}}</view>
+            <view class="visit">
+                <van-icon name="eye" />
+                <text>{{item.pv||0}}</text>
+            </view>
             <view class="mask">
                 <text>{{item.year}}</text>
                 <text>{{item.scale}}</text>

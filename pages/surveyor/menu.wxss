@@ -9,15 +9,14 @@ page {
 }
 
 .surveyor-box {
-    width: 100%;
     height: 220rpx;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    margin: 0 auto;
 }
 
 .surveyor-box .content-item {
-    width: 45%;
+    width: calc((100% - 30rpx) / 2);
     height: 220rpx;
     box-sizing: border-box;
     border-radius: 30rpx;
@@ -26,6 +25,11 @@ page {
     align-items: center;
     padding: 30rpx;
     margin-bottom: 30rpx;
+    margin-right: 30rpx;
+}
+
+.surveyor-box .content-item:nth-child(even) {
+    margin-right: 0;
 }
 
 .surveyor-box .content-item .title {

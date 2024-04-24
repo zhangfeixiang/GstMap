@@ -37,14 +37,14 @@ Page({
                 icon: 'https://static.zc0901.com/zfx/gst-map/album.png'
 
             },
-            {
-                id: 4,
-                name: '时空照相馆',
-                type: 'photo',
-                url: "/pages/spacetime-photo/index",
-                icon: 'https://static.zc0901.com/zfx/gst-map/photo.png'
+            // {
+            //     id: 4,
+            //     name: '时空照相馆',
+            //     type: 'photo',
+            //     url: "/pages/spacetime-photo/index",
+            //     icon: 'https://static.zc0901.com/zfx/gst-map/photo.png'
 
-            },
+            // },
             {
                 id: 5,
                 name: '我是测绘师',

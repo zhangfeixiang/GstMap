@@ -24,12 +24,12 @@ Page({
                 url: 'tourismPanel/list',
                 title: '文旅'
             },
-            {
-                id: 4,
-                icon: 'https://gd-hbimg.huaban.com/2c31cc465b78f8f9efe4c3911448f4e0f6cb547b661d-OKX9Jw_fw480webp',
-                url: 'antique',
-                title: '文物'
-            }
+            // {
+            //     id: 4,
+            //     icon: 'https://gd-hbimg.huaban.com/2c31cc465b78f8f9efe4c3911448f4e0f6cb547b661d-OKX9Jw_fw480webp',
+            //     url: 'antique',
+            //     title: '文物'
+            // }
         ]
     },
     handleClickItem(e) {
@@ -40,6 +40,8 @@ Page({
             url: './' + this.data.list[index].url,
         })
     },
+
+
     /**
      * 生命周期函数--监听页面加载
      */

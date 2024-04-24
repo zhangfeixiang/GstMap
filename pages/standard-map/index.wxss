@@ -61,7 +61,7 @@ page {
     display: block;
 }
 
-.num,
+
 .mask {
     position: absolute;
     background: rgba(0, 0, 0, .4);
@@ -71,10 +71,7 @@ page {
     box-sizing: border-box;
 }
 
-.num {
-    right: 20rpx;
-    top: 20rpx;
-}
+
 
 .mask {
     bottom: 0rpx;
@@ -82,6 +79,18 @@ page {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+
+.visit {
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+    background-color: rgba(0, 0, 0, .5);
+    padding: 2rpx 10rpx;
+    color: #fff;
+    font-size: 24rpx;
+    border-radius: 8rpx;
 }
 
 .title {

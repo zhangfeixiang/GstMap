@@ -5,7 +5,7 @@
             <van-image src="{{user.avatar}}" round width="60" height="60">
             </van-image>
         </view>
-        <view class="header-name" bind:tap="login">{{user.nickName || "未登录"}}</view>
+        <view class="header-name" bind:tap="login">{{user.nickName || user.userName || "未登录"}}</view>
         <view class="btn-box">
             <view class="btn-item">
                 <van-button color="#74A8F5" icon="vip-card-o" size="mini" round>高级认证

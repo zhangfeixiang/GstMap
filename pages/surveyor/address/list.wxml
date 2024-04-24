@@ -1,6 +1,7 @@
 <view class="page">
     <view class="card" wx:for="{{list}}" wx:key="id">
-        <van-cell link-type="navigateTo" url="edit?id={{item.id}}" label="{{item.street}}">
+        <view class="index">{{index+1}}</view>
+        <van-cell class="custom-cell" link-type="navigateTo" url="edit?id={{item.id}}" label="{{item.street}}">
             <view slot="title" class="custom-title">
                 <span class="item-name">{{item.standardName}}</span>
                 <van-tag type="warning">
@@ -8,6 +9,9 @@
                 </van-tag>
             </view>
         </van-cell>
+        <view class="map" bind:tap="openMap" data-index="{{index}}">
+            <van-icon name="map-marked" size="20" />
+        </view>
     </view>
     <van-empty wx:if="{{!isLoading && !list.length}}" description="暂无数据" />
 </view>
