@@ -8,6 +8,7 @@ page {
     position: sticky;
     top: 0;
     background: #fff;
+    z-index: 10;
 }
 
 .filterbar .scroll-view {
