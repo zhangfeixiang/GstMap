@@ -1,0 +1,27 @@
+/* pages/my-home/user-info.wxss */
+
+page {
+    --field-label-color: #323233;
+    background: #f5f9fc;
+}
+
+.page {
+    padding: 20rpx;
+}
+
+.card {
+    border-radius: 18rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+    background: #fff;
+}
+
+.align-right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.submit-button {
+    width: 100%;
+}

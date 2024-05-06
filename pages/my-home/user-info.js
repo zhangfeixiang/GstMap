@@ -1,30 +1,57 @@
-// pages/myHome/index.js
-const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+// pages/my-home/user-info.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        user: {}
+        userName: "",
+        nickName: "",
+        sex: "",
+        phone: "",
+
+        editMode: false
     },
-    goUserInfo() {
-        wx.navigateTo({
-            url: './user-info',
+
+    enterEditMode() {
+        this.setData({
+            editMode: true
         })
     },
-    login() {
-        const loginData = wx.getStorageSync('loginData')
-        if (loginData.token) return;
-        wx.navigateTo({
-            url: '/pages/login/index',
+
+    async submit() {
+        const res = await wx.$api.putUserInfo({
+            userId: this.data.userId,
+            userName: this.data.userName,
+            nickName: this.data.nickName,
+            sex: this.data.sex,
+            phone: this.data.phone
         })
+        if (res.code === 200) {
+            wx.showToast({
+                title: '提交成功',
+                icon: 'none'
+            })
+            this.setData({
+                editMode: false
+            })
+        }
     },
-    async getData() {
+
+    async getUserInfo() {
         const res = await wx.$api.getUserInfo();
         if (res.code == 200) {
+            const {
+                userName,
+                nickName,
+                sex,
+                phone
+            } = res.user;
             this.setData({
-                user: res.user
+                userName,
+                nickName,
+                sex,
+                phone
             })
         }
     },
@@ -33,7 +60,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        this.getUserInfo()
     },
 
     /**
@@ -47,7 +74,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.getData()
+
     },
 
     /**

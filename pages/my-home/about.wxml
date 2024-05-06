@@ -1,0 +1,13 @@
+<view class="page">
+    <view class="logo">
+        <image src="./../../assets/logo.png" class="logo-img" mode="heightFix" />
+    </view>
+    <view class="content">北京市地理信息公共服务平台（“天地图·北京”），是北京市规划和自然资源委员会主导建设的网络化地理信息共享与服务门户。集成了来自北京市测绘地理信息部门，以及相关政府部门、企事业单位、社会团体、公众的地理信息公共服务资源，向各类用户提供权威、标准、统一的在线地理信息综合服务。</view>
+    <view class="footer">
+        <view>电话： 010-010-63983862</view>
+        <view>邮箱： xx3b@bism.cn</view>
+        <view>网站： https://beijing.tianditu.gov.cn</view>
+        <view>主办单位：北京市测绘设计研究院</view>
+        <view>技术支持：北京市测绘设计研究院</view>
+    </view>
+</view>

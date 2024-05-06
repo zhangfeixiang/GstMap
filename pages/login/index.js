@@ -90,7 +90,7 @@ Page({
 
     redirectTo() {
         const url = wx.getStorageSync('redirect');
-        const tabs = ['/pages/index/index', '/pages/mapList/index', '/pages/myHome/index'];
+        const tabs = ['/pages/index/index', '/pages/map/index', '/pages/my-home/index'];
         if (tabs.includes(url)) {
             wx.switchTab({
                 url,

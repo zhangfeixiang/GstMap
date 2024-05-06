@@ -7,6 +7,13 @@ const api = {
             showError: false
         })
     },
+    async putUserInfo(data) {
+        return await wx.$request({
+            url: "/system/user/self-edit",
+            data,
+            method: "PUT",
+        })
+    },
     //小程序密码登录/免密
     async postLogin(data) {
         return await wx.$request({

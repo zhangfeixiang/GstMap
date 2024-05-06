@@ -8,11 +8,7 @@
         <view class="header-name" bind:tap="login">{{user.nickName || user.userName || "未登录"}}</view>
         <view class="btn-box">
             <view class="btn-item">
-                <van-button color="#74A8F5" icon="vip-card-o" size="mini" round>高级认证
-                </van-button>
-            </view>
-            <view class="btn-item">
-                <van-button color="#74A8F5" icon="edit" size="mini" round>编辑资料
+                <van-button bind:tap="goUserInfo" color="#74A8F5" icon="records" size="mini" round>个人信息
                 </van-button>
             </view>
         </view>
@@ -25,7 +21,7 @@
                     <van-icon size="30rpx" style="margin-right: 20rpx;" name="todo-list" />
                 </view>
             </van-cell>
-            <van-cell border="{{false}}" title="关于我们" is-link url="/">
+            <van-cell border="{{false}}" title="关于我们" is-link url="./about">
                 <view slot="icon">
                     <van-icon size="30rpx" style="margin-right: 20rpx;" name="friends" />
                 </view>

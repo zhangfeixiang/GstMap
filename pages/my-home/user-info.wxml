@@ -1,0 +1,23 @@
+<view class="page">
+    <view class="card" wx:if="{{editMode}}">
+        <van-field size="large" model:value="{{ userName }}" label="账号名" />
+        <van-field size="large" model:value="{{ nickName }}" label="昵称" />
+        <van-cell size="large" title-width="6.2em" title="性别">
+            <van-radio-group value="{{ sex }}" direction="horizontal" bind:change="onChangeHouseTable">
+                <van-radio name="{{1}}">男</van-radio>
+                <van-radio name="{{0}}">女</van-radio>
+            </van-radio-group>
+        </van-cell>
+        <van-field size="large" model:value="{{ phone }}" label="手机号" />
+    </view>
+    <view class="card" wx:if="{{!editMode}}">
+        <van-cell size="large" value="{{ userName }}" label="账号名"></van-cell>
+        <van-cell size="large" value="{{ nickName }}" label="昵称"></van-cell>
+        <van-cell size="large" value="{{ sex }}" label="性别"></van-cell>
+        <van-cell size="large" value="{{ phone }}" label="手机号"></van-cell>
+    </view>
+    <view class="center">
+        <van-button wx:if="{{!editMode}}" round class="submit-button" color="linear-gradient(to right, #46A6FA, #B091FA)" size="normal" block type="info" bind:tap="enterEditMode">修改</van-button>
+        <van-button wx:if="{{editMode}}" round class="submit-button" color="linear-gradient(to right, #46A6FA, #B091FA)" size="normal" block type="info" bind:tap="submit">提交</van-button>
+    </view>
+</view>
