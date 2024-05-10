@@ -293,6 +293,13 @@ const api = {
             data
         })
     },
+    async getNormalMapDetail(data, id) {
+        return await wx.$request({
+            url: `/normal-map/${id}`,
+            method: "GET",
+            data
+        })
+    },
     // 专题图层
     async getSubjectsList(data) {
         return await wx.$request({

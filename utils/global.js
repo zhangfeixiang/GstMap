@@ -1,7 +1,8 @@
 import {
     baseUrl,
     parseUri,
-    getVersion
+    getVersion,
+    h5Host
 } from './../utils/util';
 
 const permissions = ['pages/surveyor/menu'];
@@ -77,6 +78,7 @@ async function initAppData(options) {
                 ...options,
             },
             $host: baseUrl,
+            $h5Host: h5Host,
             $isLogin: isLogin,
             $route: this.route,
             $version: getVersion() || "",

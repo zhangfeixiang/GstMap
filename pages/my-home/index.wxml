@@ -16,7 +16,7 @@
     <!-- 下半部分 -->
     <view class="bottom-panel">
         <view class="list">
-            <van-cell title="我的上报" is-link url="/">
+            <van-cell title="我的上报" is-link url="./my-report">
                 <view slot="icon">
                     <van-icon size="30rpx" style="margin-right: 20rpx;" name="todo-list" />
                 </view>

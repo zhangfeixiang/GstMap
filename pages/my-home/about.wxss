@@ -1,11 +1,25 @@
 /* pages/my-home/about.wxss */
 .page {
-    padding: 48rpx;
+    padding: 32rpx;
+}
+
+page {
+    --field-label-color: #323233;
+    background: #f5f9fc;
+}
+
+.card {
+    border-radius: 18rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+    background: #fff;
+    padding: 40rpx 20rpx;
 }
 
 .logo {
     display: flex;
     justify-content: center;
+    margin-top: 50rpx;
 }
 
 .logo-img {

@@ -20,13 +20,17 @@ page {
 }
 
 .cover {
-    width: 150rpx;
-    height: 120rpx;
-    border-radius: 18rpx;
+    width: 144rpx;
+    height: 180rpx;
+    border-radius: 16rpx;
+    background-color: #efefef;
 }
 
 .right-view {
     margin-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .title {

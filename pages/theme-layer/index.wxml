@@ -1,10 +1,12 @@
 <view class="page">
-    <navigator url="detail?url={{item.serviceUrl}}" class="card item" wx:for="{{list}}" wx:key="id">
+    <view bind:tap="goDetail" class="card item" data-index="{{index}}" wx:for="{{list}}" wx:key="id">
         <image class="cover" src="{{$host + item.thumbnailPath}}" mode="aspectFill" />
         <view class="right-view">
-            <view class="title">{{item.name}} </view>
-            <view class="sub-title">{{item.source}} </view>
-            <view class="time">{{item.createTime}} </view>
+            <view>
+                <view class="title" wx:if="{{item.name}}">{{item.name}} </view>
+                <view class="sub-title" wx:if="{{item.source}}">数据来源：{{item.source}} </view>
+            </view>
+            <view class="time" wx:if="{{item.createTime}}">发布时间：{{item.createTime}} </view>
         </view>
-    </navigator>
+    </view>
 </view>

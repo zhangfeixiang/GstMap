@@ -37,6 +37,7 @@ Page({
         } = e.currentTarget.dataset;
         const urls = this.data.list.map(it => `${this.data.$host}${it.fullImg}`)
         const current = urls[index];
+        wx.$api.getNormalMapDetail({}, this.data.list[index].id)
         wx.previewImage({
             current,
             urls,

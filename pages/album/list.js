@@ -22,7 +22,13 @@ Page({
             tag: "影像图"
         }]
     },
-
+    goDetail(e) {
+        const item = this.data.list[e.currentTarget.dataset.index];
+        console.log(item)
+        wx.navigateTo({
+            url: `detail?url=${encodeURIComponent(this.data.$host + item.path)}`,
+        })
+    },
     page: 1,
     async getList() {
         const res = await wx.$api.getProductsList({

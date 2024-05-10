@@ -20,14 +20,19 @@ page {
 }
 
 .card-item .image {
-    width: 200rpx;
+    width: 144rpx;
     height: 180rpx;
     border-radius: 16rpx;
+    background-color: #efefef;
 }
 
 .card-item .right {
     margin-left: 20rpx;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
 
 .card-item .title {

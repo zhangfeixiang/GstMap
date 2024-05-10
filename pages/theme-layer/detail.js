@@ -13,8 +13,13 @@ Page({
     onLoad(options) {
         const url = decodeURIComponent(options.url)
         this.setData({
-            url
+            url: url.indexOf('?') > -1 ? url + '&title=' + (options.title || '') : url + '?title=' + (options.title || '')
         })
+        if (options.title) {
+            wx.setNavigationBarTitle({
+                title: options.title,
+            })
+        }
     },
 
     /**

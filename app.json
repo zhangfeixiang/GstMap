@@ -20,7 +20,8 @@
     "pages/theme-layer/index",
     "pages/theme-layer/detail",
     "pages/my-home/user-info",
-    "pages/my-home/about"
+    "pages/my-home/about",
+    "pages/my-home/my-report"
   ],
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",

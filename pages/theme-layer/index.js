@@ -9,6 +9,13 @@ Page({
         list: []
     },
 
+    goDetail(e) {
+        const item = this.data.list[e.currentTarget.dataset.index];
+        wx.navigateTo({
+            url: `detail?url=${encodeURIComponent(this.data.$h5Host + item.subjectUrl)}&title=${item.name}`,
+        })
+    },
+
     page: 1,
     async getList() {
         const res = await wx.$api.getSubjectsList({
