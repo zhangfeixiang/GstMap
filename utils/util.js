@@ -9,7 +9,8 @@ export const getVersion = () => {
 }
 export const h5Host = 'http://www.gistoyou.com.cn:8081'
 // export const baseUrl = "http://www.gistoyou.com.cn:8443/applet"
-export const baseUrl = "http://39.98.214.43:8081/applet"
+// export const baseUrl = "http://39.98.214.43:8081/applet"
+export const baseUrl = "https://beijing.tianditu.gov.cn/applet"
 
 // // 示例用法
 // var latitude = 40.7128; // 纬度

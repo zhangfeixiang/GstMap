@@ -21,14 +21,26 @@
     <!--  -->
     <view class="card tabs">
         <van-tabs active="{{ active }}" color="#333" sticky swipeable animated nav-class="nav-item" wrap-class="wrap-class">
-            <van-tab title="{{item.title}}" wx:for="{{tabs}}">
+            <van-tab title="最新">
                 <view class="list">
-                    <view class="card-item" wx:for="{{item.list}}">
-                        <view class="visit">
+                    <view class="card-item" wx:for="{{newList}}">
+                        <view class="visit" wx:if="{{item.visit}}">
                             <van-icon name="eye" />
                             <text>{{item.visit}}</text>
                         </view>
-                        <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+                        <image class="cover" src="{{$host+item.thumbnailPath}}" mode="aspectFill" />
+                        <view class="name">{{item.name}}</view>
+                    </view>
+                </view>
+            </van-tab>
+            <van-tab title="最热">
+                <view class="list">
+                    <view class="card-item" wx:for="{{hotList}}">
+                        <view class="visit" wx:if="{{item.visit}}">
+                            <van-icon name="eye" />
+                            <text>{{item.visit}}</text>
+                        </view>
+                        <image class="cover" src="{{$host + item.thumbImg}}" mode="aspectFill" />
                     </view>
                 </view>
             </van-tab>

@@ -1,7 +1,5 @@
 // index.js
-import {
-    pinyinUtil
-} from './../../utils/pinyinutil'
+
 Page({
 
     /**
@@ -55,70 +53,33 @@ Page({
             }
         ],
 
-        tabs: [{
-            title: '最新',
-            list: [{
-                visit: "1111",
-                title: "故宫",
-                cover: "https://gd-hbimg.huaban.com/54b1860b14994a3791938341952f3528a4dede65212b4-NyM9Gk_fw480webp"
-            }, {
-                visit: "1111",
-                title: "香山",
-                cover: "https://gd-hbimg.huaban.com/9cb9b7fe163b2d001bbd1f158b11a04b9ce20d2827c8f-Lbm19L_fw480webp"
-            }, {
-                visit: "1111",
-                title: "故宫",
-                cover: "https://gd-hbimg.huaban.com/54b1860b14994a3791938341952f3528a4dede65212b4-NyM9Gk_fw480webp"
-            }, {
-                visit: "1111",
-                title: "香山",
-                cover: "https://gd-hbimg.huaban.com/9cb9b7fe163b2d001bbd1f158b11a04b9ce20d2827c8f-Lbm19L_fw480webp"
-            }, {
-                visit: "1111",
-                title: "故宫",
-                cover: "https://gd-hbimg.huaban.com/54b1860b14994a3791938341952f3528a4dede65212b4-NyM9Gk_fw480webp"
-            }, {
-                visit: "1111",
-                title: "香山",
-                cover: "https://gd-hbimg.huaban.com/9cb9b7fe163b2d001bbd1f158b11a04b9ce20d2827c8f-Lbm19L_fw480webp"
-            }, {
-                visit: "1111",
-                title: "故宫",
-                cover: "https://gd-hbimg.huaban.com/54b1860b14994a3791938341952f3528a4dede65212b4-NyM9Gk_fw480webp"
-            }, {
-                visit: "1111",
-                title: "香山",
-                cover: "https://gd-hbimg.huaban.com/9cb9b7fe163b2d001bbd1f158b11a04b9ce20d2827c8f-Lbm19L_fw480webp"
-            }, {
-                visit: "1111",
-                title: "故宫",
-                cover: "https://gd-hbimg.huaban.com/54b1860b14994a3791938341952f3528a4dede65212b4-NyM9Gk_fw480webp"
-            }, {
-                visit: "1111",
-                title: "香山",
-                cover: "https://gd-hbimg.huaban.com/9cb9b7fe163b2d001bbd1f158b11a04b9ce20d2827c8f-Lbm19L_fw480webp"
-            }, {
-                visit: "1111",
-                title: "故宫",
-                cover: "https://gd-hbimg.huaban.com/54b1860b14994a3791938341952f3528a4dede65212b4-NyM9Gk_fw480webp"
-            }, {
-                visit: "1111",
-                title: "香山",
-                cover: "https://gd-hbimg.huaban.com/9cb9b7fe163b2d001bbd1f158b11a04b9ce20d2827c8f-Lbm19L_fw480webp"
-            }]
-        }, {
-            title: '最热',
-            list: [{
-                visit: "1111",
-                title: "香山",
-                cover: "https://gd-hbimg.huaban.com/9cb9b7fe163b2d001bbd1f158b11a04b9ce20d2827c8f-Lbm19L_fw480webp"
-            }, {
-                visit: "1111",
-                title: "故宫",
-                cover: "https://gd-hbimg.huaban.com/54b1860b14994a3791938341952f3528a4dede65212b4-NyM9Gk_fw480webp"
-            }, ]
-        }]
+        newList: [],
+        hotList: [],
 
+    },
+
+    async getNews() {
+        const res = await wx.$api.getSubjectsList({
+            pageSize: 3,
+            pageNum: 1
+        });
+        if (res.code === 200) {
+            this.setData({
+                newList: res.rows
+            })
+        }
+    },
+    async getHots() {
+        const res = await wx.$api.getNormalMapList({
+            region: '',
+            pageSize: 3,
+            pageNum: 1
+        });
+        if (res.code === 200) {
+            this.setData({
+                hotList: res.rows
+            })
+        }
     },
 
     handleClickItem(e) {
@@ -134,7 +95,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        this.getNews()
+        this.getHots()
     },
 
     /**
