@@ -10,7 +10,7 @@ Page({
                 id: 1,
                 icon: 'https://gd-hbimg.huaban.com/f3b623e0b4c4537979efaf054dd7bf6ffb3d32d4b28f-6mCNAj_fw480webp',
                 url: 'place/list',
-                title: '地名登记'
+                title: '地名'
             },
             {
                 id: 2,
@@ -22,7 +22,7 @@ Page({
                 id: 3,
                 icon: 'https://cdn.uviewui.com/uview/swiper/3.jpg',
                 url: 'tourismPanel/list',
-                title: '文旅'
+                title: '其他'
             },
             // {
             //     id: 4,

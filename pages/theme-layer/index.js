@@ -20,6 +20,7 @@ Page({
     async getList() {
         const res = await wx.$api.getSubjectsList({
             pageSize: 10,
+            pid: 0,
             pageNum: this.page || 1
         });
         if (res.code === 200) {

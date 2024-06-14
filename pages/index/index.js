@@ -58,6 +58,25 @@ Page({
 
     },
 
+    goDetail(e) {
+        const item = this.data.newList[e.currentTarget.dataset.index];
+        wx.navigateTo({
+            url: `/pages/theme-layer/detail?url=${encodeURIComponent(this.data.$h5Host + item.subjectUrl)}&title=${item.name}`,
+        })
+    },
+    previewImgs(e) {
+        const {
+            index
+        } = e.currentTarget.dataset;
+        const urls = this.data.hotList.map(it => `${this.data.$host}${it.fullImg}`)
+        const current = urls[index];
+        wx.$api.getNormalMapDetail({}, this.data.hotList[index].id)
+        wx.previewImage({
+            current,
+            urls,
+        })
+    },
+
     async getNews() {
         const res = await wx.$api.getSubjectsList({
             pageSize: 3,

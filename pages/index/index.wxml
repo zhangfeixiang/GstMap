@@ -23,7 +23,7 @@
         <van-tabs active="{{ active }}" color="#333" sticky swipeable animated nav-class="nav-item" wrap-class="wrap-class">
             <van-tab title="最新">
                 <view class="list">
-                    <view class="card-item" wx:for="{{newList}}">
+                    <view class="card-item" wx:for="{{newList}}" bind:tap="goDetail" data-index="{{index}}">
                         <view class="visit" wx:if="{{item.visit}}">
                             <van-icon name="eye" />
                             <text>{{item.visit}}</text>
@@ -35,12 +35,13 @@
             </van-tab>
             <van-tab title="最热">
                 <view class="list">
-                    <view class="card-item" wx:for="{{hotList}}">
+                    <view class="card-item" wx:for="{{hotList}}" bind:tap="previewImgs" data-index="{{index}}">
                         <view class="visit" wx:if="{{item.visit}}">
                             <van-icon name="eye" />
                             <text>{{item.visit}}</text>
                         </view>
                         <image class="cover" src="{{$host + item.thumbImg}}" mode="aspectFill" />
+                        <view class="name">{{item.year}}-{{item.region}}</view>
                     </view>
                 </view>
             </van-tab>

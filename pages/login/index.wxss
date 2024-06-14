@@ -4,8 +4,9 @@ page {
 }
 
 
+
 .t-login {
-    padding: 224rpx 32rpx 0 32rpx;
+    padding: 124rpx 32rpx 0 32rpx;
 }
 
 .main {
