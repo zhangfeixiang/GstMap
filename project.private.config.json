@@ -9,6 +9,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/my-home/send-feedback",
+          "pathName": "pages/my-home/send-feedback",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/my-home/my-report",
+          "pathName": "pages/my-home/my-report",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/my-home/about",
           "pathName": "pages/my-home/about",
           "query": "",

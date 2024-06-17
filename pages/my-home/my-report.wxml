@@ -1,1 +1,17 @@
-<van-empty description="暂无数据" />
+<view class="page">
+    <view class="card" wx:for="{{list}}" wx:key="id">
+        <!-- <view class="index">{{index+1}}</view> -->
+        <van-cell link-type="navigateTo" url="edit?id={{item.id}}" label="{{'上报时间：'+item.createTime}}">
+            <view slot="title" class="custom-title">
+                <span class="item-name">{{item.title}}</span>
+                <van-tag type="warning" wx:if="{{item.status== 0 || item.status == null}}">
+                    未开始</van-tag>
+                <van-tag type="primary" wx:if="{{item.status== 1}}">
+                    审核中</van-tag>
+                <van-tag type="success" wx:if="{{item.status== 2}}">
+                    已完成</van-tag>
+            </view>
+        </van-cell>
+    </view>
+    <van-empty wx:if="{{!isLoading && !list.length}}" description="暂无数据" />
+</view>

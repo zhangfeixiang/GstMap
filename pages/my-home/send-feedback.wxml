@@ -1,0 +1,21 @@
+<view class="page">
+    <view class="card">
+        <van-field size="large" required model:value="{{ title }}" label="标题" placeholder="请输入标题" />
+        <van-field size="large" type="textarea" autosize="{{autosize}}" model:value="{{ content }}" label="问题描述" placeholder="问题描述" />
+        <van-field size="large" model:value="{{ mobile }}" label="手机号" placeholder="手机号" />
+        <van-field size="large" model:value="{{ email }}" label="邮箱" placeholder="邮箱" />
+        <view class="tip">注：手机号和邮箱必须留一个</view>
+    </view>
+    <view style="height: 60rpx;"></view>
+
+    <view class="center">
+        <van-button round class="submit-button" color="linear-gradient(to right, #46A6FA, #B091FA)" size="normal" block type="info" bind:tap="handleFormSubmit">提交</van-button>
+    </view>
+</view>
+
+<!--  -->
+
+<!-- 乡镇 -->
+<van-popup show="{{ showPopupStreet }}" round position="bottom" bind:close="onClosePopupStreet">
+    <van-tree-select items="{{ districtTree }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ streetId }}" bind:click-nav="onClickNav" bind:click-item="onClickStreet" />
+</van-popup>

@@ -12,7 +12,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        const url = `https://beijing.tianditu.gov.cn/applet-map/?t=${Date.now()}&dev=1`
+        const url = `https://beijing.tianditu.gov.cn/applet-map/?t=${Date.now()}`
         this.setData({
             url
         })

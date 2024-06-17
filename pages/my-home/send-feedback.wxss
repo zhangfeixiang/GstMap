@@ -1,0 +1,49 @@
+page {
+    --field-label-color: #323233;
+    background: #f5f9fc;
+}
+
+.page {
+    padding: 20rpx;
+}
+
+.tip {
+    font-size: 24rpx;
+    padding: 20rpx 32rpx;
+    color: rgba(128, 128, 128, 1);
+}
+
+.field-label {
+    width: 100rpx;
+}
+
+.required:before {
+    color: var(--cell-required-color, #ee0a24);
+    content: "*";
+    font-size: var(--cell-font-size, 14px);
+    left: var(--padding-xs, -16rpx);
+    position: absolute;
+}
+
+.field-input {
+    margin-left: 10rpx;
+    flex: 1;
+}
+
+
+.card {
+    border-radius: 18rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+    background: #fff;
+}
+
+.align-right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.submit-button {
+    width: 100%;
+}

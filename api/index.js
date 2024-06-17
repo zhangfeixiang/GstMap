@@ -316,6 +316,24 @@ const api = {
             data
         })
     },
+    // 我的上报列表
+    async getReportList(data) {
+        return await wx.$request({
+            url: `/system/feedbacks/list`,
+            method: "GET",
+            data
+        })
+    },
+
+    // 提交反馈
+    async postReport(data) {
+        return await wx.$request({
+            url: `/system/feedbacks`,
+            method: "POST",
+            data
+        })
+    },
+
 
 }
 

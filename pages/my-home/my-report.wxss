@@ -1,1 +1,20 @@
-/* pages/my-home/my-report.wxss */
+page {
+    background: #f5f9fc;
+}
+
+.page {
+    padding: 32rpx;
+}
+
+.custom-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    border-radius: 18rpx;
+    overflow: hidden;
+    margin-bottom: 20rpx;
+    background: #fff;
+    --cell-label-margin-top: 20rpx;
+}
