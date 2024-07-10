@@ -271,10 +271,46 @@ Page({
     },
 
 
-
+    checkFormError() {
+        let isError = true;
+        let title = "";
+        if (!this.data.standardName) {
+            title = '标准名称不能为空'
+        } else if (!this.data.romanLetters) {
+            title = '罗马字母拼写不能为空'
+        } else if (!this.data.placeNameType) {
+            title = '地名使用类型不能为空'
+        } else if (!this.data.placeNameCategory) {
+            title = '地名类别不能为空'
+        } else if (!this.data.street) {
+            title = '所在行政区划不能为空'
+        } else if (!this.data.beginLongitude) {
+            title = '请选择起点坐标'
+        } else if (!this.data.endLongitude) {
+            title = '请选择终点坐标'
+        } else if (!this.data.placeNameSign) {
+            title = '请选择地名标志'
+        } else if (!this.data.useTime) {
+            title = '请选择使用时间'
+        } else if (!this.data.checkStatus) {
+            title = '请选择核查状态'
+        } else if (!this.data.imageUrl) {
+            title = '现场照片不能为空'
+        }
+        title && wx.showToast({
+            title,
+            icon: 'none'
+        })
+        return Boolean(title)
+    },
     // 表单提交
     async handleFormSubmit() {
+        if (this.checkFormError()) return;
+        wx.showLoading({
+            title: '上传中',
+        })
         const photoList = await uploadFileAll(this.data.photoFileList);
+        wx.hideLoading()
         // const videoList = await uploadFileAll(this.data.videoFileList);
         this.setData({
             photoFileList: photoList,

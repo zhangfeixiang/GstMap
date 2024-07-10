@@ -114,10 +114,14 @@ export function deepTree(objAry, val, key) {
 
 export function uploadFilePromise(filePath, formData) {
     return new Promise((resolve, reject) => {
+        const loginData = wx.getStorageSync('loginData') || {}
         let a = wx.uploadFile({
-            url: 'https://www.gistoyou.com.cn:8443/applet/common/upload',
+            url: baseUrl + '/common/upload',
             filePath,
             name: 'file',
+            header: {
+                'Authorization': loginData.token
+            },
             formData,
             success: (res) => {
                 const resData = JSON.parse(res.data)

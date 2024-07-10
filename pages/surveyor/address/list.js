@@ -18,9 +18,12 @@ Page({
         } = e.currentTarget.dataset;
         const current = this.data.list[index];
         if (current.latitude && current.longitude) {
-            wx.openLocation({
-                latitude: current.latitude,
-                longitude: current.longitude,
+            // wx.openLocation({
+            //     latitude: current.latitude,
+            //     longitude: current.longitude,
+            // })
+            wx.navigateTo({
+                url: `map?latitude=${current.latitude}&longitude=${current.longitude}`,
             })
         } else {
             wx.showToast({

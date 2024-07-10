@@ -23,7 +23,8 @@
     "pages/my-home/about",
     "pages/my-home/my-report",
     "pages/my-home/send-feedback",
-    "pages/surveyor/place/area"
+    "pages/surveyor/place/area",
+    "pages/surveyor/address/map"
   ],
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
