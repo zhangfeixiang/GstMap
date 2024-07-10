@@ -1,7 +1,7 @@
 <view class="page">
     <swiper class="swiper" indicator-dots="true" autoplay interval="{{3000}}">
         <swiper-item wx:for="{{imgList}}">
-            <image class="swiper-img" src="{{item}}" mode="aspectFill" />
+            <image class="swiper-img" src="{{item.bannerUrl}}" mode="aspectFill" />
         </swiper-item>
     </swiper>
 
@@ -23,13 +23,16 @@
         <van-tabs active="{{ active }}" color="#333" sticky swipeable animated nav-class="nav-item" wrap-class="wrap-class">
             <van-tab title="最新">
                 <view class="list">
-                    <view class="card-item" wx:for="{{newList}}" bind:tap="goDetail" data-index="{{index}}">
+                    <view class="card-item" wx:if="{{!loading}}" wx:for="{{newList}}" bind:tap="goDetail" data-index="{{index}}">
                         <view class="visit" wx:if="{{item.visit}}">
                             <van-icon name="eye" />
                             <text>{{item.visit}}</text>
                         </view>
                         <image class="cover" src="{{$host+item.thumbnailPath}}" mode="aspectFill" />
                         <view class="name">{{item.name}}</view>
+                    </view>
+                    <view wx:if="{{loading}}" class="loading">
+                        <van-loading size="24px" vertical>加载中...</van-loading>
                     </view>
                 </view>
             </van-tab>

@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/surveyor/place/edit",
+          "pathName": "pages/surveyor/place/edit",
+          "query": "id=2",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/my-home/send-feedback",
           "pathName": "pages/my-home/send-feedback",
           "query": "",

@@ -12,7 +12,39 @@ Page({
         isLoading: true
     },
 
+    openMap(e) {
+        const {
+            index
+        } = e.currentTarget.dataset;
+        const current = this.data.list[index];
+        if (current.beginLatitude && current.beginLongitude) {
+            // wx.openLocation({
+            //     latitude: current.beginLatitude - 0,
+            //     longitude: current.beginLongitude - 0,
+            // })
+            wx.navigateTo({
+                url: 'area',
+                success: (res) => {
+                    res.eventChannel.emit('current', {
+                        begin: {
+                            latitude: current.beginLatitude - 0,
+                            longitude: current.beginLongitude - 0
+                        },
+                        end: {
+                            latitude: current.endLatitude - 0,
+                            longitude: current.endLongitude - 0
+                        }
+                    })
 
+                }
+            })
+        } else {
+            wx.showToast({
+                title: '该地名未完善经纬度',
+                icon: 'none'
+            })
+        }
+    },
     page: 1,
     async getData() {
         const res = await wx.$api.getPlaceList({

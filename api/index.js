@@ -334,6 +334,14 @@ const api = {
         })
     },
 
+    async getHomeBanners(data) {
+        return await wx.$request({
+            url: '/system/banners/list',
+            method: 'GET',
+            data
+        })
+    }
+
 
 }
 

@@ -21,9 +21,14 @@
                     <van-icon size="30rpx" style="margin-right: 20rpx;" name="todo-list" />
                 </view>
             </van-cell>
-            <van-cell border="{{false}}" title="关于我们" is-link url="./about">
+            <van-cell title="关于我们" is-link url="./about">
                 <view slot="icon">
                     <van-icon size="30rpx" style="margin-right: 20rpx;" name="friends" />
+                </view>
+            </van-cell>
+            <van-cell border="{{false}}" title="退出登录" bind:tap="logout">
+                <view slot="icon">
+                    <van-icon size="30rpx" style="margin-right: 20rpx;" name="revoke" />
                 </view>
             </van-cell>
         </view>

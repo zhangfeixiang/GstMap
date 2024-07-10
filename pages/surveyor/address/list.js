@@ -22,6 +22,11 @@ Page({
                 latitude: current.latitude,
                 longitude: current.longitude,
             })
+        } else {
+            wx.showToast({
+                title: '该地址未完善经纬度',
+                icon: 'none'
+            })
         }
     },
     page: 1,

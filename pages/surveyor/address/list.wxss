@@ -13,6 +13,7 @@ page {
     margin-bottom: 20rpx;
     background: #fff;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -33,17 +34,16 @@ page {
 .map {
     display: flex;
     justify-content: flex-end;
-    flex: 1;
     box-sizing: border-box;
-    padding-right: 32rpx;
+    padding: 32rpx;
 }
 
 .custom-title {
     display: flex;
-    justify-content: space-between;
     width: 100%;
 }
 
 .item-name {
     margin-right: 20rpx;
+    max-width: 70%;
 }

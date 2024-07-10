@@ -1,7 +1,9 @@
 <view class="page">
     <view class="card">
         <van-field size="large" model:value="{{ code }}" readonly label="地点代码" placeholder="地点代码" />
+
         <van-field size="large" model:value="{{ standardName }}" readonly required label="标准名称" placeholder="标准名称" />
+
         <van-field size="large" model:value="{{ aliasName }}" label="别名" placeholder="别名" />
         <van-field size="large" model:value="{{ romanLetters }}" required label="罗马字母拼写" placeholder="罗马字母拼写" />
 
@@ -53,13 +55,15 @@
                 <van-radio name="无">无</van-radio>
             </van-radio-group>
         </van-cell>
-        <van-cell size="large" required title-width="6.2em" title="使用时间">
-            <van-radio-group value="{{ useTime }}" direction="horizontal" bind:change="onChangeUseTime">
-                <van-radio name="现今地名">现今地名</van-radio>
-                <van-radio name="历史地名">历史地名</van-radio>
-            </van-radio-group>
-        </van-cell>
+        <!--  -->
+        <van-field size="large" required value="{{ useTime }}" is-link readonly label="使用时间" placeholder="请选择使用时间" bind:tap="onChangeUseTime" />
+
         <van-field size="large" type="textarea" autosize="{{autosize}}" model:value="{{ generalSituation }}" label="地名整体概况" placeholder="地名整体概况" />
+
+        <!--  -->
+        <van-field size="large" required value="{{ (checkStatus||'') }}" is-link readonly label="核查状态" placeholder="请选择核查状态" bind:tap="onShowPopupCheckStatus" />
+
+
         <van-field size="large" type="textarea" autosize="{{autosize}}" model:value="{{ remark }}" label="备注" placeholder="备注" />
 
         <view>
@@ -75,6 +79,11 @@
     </view>
 </view>
 
+
+<!-- 核查状态 -->
+<van-popup show="{{ showPopupCheckStatus }}" round position="bottom" bind:close="onClosePopupCheckStatus">
+    <van-tree-select items="{{ checkStatusTree }}" main-active-index="{{ checkStatusMainActiveIndex }}" active-id="{{ checkStatus }}" bind:click-nav="onClickNavCheckStatus" bind:click-item="onClickCheckStatus" />
+</van-popup>
 
 <!-- 行政区-乡镇 -->
 <van-popup show="{{ showPopupStreet }}" round position="bottom" bind:close="onClosePopupStreet">

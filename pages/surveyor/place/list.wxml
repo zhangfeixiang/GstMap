@@ -1,17 +1,22 @@
 <view class="page">
     <view class="card" wx:for="{{list}}" wx:key="id">
-        <view class="index">{{index+1}}</view>
-        <van-cell link-type="navigateTo" url="edit?id={{item.id}}" label="{{item.placeNameType}}">
-            <view slot="title" class="custom-title">
-                <span class="item-name">{{item.standardName}}</span>
-                <van-tag type="warning" wx:if="{{item.status== 0 || item.status == null}}">
-                    未开始</van-tag>
-                <van-tag type="primary" wx:if="{{item.status== 1}}">
-                    进行中</van-tag>
-                <van-tag type="success" wx:if="{{item.status== 2}}">
-                    已完成</van-tag>
-            </view>
-        </van-cell>
+        <navigator url="edit?id={{item.id}}" class="index">{{index+1}}</navigator>
+        <view style="flex: 1;">
+            <van-cell link-type="navigateTo" url="edit?id={{item.id}}" label="{{item.placeNameType}}">
+                <view slot="title" class="custom-title">
+                    <span class="item-name">{{item.standardName}}</span>
+                    <van-tag type="warning" wx:if="{{item.status== 0 || item.status == null}}">
+                        未开始</van-tag>
+                    <van-tag type="primary" wx:if="{{item.status== 1}}">
+                        进行中</van-tag>
+                    <van-tag type="success" wx:if="{{item.status== 2}}">
+                        已完成</van-tag>
+                </view>
+            </van-cell>
+        </view>
+        <view class="map" bind:tap="openMap" data-index="{{index}}" >
+            <van-icon name="map-marked" size="20" />
+        </view>
     </view>
     <van-empty wx:if="{{!isLoading && !list.length}}" description="暂无数据" />
 </view>

@@ -6,11 +6,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        imgList: [
-            'https://gd-hbimg.huaban.com/706f0059812fb1f0ef5213557f59feab9593e71c12093a-LEWZKa_fw1200webp',
-            'https://gd-hbimg.huaban.com/fc4a7a7762125f66b5c439782edcc1396d3d41821a8e4-lAlqfv_fw1200webp',
-            'https://gd-hbimg.huaban.com/f8e614f34297198176b7649cfd9ebc9e5a2170bb25f42-9axQTg_fw1200webp',
-        ],
+        imgList: ['https://static.zc0901.com/zfx/gst-map/1.jpg', 'https://static.zc0901.com/zfx/gst-map/2.jpg', 'https://static.zc0901.com/zfx/gst-map/3.jpg'],
+        loading: true,
         layerList: [{
                 id: 1,
                 name: '标准地图',
@@ -58,6 +55,8 @@ Page({
 
     },
 
+
+
     goDetail(e) {
         const item = this.data.newList[e.currentTarget.dataset.index];
         wx.navigateTo({
@@ -84,6 +83,7 @@ Page({
         });
         if (res.code === 200) {
             this.setData({
+                loading: false,
                 newList: res.rows
             })
         }
@@ -101,6 +101,18 @@ Page({
         }
     },
 
+    async getHomeBanners() {
+        const res = await wx.$api.getHomeBanners();
+        if (res.code === 200) {
+            res.data.forEach(it => {
+                it.bannerUrl = it.bannerUrl.startsWith('http') ? it.bannerUrl : `${this.data.$host}${it.bannerUrl}`
+            })
+            this.setData({
+                imgList: res.data
+            })
+        }
+    },
+
     handleClickItem(e) {
         const {
             index
@@ -114,6 +126,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        this.getHomeBanners();
         this.getNews()
         this.getHots()
     },

@@ -13,8 +13,22 @@ Page({
             url: './user-info',
         })
     },
+    logout() {
+        wx.showModal({
+            title: '提示',
+            content: '确定退出吗？',
+            complete: (res) => {
+                if (res.confirm) {
+                    wx.removeStorageSync('loginData');
+                    wx.navigateTo({
+                        url: '/pages/login/index',
+                    })
+                }
+            }
+        })
+    },
     login() {
-        const loginData = wx.getStorageSync('loginData')
+        const loginData = wx.getStorageSync('loginData') || {};
         if (loginData.token) return;
         wx.navigateTo({
             url: '/pages/login/index',

@@ -3,7 +3,7 @@ page {
 }
 
 .page {
-    padding: 0 20rpx;
+    padding: 0 20rpx 20rpx 20rpx;
 }
 
 .swiper {
@@ -104,14 +104,21 @@ page {
 }
 
 .list {
-    padding: 20rpx;
+    padding: 20rpx 20rpx 0 20rpx;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    min-height: 400rpx;
+    padding-top: 200rpx;
 }
 
 .card-item {
     position: relative;
     width: 48%;
     display: inline-block;
-    margin-bottom: 40rpx;
+    margin-bottom: 30rpx;
 }
 
 .card-item:nth-child(odd) {

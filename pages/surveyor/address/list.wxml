@@ -1,14 +1,16 @@
 <view class="page">
     <view class="card" wx:for="{{list}}" wx:key="id">
-        <view class="index">{{index+1}}</view>
-        <van-cell class="custom-cell" link-type="navigateTo" url="edit?id={{item.id}}" label="{{item.street}}">
-            <view slot="title" class="custom-title">
-                <span class="item-name">{{item.standardName}}</span>
-                <van-tag type="warning">
-                    {{item.type}}
-                </van-tag>
-            </view>
-        </van-cell>
+        <navigator url="edit?id={{item.id}}" class="index">{{index+1}}</navigator>
+        <view style="flex: 1;">
+            <van-cell class="custom-cell" link-type="navigateTo" url="edit?id={{item.id}}" label="{{item.street}}">
+                <view slot="title" class="custom-title">
+                    <span class="item-name">{{item.standardName}}</span>
+                    <van-tag type="warning">
+                        {{item.type}}
+                    </van-tag>
+                </view>
+            </van-cell>
+        </view>
         <view class="map" bind:tap="openMap" data-index="{{index}}">
             <van-icon name="map-marked" size="20" />
         </view>

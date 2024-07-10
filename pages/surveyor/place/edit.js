@@ -4,7 +4,9 @@ import {
     DMSToDecimal,
     uploadFileAll
 } from './../../../utils/util'
-import {pinyinUtil} from './../../../utils/pinyinutil'
+import {
+    pinyinUtil
+} from './../../../utils/pinyinutil'
 Page({
 
     /**
@@ -45,8 +47,92 @@ Page({
         mainActiveIndex: 0,
         streetId: null,
         showPopupStreet: false,
+        showPopupCheckStatus: false,
         isSurveyor: false,
+        // ---
+        "checkStatus": "",
+        checkStatusMainActiveIndex: 0,
+        checkStatusTree: [{
+                text: '规范',
+                children: [{
+                        text: '已建成',
+                        id: '已建成',
+                    },
+                    {
+                        text: '部分建成',
+                        id: '部分建成',
+                    },
+                ],
+            },
+            {
+                text: '未设置',
+                children: [{
+                        text: '已建成',
+                        id: '已建成',
+                    },
+                    {
+                        text: '部分建成',
+                        id: '部分建成',
+                    },
+                    {
+                        text: '未建成',
+                        id: '未建成',
+                    },
+                ],
+            },
+            {
+                text: '不一致',
+                children: [{
+                        text: '通名不一致',
+                        id: '通名不一致',
+                    },
+                    {
+                        text: '专名不一致',
+                        id: '专名不一致',
+                    },
+                    {
+                        text: '均不一致',
+                        id: '均不一致',
+                    },
+                    {
+                        text: '含义相近',
+                        id: '含义相近',
+                    },
+                ],
+            },
+            {
+                text: '不规范',
+                children: [{
+                    text: '拼写不准确',
+                    id: '拼写不准确',
+                }, ],
+            },
+        ]
+    },
+    onClickNavCheckStatus({
+        detail
+    }) {
+        this.setData({
+            checkStatusMainActiveIndex: detail.index || 0,
+        });
+    },
+    onClickCheckStatus(e) {
+        console.log(e.detail)
+        this.setData({
+            "checkStatus": e.detail.text,
+            showPopupCheckStatus: false
+        })
+    },
+    onShowPopupCheckStatus() {
+        this.setData({
+            showPopupCheckStatus: true
+        })
+    },
 
+    onClosePopupCheckStatus() {
+        this.setData({
+            showPopupCheckStatus: false
+        })
     },
 
     async getUserInfo() {
@@ -84,16 +170,17 @@ Page({
         } = e.currentTarget.dataset;
         const latitude = this.data[key + 'Latitude']
         const longitude = this.data[key + 'Longitude']
-        const target = this.data.longitude && this.data.latitude ? {
+        const target = longitude && latitude ? {
             longitude,
             latitude,
         } : {};
         const res = await wx.chooseLocation(target);
-
-        this.setData({
-            [key + "Longitude"]: res.longitude,
-            [key + "Latitude"]: res.latitude
-        })
+        if (res) {
+            this.setData({
+                [key + "Longitude"]: res.longitude,
+                [key + "Latitude"]: res.latitude
+            })
+        }
     },
 
     onShowPopupStreet() {
@@ -167,9 +254,20 @@ Page({
         });
     },
     onChangeUseTime(e) {
-        this.setData({
-            "useTime": e.detail,
-        });
+        const itemList = [
+            '现今地名',
+            '历史地名',
+            '规划地名',
+            '审批地名',
+        ];
+        wx.showActionSheet({
+            itemList,
+            success: res => {
+                this.setData({
+                    "useTime": itemList[res.tapIndex]
+                });
+            }
+        })
     },
 
 
@@ -197,7 +295,11 @@ Page({
         delete data.mainActiveIndex;
         delete data.showPopupStreet;
         delete data.districtTree;
-        const res = await wx.$api.editPlace({...data, status:2});
+        delete data.checkStatusTree;
+        const res = await wx.$api.editPlace({
+            ...data,
+            status: 2
+        });
         console.log(res)
         if (res.code === 200) {
             wx.showToast({
@@ -245,7 +347,7 @@ Page({
                     fileName: fileName
                 })
             });
-            if(!formData.data.romanLetters) {
+            if (!formData.data.romanLetters) {
                 var str = pinyinUtil.getPinyin(formData.data.standardName, '', true);
                 formData.data.romanLetters = str;
             }

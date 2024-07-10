@@ -10,6 +10,7 @@ export const getVersion = () => {
 export const h5Host = 'https://beijing.tianditu.gov.cn'
 // export const baseUrl = "http://www.gistoyou.com.cn:8443/applet"
 // export const baseUrl = "http://39.98.214.43:8081/applet"
+// 图片、视频
 export const baseUrl = "https://beijing.tianditu.gov.cn/applet"
 
 // // 示例用法
