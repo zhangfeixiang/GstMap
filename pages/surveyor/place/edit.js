@@ -5,6 +5,10 @@ import {
     uploadFileAll
 } from './../../../utils/util'
 import {
+    gps84_To_Gcj02,
+    gcj02_To_Gps84
+} from './../../../utils/GPSUtil'
+import {
     pinyinUtil
 } from './../../../utils/pinyinutil'
 Page({
@@ -149,36 +153,29 @@ Page({
             photoFileList: e.detail
         })
     },
-    async onGetLocation() {
-        const target = this.data.longitude && this.data.latitude ? {
-            longitude: DMSToDecimal(this.data.longitude),
-            latitude: DMSToDecimal(this.data.latitude),
-        } : {};
-        const res = await wx.chooseLocation(target);
 
-        const dms = [decimalToDMS(res.longitude), decimalToDMS(res.latitude)]
-        this.setData({
-            locationStr: dms.join(','),
-            "longitude": dms[0],
-            "latitude": dms[1]
-        })
-        console.log(this.data.locationStr, res)
-    },
     async onGetLocationArea(e) {
         const {
             key
         } = e.currentTarget.dataset;
         const latitude = this.data[key + 'Latitude']
         const longitude = this.data[key + 'Longitude']
-        const target = longitude && latitude ? {
-            longitude,
-            latitude,
+        let target = longitude && latitude ? {
+            longitude: DMSToDecimal(longitude),
+            latitude: DMSToDecimal(latitude),
         } : {};
+        if (target.latitude) {
+            const gcj02 = gps84_To_Gcj02(target.longitude, target.latitude);
+            target.longitude = gcj02[0]
+            target.latitude = gcj02[1]
+        }
         const res = await wx.chooseLocation(target);
         if (res) {
+            // 小程序获取到坐标是gcj02，需要先转为gps84，再转度分秒
+            const gps84 = gcj02_To_Gps84(res.longitude, res.latitude)
             this.setData({
-                [key + "Longitude"]: res.longitude,
-                [key + "Latitude"]: res.latitude
+                [key + "Longitude"]: decimalToDMS(gps84[0]),
+                [key + "Latitude"]: decimalToDMS(gps84[1])
             })
         }
     },
@@ -272,7 +269,6 @@ Page({
 
 
     checkFormError() {
-        let isError = true;
         let title = "";
         if (!this.data.standardName) {
             title = '标准名称不能为空'
@@ -294,8 +290,6 @@ Page({
             title = '请选择使用时间'
         } else if (!this.data.checkStatus) {
             title = '请选择核查状态'
-        } else if (!this.data.imageUrl) {
-            title = '现场照片不能为空'
         }
         title && wx.showToast({
             title,
@@ -321,6 +315,13 @@ Page({
             isNew: this.data.isNew ? Number(this.data.isNew) : null,
             imageUrl: photoList.filter(it => it.status == 'success').map(it => it.fileName).join(','),
         };
+        if (!data.imageUrl) {
+            wx.showToast({
+                title: '现场照片不能为空',
+                icon: 'none'
+            })
+            return
+        }
         delete data.fieldCustom;
         delete data.showPopupPlaceNameCategory;
         delete data.placeCategoriesData;
@@ -332,6 +333,7 @@ Page({
         delete data.showPopupStreet;
         delete data.districtTree;
         delete data.checkStatusTree;
+
         const res = await wx.$api.editPlace({
             ...data,
             status: 2
@@ -342,6 +344,7 @@ Page({
                 title: res.msg,
                 icon: 'none'
             })
+            wx.navigateBack()
         }
 
     },

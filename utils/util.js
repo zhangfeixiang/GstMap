@@ -1,3 +1,7 @@
+import {
+    gcj02_To_Gps84,
+    gps84_To_Gcj02
+} from './GPSUtil'
 export let mock = 0;
 
 export const getAppid = () => {
@@ -13,12 +17,15 @@ export const h5Host = 'https://beijing.tianditu.gov.cn'
 // 图片、视频
 export const baseUrl = "https://beijing.tianditu.gov.cn/applet"
 
-// // 示例用法
+// // 示例用法(gps84)
 // var latitude = 40.7128; // 纬度
 // var longitude = -74.0060; // 经度
 // console.log("纬度: " + decimalToDMS(latitude));
 // console.log("经度: " + decimalToDMS(longitude));
 export function decimalToDMS(deg) {
+    if (!deg) {
+        return '';
+    }
     var d = Math.floor(deg);
     var minfloat = (deg - d) * 60;
     var m = Math.floor(minfloat);
@@ -50,6 +57,7 @@ export function DMSToDecimal(dms) {
     if (direction == "S" || direction == "W") {
         dd = dd * -1; // 南纬或西经的情况，转换为负值
     }
+    // 此时度分秒转的结果是gps84
     return dd;
 }
 
@@ -153,7 +161,7 @@ export async function uploadFileAll(arr) {
                 resolve({
                     ...r,
                     status: "success",
-                    url: data.url, //  完整路径
+                    url: data.fileName.startsWith('http') ? data.fileName : `${baseUrl}${data.fileName}`, //  完整路径
                     fileName: data.fileName, // 不包含域名前缀
                 })
             });

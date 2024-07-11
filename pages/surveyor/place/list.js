@@ -1,5 +1,9 @@
 import {
-    parseTime
+    gps84_To_Gcj02
+} from '../../../utils/GPSUtil';
+import {
+    decimalToDMS,
+    DMSToDecimal
 } from './../../../utils/util'
 Page({
 
@@ -17,7 +21,7 @@ Page({
             index
         } = e.currentTarget.dataset;
         const current = this.data.list[index];
-        if (current.beginLatitude && current.beginLongitude) {
+        if (current.beginLatitude && current.endLatitude) {
             // wx.openLocation({
             //     latitude: current.beginLatitude - 0,
             //     longitude: current.beginLongitude - 0,
@@ -25,16 +29,21 @@ Page({
             wx.navigateTo({
                 url: 'area',
                 success: (res) => {
-                    res.eventChannel.emit('current', {
+                    const beginGps84 = [DMSToDecimal(current.beginLongitude), DMSToDecimal(current.beginLatitude)]
+                    const beginCgc02 = gps84_To_Gcj02(beginGps84[0], beginGps84[1])
+                    const endGps84 = [DMSToDecimal(current.endLongitude), DMSToDecimal(current.endLatitude)]
+                    const endCgc02 = gps84_To_Gcj02(endGps84[0], endGps84[1])
+                    const data = {
                         begin: {
-                            latitude: current.beginLatitude - 0,
-                            longitude: current.beginLongitude - 0
+                            latitude: beginCgc02[1],
+                            longitude: beginCgc02[0]
                         },
                         end: {
-                            latitude: current.endLatitude - 0,
-                            longitude: current.endLongitude - 0
+                            latitude: endCgc02[1],
+                            longitude: endCgc02[0]
                         }
-                    })
+                    }
+                    res.eventChannel.emit('current', data)
 
                 }
             })

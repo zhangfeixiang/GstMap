@@ -17,12 +17,6 @@
         <!-- 精确至街道，例：北京市xx区xx街道 -->
         <van-field size="large" required value="{{ (city||'')+ (county||'')+(street||'') }}" is-link readonly label="所在行政区划" placeholder="请选择行政位置" bind:tap="onShowPopupStreet" />
 
-        <!-- <van-field size="large" required value="{{ locationStartStr }}" readonly label="起点位置" placeholder="请选择起点位置" bind:tap="onGetLocation">
-            <van-icon slot="right-icon" name="location" class="custom-icon" />
-        </van-field>
-        <van-field size="large" required value="{{ locationEndStr }}" readonly label="终点位置" placeholder="请选择终点位置" bind:tap="onGetLocation">
-            <van-icon slot="right-icon" name="location" class="custom-icon" />
-        </van-field> -->
 
         <view class="location-item">
             <view class="field required">

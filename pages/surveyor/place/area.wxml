@@ -1,2 +1,2 @@
-<map id='map' style="width: 100vw; height: 100vh;" latitude="{{latitude}}" longitude="{{longitude}}" polygons="{{polygons}}">
+<map id='map' style="width: 100vw; height: 100vh;" latitude="{{latitude}}" longitude="{{longitude}}" polyline="{{polylines}}" markers="{{markers}}" polygons="{{polygons}}" scale="{{14.8}}">
 </map>
