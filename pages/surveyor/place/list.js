@@ -21,7 +21,7 @@ Page({
             index
         } = e.currentTarget.dataset;
         const current = this.data.list[index];
-        if (current.beginLatitude && current.endLatitude) {
+        if (current.beginLatitude || current.endLatitude) {
             // wx.openLocation({
             //     latitude: current.beginLatitude - 0,
             //     longitude: current.beginLongitude - 0,
@@ -29,8 +29,28 @@ Page({
             wx.navigateTo({
                 url: 'area',
                 success: (res) => {
+                    if (current.beginLongitude) {
+                        const beginGps84 = [DMSToDecimal(current.beginLongitude), DMSToDecimal(current.beginLatitude)]
+                        const beginCgc02 = gps84_To_Gcj02(beginGps84[0], beginGps84[1]);
+                        res.eventChannel.emit('maker', {
+                            latitude: beginCgc02[1],
+                            longitude: beginCgc02[0]
+                        })
+
+                        return
+                    } else if (current.endLongitude) {
+                        const endGps84 = [DMSToDecimal(current.endLongitude), DMSToDecimal(current.endLatitude)]
+                        const endCgc02 = gps84_To_Gcj02(endGps84[0], endGps84[1])
+                        res.eventChannel.emit('maker', {
+                            latitude: endCgc02[1],
+                            longitude: endCgc02[0]
+                        })
+                        return
+                    }
+
                     const beginGps84 = [DMSToDecimal(current.beginLongitude), DMSToDecimal(current.beginLatitude)]
                     const beginCgc02 = gps84_To_Gcj02(beginGps84[0], beginGps84[1])
+
                     const endGps84 = [DMSToDecimal(current.endLongitude), DMSToDecimal(current.endLatitude)]
                     const endCgc02 = gps84_To_Gcj02(endGps84[0], endGps84[1])
                     const data = {

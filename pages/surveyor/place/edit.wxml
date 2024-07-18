@@ -19,22 +19,22 @@
 
 
         <view class="location-item">
-            <view class="field required">
+            <view class="field ">
                 <view class="field-label">东经</view>
                 <input class="field-input" model:value="{{ beginLongitude }}" type="text" />
             </view>
-            <view class="field required">
+            <view class="field ">
                 <view class="field-label">北纬</view>
                 <input class="field-input" model:value="{{beginLatitude}}" type="text" />
             </view>
             <view class="location-shape start" bind:tap="onGetLocationArea" data-key="begin"></view>
         </view>
         <view class="location-item">
-            <view class="field required">
+            <view class="field ">
                 <view class="field-label">东经</view>
                 <input class="field-input" model:value="{{ endLongitude }}" type="text" />
             </view>
-            <view class="field required">
+            <view class="field ">
                 <view class="field-label">北纬</view>
                 <input class="field-input" model:value="{{ endLatitude  }}" type="text" />
             </view>

@@ -23,7 +23,8 @@ Page({
     data: {
         list: [],
         hasMore: true,
-        polygons: []
+        polygons: [],
+        markers: [],
     },
 
     center(begin, end) {
@@ -55,6 +56,7 @@ Page({
                 this.getData()
             } else {
                 this.genPolylines()
+                this.generateMarkers()
             }
         }
     },
@@ -62,7 +64,7 @@ Page({
     genPolygons() {
         const polygons = [];
         this.data.list.filter(it => it.beginLatitude && it.endLatitude).forEach(current => {
-            console.log('===', current)
+            console.log('genPolygons===', current)
             const beginGps84 = [DMSToDecimal(current.beginLongitude), DMSToDecimal(current.beginLatitude)]
             const beginCgc02 = gps84_To_Gcj02(beginGps84[0], beginGps84[1])
             const endGps84 = [DMSToDecimal(current.endLongitude), DMSToDecimal(current.endLatitude)]
@@ -106,12 +108,54 @@ Page({
         })
 
     },
+    generateMarkers() { //创建坐标点的函数
 
+        const markers = [];
+        this.data.list.filter(it => it.beginLatitude || it.endLatitude).forEach((current, index) => {
+            console.log('generateMarkers===', current)
+            const beginGps84 = [DMSToDecimal(current.beginLongitude || current.endLongitude), DMSToDecimal(current.beginLatitude || current.endLatitude)]
+            const beginCgc02 = gps84_To_Gcj02(beginGps84[0], beginGps84[1])
+
+
+            let longitude = beginCgc02[0]
+            let latitude = beginCgc02[1]
+            let markerId = index
+            let iconPath = "https://static.zc0901.com/zfx/gst-map/marker.png"
+            let marker = {
+                longitude: longitude, //必填经度
+                latitude: latitude, //必填纬度
+                iconPath: iconPath, //必填图标路径
+                callout: {
+                    content: current.standardName,
+                    color: '#ff0000',
+                    fontSize: 12,
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    borderColor: '#333',
+                    bgColor: '#fff',
+                    padding: 5,
+                    display: 'ALWAYS',
+                    textAlign: 'center'
+                },
+                id: markerId, //选填点位id，id作为唯一的标识符，我觉得填上会好点，可以不填。
+                width: 20, //图片的宽度，默认为实际宽度
+                height: 20, //图片的高度，默认为实际高度
+                anchor: { //图标的中心点（0-1选值）
+                    x: .5,
+                    y: .5
+                }
+            }
+            markers.push(marker)
+        })
+        this.setData({
+            markers
+        })
+    },
 
     genPolylines() {
         const polylines = [];
         this.data.list.filter(it => it.beginLatitude && it.endLatitude).forEach(current => {
-            console.log('===', current)
+            console.log('genPolylines===', current)
             const beginGps84 = [DMSToDecimal(current.beginLongitude), DMSToDecimal(current.beginLatitude)]
             const beginCgc02 = gps84_To_Gcj02(beginGps84[0], beginGps84[1])
             const endGps84 = [DMSToDecimal(current.endLongitude), DMSToDecimal(current.endLatitude)]
@@ -166,6 +210,13 @@ Page({
             console.log(data)
             this.setData({
                 ...this.center(data.begin, data.end),
+            })
+            this.getData()
+        })
+        eventChannel && eventChannel.on('maker', (data) => {
+            console.log(data)
+            this.setData({
+                ...data
             })
             this.getData()
         })

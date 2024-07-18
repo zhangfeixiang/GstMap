@@ -280,10 +280,6 @@ Page({
             title = '地名类别不能为空'
         } else if (!this.data.street) {
             title = '所在行政区划不能为空'
-        } else if (!this.data.beginLongitude) {
-            title = '请选择起点坐标'
-        } else if (!this.data.endLongitude) {
-            title = '请选择终点坐标'
         } else if (!this.data.placeNameSign) {
             title = '请选择地名标志'
         } else if (!this.data.useTime) {
