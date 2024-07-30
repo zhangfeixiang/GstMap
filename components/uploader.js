@@ -109,6 +109,12 @@ Component({
         },
 
         handleDeletePic(e) {
+            const current = this.data.lists[e.currentTarget.dataset.index];
+            if (current && current.status == 'success') {
+                wx.$api.deleteFile({
+                    path: current.fileName
+                })
+            }
             this.data.lists.splice(e.currentTarget.dataset.index, 1)
             this.setData({
                 lists: this.data.lists

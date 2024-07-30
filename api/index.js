@@ -1,4 +1,12 @@
 const api = {
+    async deleteFile(data) {
+        return await wx.$request({
+            url: "/common/file/delete",
+            data,
+            method: "POST",
+            showError: false
+        })
+    },
     async getUserInfo(data) {
         return await wx.$request({
             url: "/getInfo",

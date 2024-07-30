@@ -1,2 +1,3 @@
-<map id='map' style="width: 100vw; height: 100vh;" latitude="{{latitude}}" longitude="{{longitude}}" polyline="{{polylines}}" markers="{{markers}}" polygons="{{polygons}}" scale="{{14.8}}">
+<map id='map' style="width: 100vw; height: 100vh;" show-location="{{showPosition}}" latitude="{{latitude}}" longitude="{{longitude}}" polyline="{{polylines}}" markers="{{markers}}" polygons="{{polygons}}" scale="{{14.8}}">
+    <!-- <cover-view class="icon-loc" bind:tap="getGeo"></cover-view> -->
 </map>

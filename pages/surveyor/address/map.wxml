@@ -1,1 +1,1 @@
-<map id='map' longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" markers="{{markers}}" polyline="{{polyline}}" polygons="{{polygons}}" />
+<map id='map' show-location="{{showPosition}}" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" markers="{{markers}}" polyline="{{polyline}}" polygons="{{polygons}}" />

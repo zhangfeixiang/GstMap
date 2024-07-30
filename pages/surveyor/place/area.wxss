@@ -1,1 +1,13 @@
 /* pages/surveyor/place/area.wxss */
+.icon-loc {
+    background: url('https://static.zc0901.com/zfx/gst-map/icom-loc.png') no-repeat center center;
+    background-size: 46rpx;
+    height: 78rpx;
+    width: 78rpx;
+    background: #fff;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    position: fixed;
+    top: 30rpx;
+    right: 30rpx;
+}

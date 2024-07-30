@@ -128,7 +128,12 @@ Page({
         })
     },
     onShowPopupCheckStatus() {
+        let checkStatusMainActiveIndex = 0;
+        if (this.data.parentCheckStatus) {
+            checkStatusMainActiveIndex = this.data.checkStatusTree.findIndex(it => this.data.parentCheckStatus === it.text)
+        }
         this.setData({
+            checkStatusMainActiveIndex,
             showPopupCheckStatus: true
         })
     },
@@ -308,6 +313,7 @@ Page({
         })
         const data = {
             ...this.data,
+            parentCheckStatus: this.data.checkStatusTree[this.data.checkStatusMainActiveIndex].text || "",
             isNew: this.data.isNew ? Number(this.data.isNew) : null,
             imageUrl: photoList.filter(it => it.status == 'success').map(it => it.fileName).join(','),
         };
@@ -429,9 +435,9 @@ Page({
         })
         wx.hideLoading()
     },
-
+    // 作废
     handleDeletePic(e) {
-        this.data.photoFileList.splice(e.detail.index, 1)
+        this.data.photoFileList.splice(e.detail.index, 1);
         this.setData({
             photoFileList: this.data.photoFileList
         })

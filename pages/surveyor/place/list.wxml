@@ -2,7 +2,7 @@
     <view class="card" wx:for="{{list}}" wx:key="id">
         <navigator url="edit?id={{item.id}}" class="index">{{index+1}}</navigator>
         <view style="flex: 1;">
-            <van-cell link-type="navigateTo" url="edit?id={{item.id}}" label="{{item.placeNameType}}">
+            <van-cell link-type="navigateTo" url="edit?id={{item.id}}" label="{{item.useTime || ' '}}">
                 <view slot="title" class="custom-title">
                     <span class="item-name">{{item.standardName}}</span>
                     <van-tag type="warning" wx:if="{{item.status== 0 || item.status == null}}">
@@ -14,7 +14,7 @@
                 </view>
             </van-cell>
         </view>
-        <view class="map" bind:tap="openMap" data-index="{{index}}" >
+        <view class="map" bind:tap="openMap" data-index="{{index}}">
             <van-icon name="map-marked" size="20" />
         </view>
     </view>

@@ -23,8 +23,10 @@ Page({
     data: {
         list: [],
         hasMore: true,
+        showPosition: true,
         polygons: [],
         markers: [],
+
     },
 
     center(begin, end) {
@@ -201,6 +203,17 @@ Page({
 
     },
 
+    getLocGeo() {
+        wx.getLocation({
+            success: res => {
+                this.setData({
+                    longitude: res.longitude,
+                    latitude: res.latitude,
+                })
+            }
+        })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -220,6 +233,7 @@ Page({
             })
             this.getData()
         })
+        this.getLocGeo()
     },
 
     /**
